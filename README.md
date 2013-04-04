@@ -11,7 +11,7 @@ This API will (at least for now) be *limited to entry and feed data* and exclude
 
 We also announced that we will **back up as much feed data** as possible from Google Reader's API until July 1st.
 
-If you want to start working with this API, please [start here](./blob/master/google-reader-api/README.md).
+If you want to start working with this API, please [start here](/superfeedr/documentation/blob/master/google-reader-api/README.md).
 
 ## Support and Questions
 

@@ -3,6 +3,15 @@ The Google Reader Compatible API
 
 The Google Reader API is an HTTP based API. It is not a *realtime* API, which means that 3rd party applications will have to poll that API at regular intervals to make sure they obtain the latest value to a given query.
 
+One of the key design goals was to map the Google Reader API in order to provide a drop in replacement.
+
+* [Endpoint](#endpoint)
+* [Authentication](#Authentication)
+* [Data Formats](#data-formats)
+* [Calls](#supported-calls)
+* [Examples](#examples)
+
+
 ## Endpoint
 
 The Google Reader compatible API is available at:
@@ -47,7 +56,11 @@ It is possible to use several tokens at once, and it is also possible to obtain 
 
 *To be completed*
 
-### Supported calls
+## Supported calls
+
+*To be completed*
+
+## Examples
 
 *To be completed*
 
