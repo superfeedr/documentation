@@ -1,6 +1,9 @@
 The Google Reader Compatible API
 ================================
 
+
+> **Warning - Alpha**. This API is in alpha, which means that the documentation may be incomplete or may introduce elements that are not fully implemented or deployed. We expect this phase to last until May 15th 2013.
+
 The Google Reader API is an HTTP based API. It is not a *realtime* API, which means that 3rd party applications will have to poll that API at regular intervals to make sure they obtain the latest value to a given query.
 
 One of the key design goals was to map the Google Reader API in order to provide a drop in replacement.
@@ -10,10 +13,6 @@ One of the key design goals was to map the Google Reader API in order to provide
 * [Data Formats](#data-formats)
 * [Calls](#supported-calls)
 * [Examples](#examples)
-
-
-> **Warning**. This API is in alpha, which means that the documentation may be incomplete or may introduce elements that are not fully implemented or deployed. We expect this phase to last until May 15th 2013.
-
 
 ## Endpoint
 
@@ -96,11 +95,11 @@ $ curl "http://readerapi.superfeedr.com/reader/api/0/user-info"
 
 ### /reader/atom/&lt;stream&gt;
 
+> **Warning - Alpha**. During the testing phase, we serve by default and up to 10 elements. You can ask for less elements though.
+
 In the Google API, this call could be used to retrieve various types of contents (streams), including feeds and user data. In the Superfeedr version of this API, only streams starting with `feed/` are supported.
 
 This call will return ATOM representations of the content stored in Superfeedr. It uses the superfeedr [ATOM schema](http://superfeedr.com/documentation#entry_schema).
-
-
 
 By default, this call will return 20 past items from the feed (unless of course, we have been able to store less than that). 
 
@@ -108,15 +107,20 @@ Some additional query string parameters are supported:
 
 | Name  | Value                                                    |
 | ----- |:--------------------------------------------------------:| 
-| n     | The number of items to return. Defaults to 20, max 1000 (while in testing period, max to 10, defaults to 10)  | 
-| c     | Continuation. This value must be the value of an Atom ID after which you want to retrieve content| 
+| n     | The number of items to return. Defaults to 20, max 1000  | 
+
 
 ```bash
-$ curl http://readerapi.superfeedr.com/reader/atom/feed/http://push-pub.appspot.com/feed 
-```
+curl http://readerapi.superfeedr.com/reader/atom/feed/http://push-pub.appspot.com/feed  -H'Authorization: GoogleLogin auth=6981278e0682daba8cd90e61155cbf296045e4bbaffa812398f9bee0ab753bd3ab915007564c8fafe8af4a5e3328491fe3b3d7bc42e844cd3029b82d9d385f62a11ff9755ae2371618ba57895d9f0549927638142f7e1faccdbb5c1148ab0fceaa3240097fd5aa845f08a4475e28cbd417b34d9c002a0360653a2ec374e379e67f421578f05eeaf9d6e89fb10290366311177b46c1cc0b38a28a810e6962d9c47ce014806ab5b52d95b80ad6f448a480a0c5c4d9f2f54e8f72151544408da479' -D-
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Vary: Accept-Encoding
+Content-Type: application/atom+xml
+Date: Tue, 16 Apr 2013 15:24:49 GMT
+Connection: keep-alive
+Transfer-Encoding: chunked
 
-```xml
-<feed xmlns="http://www.w3.org/2005/Atom"><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/718002</id><published>2013-04-04T13:10:12Z</published><updated>2013-04-04T13:10:12Z</updated><title>Thursday Morning 5</title><content type="text">Thursday Morning 5</content><link title="Thursday Morning 5" rel="alternate" href="http://push-pub.appspot.com/entry/718002" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/722001</id><published>2013-04-04T13:09:40Z</published><updated>2013-04-04T13:09:40Z</updated><title>Thursday Morning 4</title><content type="text">Thursday Morning 4</content><link title="Thursday Morning 4" rel="alternate" href="http://push-pub.appspot.com/entry/722001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/719002</id><published>2013-04-04T13:09:10Z</published><updated>2013-04-04T13:09:10Z</updated><title>Thursday Morning 3</title><content type="text">Thursday Morning 3</content><link title="Thursday Morning 3" rel="alternate" href="http://push-pub.appspot.com/entry/719002" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/720001</id><published>2013-04-04T12:59:31Z</published><updated>2013-04-04T12:59:31Z</updated><title>thursday morning</title><content type="text">thursday morning</content><link title="thursday morning" rel="alternate" href="http://push-pub.appspot.com/entry/720001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/719001</id><published>2013-04-04T12:52:07Z</published><updated>2013-04-04T12:52:07Z</updated><title>Test Message 1</title><content type="text">testing</content><link title="Test Message 1" rel="alternate" href="http://push-pub.appspot.com/entry/719001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/718001</id><published>2013-04-04T11:55:51Z</published><updated>2013-04-04T11:55:51Z</updated><title>Google Reader</title><content type="text">Test?</content><link title="Google Reader" rel="alternate" href="http://push-pub.appspot.com/entry/718001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/705017</id><published>2013-04-03T22:57:43Z</published><updated>2013-04-03T22:57:43Z</updated><title>Mighty</title><content type="text">Feed!</content><link title="Mighty" rel="alternate" href="http://push-pub.appspot.com/entry/705017" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/717001</id><published>2013-04-03T22:07:38Z</published><updated>2013-04-03T22:07:38Z</updated><title>hello</title><content type="text">world</content><link title="hello" rel="alternate" href="http://push-pub.appspot.com/entry/717001" type="text/html"/></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Publisher example</title><updated>2013-04-16T18:45:45.000Z</updated><id>http://push-pub.appspot.com/feed</id><entry><title>test 35</title><id>http://push-pub.appspot.com/feed/747006</id><published>2013-04-16T14:42:29.000Z</published><updated>2013-04-16T14:42:29.000Z</updated><content>bam</content><summary></summary><link href="http://push-pub.appspot.com/entry/747006" title="test 35" type="text/html" rel="alternate"/></entry><entry><title>test 33</title><id>http://push-pub.appspot.com/feed/741005</id><published>2013-04-16T14:28:18.000Z</published><updated>2013-04-16T14:28:18.000Z</updated><content>bla</content><summary></summary><link href="http://push-pub.appspot.com/entry/741005" title="test 33" type="text/html" rel="alternate"/></entry><entry><title>test 32</title><id>http://push-pub.appspot.com/feed/747005</id><published>2013-04-16T13:26:26.000Z</published><updated>2013-04-16T13:26:26.000Z</updated><content>bam</content><summary></summary><link href="http://push-pub.appspot.com/entry/747005" title="test 32" type="text/html" rel="alternate"/></entry><entry><title>test 30</title><id>http://push-pub.appspot.com/feed/734008</id><published>2013-04-16T13:24:40.000Z</published><updated>2013-04-16T13:24:40.000Z</updated><content>bam</content><summary></summary><link href="http://push-pub.appspot.com/entry/734008" title="test 30" type="text/html" rel="alternate"/></entry><entry><title>test 31</title><id>http://push-pub.appspot.com/feed/743006</id><published>2013-04-16T13:25:58.000Z</published><updated>2013-04-16T13:25:58.000Z</updated><content>bam</content><summary></summary><link href="http://push-pub.appspot.com/entry/743006" title="test 31" type="text/html" rel="alternate"/></entry><entry><title>test 34</title><id>http://push-pub.appspot.com/feed/733009</id><published>2013-04-16T14:29:46.000Z</published><updated>2013-04-16T14:29:46.000Z</updated><content>bsdfa</content><summary></summary><link href="http://push-pub.appspot.com/entry/733009" title="test 34" type="text/html" rel="alternate"/></entry><entry><title>test 28</title><id>http://push-pub.appspot.com/feed/745002</id><published>2013-04-16T12:57:34.000Z</published><updated>2013-04-16T12:57:34.000Z</updated><content>asdflkjasdf</content><summary></summary><link href="http://push-pub.appspot.com/entry/745002" title="test 28" type="text/html" rel="alternate"/></entry><entry><title>test 27</title><id>http://push-pub.appspot.com/feed/733008</id><published>2013-04-16T12:56:07.000Z</published><updated>2013-04-16T12:56:07.000Z</updated><content>ririri</content><summary></summary><link href="http://push-pub.appspot.com/entry/733008" title="test 27" type="text/html" rel="alternate"/></entry><entry><title>test 26</title><id>http://push-pub.appspot.com/feed/734007</id><published>2013-04-16T12:23:46.000Z</published><updated>2013-04-16T12:23:46.000Z</updated><content>huhu</content><summary></summary><link href="http://push-pub.appspot.com/entry/734007" title="test 26" type="text/html" rel="alternate"/></entry><entry><title>test 29</title><id>http://push-pub.appspot.com/feed/737009</id><published>2013-04-16T13:20:41.000Z</published><updated>2013-04-16T13:20:41.000Z</updated><content>ben!</content><summary></summary><link href="http://push-pub.appspot.com/entry/737009" title="test 29" type="text/html" rel="alternate"/></entry></feed>
 ```
 
 ### /reader/api/0/stream/contents/&lt;stream&gt;
