@@ -12,9 +12,8 @@ One of the key design goals was to map the Google Reader API in order to provide
 * [Examples](#examples)
 
 
-<blockquote style="color: red;">
-<p><strong>Warning</strong>. This API is in alpha, which means that the documentation may be incomplete or may introduce elements that are not fully implemented or deployed. We expect this phase to last until May 15th 2013.</p>
-</blockquote>
+> **Warning**. This API is in alpha, which means that the documentation may be incomplete or may introduce elements that are not fully implemented or deployed. We expect this phase to last until May 15th 2013.
+
 
 ## Endpoint
 
