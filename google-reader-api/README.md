@@ -12,6 +12,9 @@ One of the key design goals was to map the Google Reader API in order to provide
 * [Examples](#examples)
 
 
+> **Warning**. This API is in alpha, which means that the documentation may be incomplete or may introduce elements that are not fully implemented or deployed. We expect this phase to last until May 15th 2013.
+
+
 ## Endpoint
 
 The Google Reader compatible API is available at:
@@ -91,11 +94,13 @@ $ curl "http://readerapi.superfeedr.com/reader/api/0/user-info"
 {"userId":29969,"userName":"greader","userProfileId":"greader","userEmail":"julien.genestoux@gmail.com","isBloggerUser":false,"signupTimeSec":0,"publicUserName":"greader","isMultiLoginEnabled":false}
 ```
 
-### /reader/api/0/stream/contents/&lt;stream&gt;
+### /reader/atom/&lt;stream&gt;
 
 In the Google API, this call could be used to retrieve various types of contents (streams), including feeds and user data. In the Superfeedr version of this API, only streams starting with `feed/` are supported.
 
 This call will return ATOM representations of the content stored in Superfeedr. It uses the superfeedr [ATOM schema](http://superfeedr.com/documentation#entry_schema).
+
+
 
 By default, this call will return 20 past items from the feed (unless of course, we have been able to store less than that). 
 
@@ -103,7 +108,7 @@ Some additional query string parameters are supported:
 
 | Name  | Value                                                    |
 | ----- |:--------------------------------------------------------:| 
-| n     | The number of items to return. Defaults to 20, max 1000  | 
+| n     | The number of items to return. Defaults to 20, max 1000 (while in testing period, max to 10, defaults to 10)  | 
 | c     | Continuation. This value must be the value of an Atom ID after which you want to retrieve content| 
 
 ```bash
@@ -114,7 +119,7 @@ $ curl http://readerapi.superfeedr.com/reader/atom/feed/http://push-pub.appspot.
 <feed xmlns="http://www.w3.org/2005/Atom"><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/718002</id><published>2013-04-04T13:10:12Z</published><updated>2013-04-04T13:10:12Z</updated><title>Thursday Morning 5</title><content type="text">Thursday Morning 5</content><link title="Thursday Morning 5" rel="alternate" href="http://push-pub.appspot.com/entry/718002" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/722001</id><published>2013-04-04T13:09:40Z</published><updated>2013-04-04T13:09:40Z</updated><title>Thursday Morning 4</title><content type="text">Thursday Morning 4</content><link title="Thursday Morning 4" rel="alternate" href="http://push-pub.appspot.com/entry/722001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/719002</id><published>2013-04-04T13:09:10Z</published><updated>2013-04-04T13:09:10Z</updated><title>Thursday Morning 3</title><content type="text">Thursday Morning 3</content><link title="Thursday Morning 3" rel="alternate" href="http://push-pub.appspot.com/entry/719002" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/720001</id><published>2013-04-04T12:59:31Z</published><updated>2013-04-04T12:59:31Z</updated><title>thursday morning</title><content type="text">thursday morning</content><link title="thursday morning" rel="alternate" href="http://push-pub.appspot.com/entry/720001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/719001</id><published>2013-04-04T12:52:07Z</published><updated>2013-04-04T12:52:07Z</updated><title>Test Message 1</title><content type="text">testing</content><link title="Test Message 1" rel="alternate" href="http://push-pub.appspot.com/entry/719001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/718001</id><published>2013-04-04T11:55:51Z</published><updated>2013-04-04T11:55:51Z</updated><title>Google Reader</title><content type="text">Test?</content><link title="Google Reader" rel="alternate" href="http://push-pub.appspot.com/entry/718001" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/705017</id><published>2013-04-03T22:57:43Z</published><updated>2013-04-03T22:57:43Z</updated><title>Mighty</title><content type="text">Feed!</content><link title="Mighty" rel="alternate" href="http://push-pub.appspot.com/entry/705017" type="text/html"/></entry><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xmlns:sf="http://superfeedr.com/xmpp-pubsub-ext"><id>http://push-pub.appspot.com/feed/717001</id><published>2013-04-03T22:07:38Z</published><updated>2013-04-03T22:07:38Z</updated><title>hello</title><content type="text">world</content><link title="hello" rel="alternate" href="http://push-pub.appspot.com/entry/717001" type="text/html"/></entry></feed>
 ```
 
-### /reader/atom/&lt;stream&gt;
+### /reader/api/0/stream/contents/&lt;stream&gt;
 
 In the Google API, this call could be used to retrieve various types of contents (streams), including feeds and user data. In the Superfeedr version of this API, only streams starting with `feed/` are supported.
 
