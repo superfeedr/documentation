@@ -91,6 +91,36 @@ LSID=yyy
 Auth=ee38f8c17958adbe41d41cd108bfc933a0f8d3277064e61ae56a21fef2c462604f0eb11cd35381b88333e7bbb3f1c20e4cd69140d646158cd4ba90e67321cbdb15aa0d24fdb18fead0f371a9880eb109abd8e98fb665d184c0aa09f84783366b8f64db41f2237bad3420e19796ce7d220d7932f15b0dcb73d6ffcc7fad9ab2e51b1c57e2ca2ac0a9cf5233346d7e52c2e736e368f72883ced0259624bd20e217f31e5738eb1392bbee80f85965120f9d195639519ac4ccc0515b246a86a7b49d20205a22f6eba097b8d2f2a324dcf169
 ```
 
+### /reader/api/0/token
+
+This will will let you get a token you can use to perform calls. This token is valid for 30 minutes. You may use that token, or the token provided by the [`ClientLogin`](https://github.com/superfeedr/documentation/tree/master/google-reader-api#accountsclientlogin) call.
+
+```bash
+$ curl http://readerapi.superfeedr.com/reader/api/0/token -H'Authorization: GoogleLogin auth=6981278e0682daba8cd90e61155cbf296045e4bbaffa812398f9bee0ab753bd3ab915007564c8fafe8af4a5e3328491fe3b3d7bc42e844cd3029b82d9d385f62a11ff9755ae2371618ba57895d9f0549927638142f7e1faccdbb5c1148ab0fceaa3240097fd5aa845f08a4475e28cbd417b34d9c002a0360653a2ec374e379e67f421578f05eeaf9d6e89fb10290366311177b46c1cc0b38a28a810e6962d9c47ce014806ab5b52d95b80ad6f448a480a0c5c4d9f2f54e8f72151544408da479' -D-
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Length: 65
+Date: Thu, 18 Apr 2013 17:36:44 GMT
+
+1f18770984aed70d82c749c6895c6666184d6b2e34b2fc4b8c1132d550349ba3
+```
+
+The body includes the token.
+
+
+### /reader/api/0/user-info
+
+This call will return some account information related to the Superfeedr account of the logged in user.
+
+It is not particularly useful in the context of Superfeedr, but we provide it for compliance purposes.
+
+```bash
+$ curl "http://readerapi.superfeedr.com/reader/api/0/user-info"
+```
+
+```json
+{"userId":29969,"userName":"greader","userProfileId":"greader","userEmail":"julien.genestoux@gmail.com","isBloggerUser":false,"signupTimeSec":0,"publicUserName":"greader","isMultiLoginEnabled":false}
+```
 
 ### /reader/api/0/subscription/edit
 
@@ -117,20 +147,7 @@ Connection: keep-alive
 OK
 ```
 
-Yields a `200` status code and `OK` as the body.
-
-
-### /reader/api/0/user-info
-
-This call will return some account information related to the Superfeedr account of the logged in user.
-
-```bash
-$ curl "http://readerapi.superfeedr.com/reader/api/0/user-info"
-```
-
-```json
-{"userId":29969,"userName":"greader","userProfileId":"greader","userEmail":"julien.genestoux@gmail.com","isBloggerUser":false,"signupTimeSec":0,"publicUserName":"greader","isMultiLoginEnabled":false}
-```
+Yields a `200` status code and `OK` as the body. This is an idempotent call.
 
 ### /reader/atom/&lt;stream&gt;
 
@@ -145,7 +162,7 @@ By default, this call will return 20 past items from the feed (unless of course,
 Some additional query string parameters are supported:
 
 | Name  | Value                                                    |
-| ----- |:--------------------------------------------------------:| 
+| ----- |----------------------------------------------------------| 
 | n     | The number of items to return. Defaults to 20, max 1000  | 
 
 
