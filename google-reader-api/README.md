@@ -14,6 +14,16 @@ One of the key design goals was to map the Google Reader API in order to provide
 * [Calls](#supported-calls)
 * [Examples](#examples)
 
+## Compliance
+
+It is extremely complex to make a perfectly compatible API, because it's hard to have an extensive knowledge of the Google Reader API. There are a couple unofficial documentations for the Google Reader API (see [there](http://undoc.in/googlereader.html) or [there](https://code.google.com/p/pyrfeed/wiki/GoogleReaderAPI)).
+
+We also used the test suites provided with some wrappers, but we need more:
+* Python's [libgreader](https://github.com/askedrelic/libgreader)
+* Node.js's [node-reader](https://gist.github.com/2034195)
+
+Please, send us any test suite you may have so we can improve compliance.
+
 ## Endpoint
 
 The Google Reader compatible API is available at:
