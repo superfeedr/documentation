@@ -101,7 +101,7 @@ This calls allows you to edit your subscription list, by adding, removing or upd
 Some additional query string parameters are required or optional:
 
 | Name  | Value                                                    |
-| ----- |:--------------------------------------------------------:| 
+| ----- |----------------------------------------------------------| 
 | ac    | [required]: the action to perform. Must be 'subscribe', 'unsubscribe'or 'edit'   | 
 | s     | [required]: the stream id. Must be of the form `feed/` + feed url                 |
 | title | [optional]: a title for that subscription. If none is provided we will use the feed title      |
