@@ -31,7 +31,7 @@ The Google Reader compatible API is available at:
 
 ## CORS
 
-The `readerapi.superfeedr.com` endpoint supports [CORS](http://enable-cors.org/) for any host.
+The `readerapi.superfeedr.com` endpoint supports [CORS](http://enable-cors.org/) for any host. We also suppport JSONP when applicable.
 
 ## Authentication
 
