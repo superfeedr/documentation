@@ -2,7 +2,7 @@ The Google Reader Compatible API
 ================================
 
 
-> **Warning - Alpha**. This API is in alpha, which means that the documentation may be incomplete or may introduce elements that are not fully implemented or deployed. We expect this phase to last until May 15th 2013.
+> **Warning - Alpha**. This API is in alpha, which means that the documentation may be incomplete or may introduce elements that are not fully implemented or deployed. We expect this phase to last until June 15th 2013.
 
 The Google Reader API is an HTTP based API. It is not a *realtime* API, which means that 3rd party applications will have to poll that API at regular intervals to make sure they obtain the latest value to a given query.
 
@@ -28,6 +28,10 @@ Please, send us any test suite you may have so we can improve compliance.
 
 The Google Reader compatible API is available at:
 `readerapi.superfeedr.com`. This endpoint is accessible thru both HTTP and HTTPS (recommended).
+
+## CORS
+
+The `readerapi.superfeedr.com` endpoint supports [CORS](http://enable-cors.org/) for any host.
 
 ## Authentication
 
