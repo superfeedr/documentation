@@ -1,0 +1,17 @@
+!!! 5
+html(lang='en')
+  head
+    include partials/head
+  body
+    include partials/header
+    div.container
+      div.row
+        div.col-md-3
+
+        div.col-md-9
+          h1= page.title
+          != page.html
+      <hr />
+      include partials/footer
+
+    include partials/scripts
