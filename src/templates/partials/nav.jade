@@ -1,0 +1,17 @@
+
+//- Declaration
+mixin toc(t)
+  if t
+    - each item, anchor in t
+      li
+        if Object.keys(item).length == 0
+          a(href="#" + anchor.replace(/ /g,'').toLowerCase())
+            != anchor
+        else
+          a(href="#" + anchor.replace(/ /g,'').toLowerCase())
+            != anchor
+          ul.nav
+            +toc(item)
+
+ul.nav(data-spy="affix", data-offset-top="100")
+  +toc(page.metadata.toc)

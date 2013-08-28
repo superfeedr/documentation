@@ -2,12 +2,12 @@
 html(lang='en')
   head
     include partials/head
-  body
+  body(data-spy="scroll", data-target="#navbar-example")
     include partials/header
     div.container
       div.row
         div.col-md-3
-
+          include partials/nav
         div.col-md-9
           h1= page.title
           != page.html

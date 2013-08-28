@@ -1,34 +1,38 @@
 ---
 title: Subscribers
 template: index.jade
+toc: {
+  "Introduction": {},
+  "What can you subscribe to": {
+    "XML based feeds": {},
+    "JSON feeds": {},
+    "HTML fragments": {},
+    "Other": {}
+  },
+  "What API to choose": {},
+  "PubSubHubbub": {
+    "Adding Feeds with PubSubHubbub": {},
+    "Removing Feeds with PubSubHubbub": {},
+    "Listing Feeds with PubSubHubbub": {},
+    "Retrieving Entries with PubSubHubbub": {},
+    "PubSubHubbub Notifications": {},
+    "PubSubHubbub API Wrappers": {}
+  },
+  "XMPP PubSub": {
+    "Adding Feeds with XMPP": {},
+    "Removing Feeds with XMPP": {},
+    "Listing Feeds with XMPP": {},
+    "Retrieving Entries with XMPP": {},
+    "XMPP Notifications": {},
+    "XMPP API Wrappers": {}
+  }
+}
 ---
-
-# Subscribers
 
 ## Introduction
 
 Superfeedr is a tool which will push you content to which you can subscribe on the web and get notification in **realtime**.
 It is also possible to retrieve *past* content. Finally, when possible we offer a set of normalization options for easier consumption.
-
-## Table of Contents
-
-* [Introduction](.): this page
-* [What can you subscribe to](.#subscribe)
-* [What API to choose for subscriptions](.#what_api)
-* [Webhooks](./subscribers/pubsubhubbub.html): PubSubHubbub
-  * Adding Feeds
-  * Removing Feeds
-  * Listing Feeds
-  * Retrieving Past Entries & Feed Status
-  * Notifications
-  * Wrappers
-* [XMPP PubSub](./subscribers/xmpp-pubsub.html): XEP60
-  * Adding Feeds
-  * Removing Feeds
-  * Listing Feeds
-  * Retrieving Past Entries & Feed Status
-  * Notifications
-  * Wrappers
 
 ## What can you subscribe to
 
@@ -61,4 +65,19 @@ This present the significant disadvantage of triggering updates even when minor 
 ### Other
 
 
-## What API to chose
+## What API to choose
+
+## Webhooks
+### Adding Feeds with PubSubHubbub
+### Removing Feeds with PubSubHubbub
+### Listing Feeds with PubSubHubbub
+### Retrieving Past Entries & Feed Status with PubSubHubbub
+### PubSubHubbub Notifications
+### PubSubHubbub API Wrappers
+## XMPP PubSub
+### Adding Feeds with XMPP
+### Removing Feeds with XMPP
+### Listing Feeds with XMPP
+### Retrieving Past Entries & Feed Status with XMPP
+### Notifications with XMPP
+### Wrappers with XMPP

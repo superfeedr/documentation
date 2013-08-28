@@ -1,6 +1,11 @@
 ---
 title: Superfeedr Documentation
 template: index.jade
+toc: {
+  anchor: "Anchor",
+  another: "Another",
+  great: "Great"
+}
 ---
 
 ## Introduction
