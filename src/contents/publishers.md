@@ -63,7 +63,7 @@ Link: &lt;http://your-resource-url&gt;; rel=&quot;self&quot;</pre>
 
 The next step is to ping the hub whenever you update the content of any resource. This will allow us to fetch this specific resource, identify what is new vs. what is old in it and finally push the updates to the subscribers.
 
-<pre class="language-bash">Send an POST request to http://<your-hub>.superfeedr.com, with the following params and values:
+<pre class="language-bash">Send an POST request to http://&lt;your-hub&gt;.superfeedr.com, with the following params and values:
   * hub.mode="publish"
   * hub.url=&lt;the url of the feed that was updated&gt;
 </pre>
