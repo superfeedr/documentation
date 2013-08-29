@@ -1,8 +1,14 @@
 ---
 title: Schema & Data Formats
 template: index.jade
+toc: {
+  "Status": {},
+  "Entry": {},
+  "JSON": {}
+}
 ---
+## Status
 
-  * Status
-  * Entry
-  * JSON
+## Entry
+
+## JSON
