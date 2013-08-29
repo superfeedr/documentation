@@ -2,9 +2,16 @@
 title: Superfeedr Documentation
 template: index.jade
 toc: {
-  anchor: "Anchor",
-  another: "Another",
-  great: "Great"
+  "Introduction": {},
+  "Table of Contents": {},
+  "Audience": {},
+  "Playing in the open": {},
+  "Support and Questions": {},
+  "Contribution": {},
+  "Definitions": {
+    "Publisher": {},
+    "Subscriber": {}
+  }
 }
 ---
 
@@ -13,6 +20,17 @@ toc: {
 [Superfeedr](http://superfeedr.com) provides a realtime API to any application who wants to produce (publishers) or consume (subscribers) data feeds without wasting resources and maintaining an expensive and changing infrastructure.
 
 This documentation shows how to integrate Superfeedr into a variety of diverse infrastructure, as well as highlights most of the features offered by Superfeedr.
+
+## Table of Contents
+
+You can find links to the pages below in the top menu bar as well.
+
+* [Introduction](/): this page
+* [Subscribers](/subscribers.html): your app consumes RSS feeds
+* [Publishers](/publishers.html): your app publishes RSS feeds
+* [Schema](/schema.html): learn about the data sent by Superfeedr
+* [Misc](/misc.html): extra features and information.
+
 
 ## Audience
 It is expected that the reader has a strong knowledge of the web's main protocols, as well as its design constraints. 
@@ -38,12 +56,3 @@ A publisher is an *application* which produces and serves content to be consumed
 
 In Superfeedr's context, a subscriber is an *application* which consumes content published by 3rd party sites and services in the form of feeds. Subscribers register their interest in getting later notifications when the content to which they subscribed was updated.
 
-## Table of Contents
-
-* [Introduction](/): this page
-* [Subscribers](/subscribers.html): your app consumes RSS feeds
-    * [XMPP](/subscribers/xmpp.html): using the XMPP endpoint
-    * [PubSubHubbub](/subscribers/push.html): using the PubSubHubbub endpoint
-* [Publishers](/publishers.html): your app publishes RSS feeds
-* [Schema](/schema.html): learn about the data sent by Superfeedr
-* [Misc](/misc.html): extra features and information.

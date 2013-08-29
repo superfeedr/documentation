@@ -1,0 +1,15 @@
+.nav .nav {
+  font-size: 0.9em;
+  margin-left: 10px;
+}
+.nav .nav a{
+  padding: 5px 15px;
+}
+
+.affix {
+  top: 0px;
+}
+.affix-top {
+}
+.affix-bottom {
+}
