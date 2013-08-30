@@ -68,20 +68,704 @@ Superfeedr also provides the ability to subscribe to HTML fragments inside an HT
 
 ### Other
 
+When subscribing to any other HTTP resource, we will compute a signature from the bytes including in the document. When we fetch that resource again (after at least 5 minutes), if the signature changed, we will send you the whole document again.
+
+Timestamps, changing tracking codes... etc may create false positives.
 
 ## What API to choose
 
+Superfeedr offers 2 different API : [XMPP PubSub](/subscribers.html#xmpppubsub) and [HTTP PubSubHubbub](/subscribers.html#webhooks). They have both purposes for which they've been created and, based on your goals using Superfeedr, you might want to select one or another. 
+
+The first decision factor is that one is HTTP-based and the other uses the XMPP protocol. Even though it is powerful, XMPP is an extremely different kind of protocol and most web developers are not familiar with it: **stick to HTTP PubSubHubbub if you're not confident with XMPP and if you're creating a web app**.
+
+The second decision factor is that HTTP PubSubHubbub is not accessible behind the firewall so if you're creating an app that **does not need to live on the web**, then XMPP may be a better choice.
+
+Feel free to ask us what we think is best for your use case. We're always excited to help.
+
 ## Webhooks
+
+Our API is based on the [PubSubHubbub](https://en.wikipedia.org/wiki/PubSubHubbub) protocol with a couple simplifications, but  you can re-use your *subscriber* code with *any other hub*. You can also use any library that supports and implements PubSubHubbub. 
+
+> We strongly recommand that you read the [PubSubHubbub spec](https://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html).
+
+Our PubSubHubbub endpoint is at <code>[https://superfeedr.com/hubbub](https://superfeedr.com/hubbub)</code>.
+
+The most notable difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to authenticate your PubSubHubbub calls, making all *verification* steps of the requests optional.
+
 ### Adding Feeds with PubSubHubbub
+
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  </div>
+</div>
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Parameter Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>hub.mode</td>
+  <td>required</td>
+  <td>'subscribe'</td>
+</tr>
+<tr>
+  <td>hub.topic</td>
+  <td>required</td>
+  <td>The URL of the HTTP resource to which you want to subscribe.</td>
+</tr>
+<tr>
+  <td>hub.callback</td>
+  <td>required</td>
+  <td>The URL to which notifications will be sent.</td>
+</tr>
+<tr>
+  <td>hub.secret</td>
+  <td>optional, recommanded</td>
+  <td>A unique secret string which will be used by us to compute a signature. You should check this signature when getting notifications.</td>  
+</tr>
+<tr>
+  <td>hub.verify</td>
+  <td>optional</td>
+  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verfication of intent synschronously or asynschronously.</td>
+</tr>
+<tr>
+  <td>format</td>
+  <td>optional</td>
+  <td>'json' if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
+</tr>
+</table>
+
+Subscription at superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.
+
+#### Example
+
+<pre class="language-bash"><code>$ curl -D- https://superfeedr.com/hubbub 
+  -X POST 
+  -u demo:demo 
+  -d'hub.mode=subscribe' 
+  -d'hub.topic=http://push-pub.appspot.com/feed' 
+  -d'hub.callback=http://mycallback.tld/ok'
+HTTP/1.1 204 No Content
+</code></pre>
+
+#### Response
+
+Superfeedr will return `204` if the subscription was performed and `202` if the subscription has yet to be verified (only if you used supplied a <code>hub.verify=async</code> parameter).
+
+For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
+
+Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
 ### Removing Feeds with PubSubHubbub
+
+This call uses the exact same syntax used in the [adding feeds section](/subscribers.html#addingfeedswithpubsubhubbub). The only difference is the `hub.mode` value.
+
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  </div>
+</div>
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Parameter Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>hub.mode</td>
+  <td>required</td>
+  <td>'unsubscribe'</td>
+</tr>
+<tr>
+  <td>hub.topic</td>
+  <td>required</td>
+  <td>The URL of the HTTP resource to which you want to subscribe.</td>
+</tr>
+<tr>
+  <td>hub.callback</td>
+  <td>required</td>
+  <td>The URL to which notifications will be sent.</td>
+</tr>
+<tr>
+  <td>hub.verify</td>
+  <td>optional</td>
+  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verfication of intent synschronously or asynschronously.</td>
+</tr>
+</table>
+
+#### Example
+
+<pre class="language-bash"><code>$ curl -D- https://superfeedr.com/hubbub 
+  -X POST 
+  -u demo:demo 
+  -d'hub.mode=unsubscribe' 
+  -d'hub.topic=http://push-pub.appspot.com/feed' 
+  -d'hub.callback=http://mycallback.tld/ok'
+HTTP/1.1 204 No Content
+</code></pre>
+
+#### Response
+
+Superfeedr will return `204` if the unsubscription was performed and `202` if the subscription has yet to be verified (only if you used supplied a <code>hub.verify=async</code> parameter).
+
+For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
+
+Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
 ### Listing Feeds with PubSubHubbub
+
+<div class="panel panel-danger">
+  <div class="panel-body">Not Supported Yet</div>
+</div>
+
+
 ### Retrieving Entries with PubSubHubbub
+
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  </div>
+</div>
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Parameter Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>hub.mode</td>
+  <td>required</td>
+  <td>'retrieve'</td>
+</tr>
+<tr>
+  <td>hub.topic</td>
+  <td>required</td>
+  <td>The URL of the HTTP resource for which you want the past entries.</td>
+</tr>
+<tr>
+  <td>count</td>
+  <td>optional</td>
+  <td>Optional number of items you want to retrieve. Current max is 50 and default is 10.</td>  
+</tr>
+<tr>
+  <td>format</td>
+  <td>optional</td>
+  <td>'json' if you want to retrieve entries in json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
+</tr>
+<tr>
+  <td>callback</td>
+  <td>optional, only if you're using the JSON format</td>
+  <td>This will render the entries as a JSONp. </td>
+</tr>
+</table>
+
+#### Example
+
+<pre class="language-bash"><code>$ curl -D- https://superfeedr.com/hubbub 
+  -H 'Accept: application/json'
+  -X GET 
+  -u demo:demo 
+  -d'hub.mode=retrieve' 
+  -d'hub.topic=http://push-pub.appspot.com/feed' 
+
+Content-Type: application/json; charset=utf-8
+Connection: keep-alive
+Status: 200 OK
+ETag: "c58f3a54cfa565539672a6f2f3276ddc"
+X-Runtime: 275
+Content-Length: 3550
+
+{
+    "status": {
+        "code": 200,
+        "feed": "http://push-pub.appspot.com/feed",
+        "http": "Fetched (ring) 200 121 and parsed 0/20 entries",
+        "lastParse": 1377845845,
+        "period": 43200,
+        "lastMaintenanceAt": 1377842368,
+        "nextFetch": 1377889045,
+        "lastFetch": 1377845845
+    },
+    "title": "Publisher example",
+    "items": [
+        {
+            "title": "mhmmm",
+            "published": 1377845723000,
+            "id": "http://push-pub.appspot.com/feed/1104006",
+            "links": {
+                "http://push-pub.appspot.com/entry/1104006": {
+                    "href": "http://push-pub.appspot.com/entry/1104006",
+                    "title": "mhmmm",
+                    "rel": "alternate",
+                    "mime_type": "text/html",
+                    "id": "mhmmm"
+                }
+            },
+            "content": "mmhmhjmm",
+            "updated": 1377845723000
+        },
+        {
+            "title": "test 2 - bis",
+            "published": 1377758355000,
+            "id": "http://push-pub.appspot.com/feed/1109002",
+            "links": {
+                "http://push-pub.appspot.com/entry/1109002": {
+                    "href": "http://push-pub.appspot.com/entry/1109002",
+                    "title": "test 2 - bis",
+                    "rel": "alternate",
+                    "mime_type": "text/html",
+                    "id": "test-2-bis"
+                }
+            },
+            "content": "recieved - bis",
+            "updated": 1377758355000
+        },
+        {
+            "title": "test",
+            "published": 1377756592000,
+            "id": "http://push-pub.appspot.com/feed/1111001",
+            "links": {
+                "http://push-pub.appspot.com/entry/1111001": {
+                    "href": "http://push-pub.appspot.com/entry/1111001",
+                    "title": "test",
+                    "rel": "alternate",
+                    "mime_type": "text/html",
+                    "id": "test"
+                }
+            },
+            "content": "not recieving from google hub",
+            "updated": 1377756592000
+        },
+        ...
+        {
+            "title": "test 2",
+            "published": 1377758355000,
+            "id": "http://push-pub.appspot.com/feed/1108004",
+            "links": {
+                "http://push-pub.appspot.com/entry/1108004": {
+                    "href": "http://push-pub.appspot.com/entry/1108004",
+                    "title": "test 2",
+                    "rel": "alternate",
+                    "mime_type": "text/html",
+                    "id": "test-2"
+                }
+            },
+            "content": "recieved",
+            "updated": 1377758355000
+        }
+    ]
+}
+</code></pre>
+
+#### Response
+
+Superfeedr will return `200 with the content if we could retrieve the feed's past entries.
+
+If you are not subscribed to the feed or if the feed has not yet been added to Superfeedr, we will return a `404`.
+
+For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
+
+Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
 ### PubSubHubbub Notifications
+
+Notifications are POST requests sent to the callback you specified for the [subscription](/subscribers.html#addingfeedswithpubsubhubbub). The body of the response includes the notification in the format that you specified upon subscription. Please check our [schema](/schema.html) for more information.
+
+We will consider the notification as successful if we can reach your callback and if it returns a `200` status code. If the notification failed, we will **retry 3 times** after 5, 10 and 15 seconds (this may slightly vary). If we are not able to notify you after these retries, we will drop the notification and you should use [our retrieve feature](/subscribers.html#retrievingentrieswithpubsubhubbub) to get the missing data.
+
+Additionally, the notification will include the following headers which you should inspect:
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Header Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>X-Superfeedr-Credits</td>
+  <td></td>
+  <td>Your credit balance. It should always decrease by 1 between 2 notifications. If it doesn't, it means you missed a notification.</td>
+</tr>
+
+<tr>
+  <td>X-PubSubHubbub-Callback</td>
+  <td></td>
+  <td>Your callback url.</td>
+</tr>
+
+<tr>
+  <td>X-PubSubHubbub-Topic</td>
+  <td></td>
+  <td>The topic to which you subscribed. Very useful to easily unsubscribe if you haven't kept track of that subscription.</td>
+</tr>
+
+<tr>
+  <td>Content-Type</td>
+  <td></td>
+  <td>Very useful to see how to parse the body.</td>
+</tr>
+<tr>
+  <td>X-Superfeedr-Retried</td>
+  <td>optional</td>
+  <td>If this header is present, it means we had trouble notification you on previous attempts. You should make sure your app doesn't encounter health issues.</td>
+</tr>
+</table>
+
+### Best Practices
+
+#### Use HTTPS
+
+You should *always* use the https endpoints when sending requests to Superfeedr. Additionnaly we recommand that you use `https` for your endpoints. This will garantee privacy and integrity of the full notification (headers included).
+
+#### Use hub.secret
+
+When subscribing you should use a `hub.secret`, unless of course you use https for your callback urls. This secret will be used to compute a signature for each notification. You should of course make sure these signatures match. [Read more](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html#authednotify) about that.
+
+#### Use different callback urls
+
+Your callback urls should be *hard to guess*, but, more importantly, you should **use different callbacks for each of your subscriptions**. This way you can quickly identify what feed is involved in each notification, without having to parse the content itself. It will also be easier to identify problems using the access logs of your HTTP servers.
+
 ### PubSubHubbub API Wrappers
+
+There exists multiple PubSubHubbub API wrapper in multiple langues and they should work fine with our endpoint. You can also check [our Github](https://github.com/superfeedr/) repository for some platform-specific libraries like our [ruby rack gem](https://github.com/superfeedr/rack-superfeedr).
+
 ## XMPP PubSub
+
+You can connect your jabber client (or component) to superfeedr by using the JID <code>username@superfeedr.com</code> and your password.You can also specify another JID in your user settings if you'd like to connect from our own XMPP server.
+
+The XMPP API is based on the [XEP-0060 syntax](http://xmpp.org/extensions/xep-0060.html#subscriber-subscribe). Additional data has been included within a superfeedr-specific namespace.
+
+You can use the XMPP console of any XMPP desktop client to inspect that traffic, however, remember that if you have multiple clients connected with the same jid, we will only send messages to one of them, picked randomly.
+
 ### Adding Feeds with XMPP
+
+Subscribing to a new feed will allow you to get notifications with the upcoming entries from that feed.
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>iq[@from]</td>
+  <td></td>
+  <td>Should match the bare jid you entered in your settings.</td>
+</tr>
+<tr>
+  <td>iq[@id]</td>
+  <td></td>
+  <td>Random string (enables you to match the superfeedr response with your query)</td>
+</tr>
+<tr>
+  <td>subscribe[@node]</td>
+  <td></td>
+  <td>Use the url of the resource (feed) you want to monitor. Please, <em>use canonical urls</em> as much as possible</td>
+</tr>
+
+<tr>
+  <td>subscribe[@jid]</td>
+  <td></td>
+  <td>Should be equal to the <code>iq[@from]</code> or, if you have chose an external component jid, should have the same domain. JID resources will be ignored.</td>
+</tr>
+
+<tr>
+  <td>subscribe[@format]</td>
+  <td>optional</td>
+  <td>This must belong to the Superfeedr namespace (<code>http://superfeedr.com/xmpp-pubsub-ext</code>). You can specify the format of the payload in notifications. Currently, we support atom (default) and json. See [schema](/schema.html) for more details.</td>
+</tr>
+</table>
+
+#### Example
+
+<pre class="language-markup"><code><iq type="set" from="login@superfeedr.com" to="firehoser.superfeedr.com" id="sub1">
+ <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
+  <subscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
+  <subscribe node="http://domain.tld/feed2.xml" jid="login@superfeedr.com"/>
+  <subscribe node="http://domain.tld/feed3.xml" jid="login@superfeedr.com"/>
+  <subscribe node="http://domain.tld/path/to/resource" jid="login@superfeedr.com" superfeedr:format="atom" />
+ </pubsub>
+</iq></code></pre>
+
+You can add up to 20 resources in your subscription query, as long as they have all the same <code>subscribe[@jid]</code>. If you need to subscribe with multiple jids, we suggest that you send multiple subscription queries.
+
+#### Response
+
+The server acknowledges the subscription(s) and sends the status information for each resource.
+
+<pre class="language-markup"><code><iq type="result" to="login@superfeedr.com/home" from="firehoser.superfeedr.com" id="sub1">
+ <pubsub xmlns="http://jabber.org/protocol/pubsub">
+  <subscription jid="login@superfeedr.com" subscription="subscribed" node="http://domain.tld/path/to/resource">
+   <status xmlns="http://superfeedr.com/xmpp-pubsub-ext">
+    <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
+    <next_fetch>2009-05-10T11:19:38-07:00</next_fetch>
+   </status>
+  </subscription>
+  <subscription jid="login@superfeedr.com" subscription="subscribed" node="http://domain.tld/path/to/resource2">
+   <status xmlns="http://superfeedr.com/xmpp-pubsub-ext">
+    <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
+    <next_fetch>2009-05-10T11:19:38-07:00</next_fetch>
+   </status>
+  </subscription>
+  <subscription jid="login@superfeedr.com" subscription="subscribed" node="http://domain.tld/path/to/resource3">
+   <status xmlns="http://superfeedr.com/xmpp-pubsub-ext">
+    <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
+    <next_fetch>2009-05-10T11:19:38-07:00</next_fetch>
+   </status>
+  </subscription>
+ </pubsub>
+</iq></code></pre>
+
+In other cases, you will receive an iq with <code>type="error"</code>, please check that your subscription query abides by the constraints explained above.
+
 ### Removing Feeds with XMPP
+
+When you remove a feed, you will stop receiving notifications for that feed.
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>iq[@from]</td>
+  <td></td>
+  <td>Should match the bare jid you entered in your settings.</td>
+</tr>
+
+<tr>
+  <td>iq[@id]</td>
+  <td></td>
+  <td>Random string (enables you to match the superfeedr response with your query).</td>
+</tr>
+
+<tr>
+  <td>unsubscribe[@node]</td>
+  <td></td>
+  <td>Use the url of the resource you want to unsubscribe from.</td>
+</tr>
+
+<tr>
+  <td>unsubscribe[@jid]</td>
+  <td></td>
+  <td>Use the jid that you used for the subscription.</td>
+</tr>
+</table>
+
+#### Example
+
+<pre class="language-markup"><code><iq type="set" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="unsub1">
+ <pubsub xmlns="http://jabber.org/protocol/pubsub">
+  <unsubscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
+  <unsubscribe node="http://domain.tld/feed2.xml" jid="login@superfeedr.com"/>
+  <unsubscribe node="http://domain.tld/feed3.xml" jid="login@superfeedr.com" />
+ </pubsub>
+</iq></code></pre>
+
+You can remove up to 20 resources in your unsubscription query.
+
+#### Response
+
+The server acknowledges the unsubscription.
+
+<pre class="language-markup"><code><iq type="result" from="firehoser.superfeedr.com" to="login@superfeedr.com/home" id="unsub1" /></code></pre>
+
 ### Listing Feeds with XMPP
+
+You can list your existing subscriptions. This list is paginated with 20 items per page.
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>iq[@from]</td>
+  <td></td>
+  <td>Should match the bare jid you entered in your settings.</td>
+</tr>
+
+<tr>
+  <td>iq[@id]</td>
+  <td></td>
+  <td>Random string (enables you to match the superfeedr response with your query).</td>
+</tr>
+
+<tr>
+  <td>subscriptions[@page]</td>
+  <td></td>
+  <td>Page number (subscriptions will be sent by batches of 20)</td>
+</tr>
+
+<tr>
+  <td>subscribe[@jid]</td>
+  <td></td>
+  <td>The jid for which you want to list subscriptions. If you used a component jid (using your own XMPP server), you can use a more specific jid to filter subscriptions by jid.</td>
+</tr>
+</table>
+
+#### Example
+
+<pre class="language-markup"><code><iq type="get" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="subman1">
+ <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
+  <subscriptions jid="login@superfeedr.com" superfeedr:page="3"/>
+ </pubsub>
+</iq></code></pre>
+
+#### Response 
+
+The server sends the list of resources to which you're subscribed for the page requested, as well as the status information for each of them.
+
+<pre class="language-markup"><code><iq type="result"  to="login@superfeedr.com/home" id="subman1" from="firehoser.superfeedr.com">
+ <pubsub xmlns="http://jabber.org/protocol/pubsub"  xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext" >
+  <subscriptions superfeedr:page="3">
+   <subscription node="http://domain.tld/path/to/resource" subscription="subscribed" jid="login@superfeedr.com" >
+    <status xmlns="http://superfeedr.com/xmpp-pubsub-ext">
+     <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
+     <next_fetch>2009-05-10T11:19:38-07:00</next_fetch>
+    </status>
+   </subscription>
+   <subscription node="http://domain2.tld/path/to/another/resource" subscription="subscribed" jid="login@superfeedr.com" >
+    <status xmlns="http://superfeedr.com/xmpp-pubsub-ext">
+     <http code="200">9718 bytes fetched in 1.462708s.</http>
+     <next_fetch>2009-05-10T11:19:38-07:00</next_fetch>
+    </status>
+   </subscription>
+  </subscriptions>
+ </pubsub>
+</iq></code></pre>
+
 ### Retrieving Entries with XMPP
+
+It is possible to query Superfeedr for previous entries in feeds to which you've subscribed.
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>iq[@from]</td>
+  <td></td>
+  <td>Should match the bare jid you entered in your settings.</td>
+</tr>
+
+<tr>
+  <td>iq[@id]</td>
+  <td></td>
+  <td>Random string (enables you to match the superfeedr response with your query).</td>
+</tr>
+
+<tr>
+  <td>items[@node]</td>
+  <td></td>
+  <td>The resource url for which you want to retrieve content.</td>
+</tr>
+
+</table>
+
+#### Example
+
+<pre class="language-markup"><code><iq type='get' to="firehoser.superfeedr.com" id='items1'>
+  <pubsub xmlns='http://jabber.org/protocol/pubsub'>
+    <items node='http://domain.tld/path/to/resource'/>
+  </pubsub>
+</iq></code></pre>
+
+#### Response
+
+At this point, you will get a maximum of 10 items per feed.
+
+<pre class="language-markup"><code><iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
+  <pubsub xmlns="http://jabber.org/protocol/pubsub">
+    <items node="http://domain.tld/path/to/resource" >
+      <item>
+        <entry xmlns="http://www.w3.org/2005/Atom">
+          <id>http://push-pub.appspot.com/feed/1104006</id>
+          <published>2013-08-30T06:55:23Z</published>
+          <updated>2013-08-30T06:55:23Z</updated>
+          <title>hello</title>
+          <content type="text" >world</content>
+          <link title="hello" rel="alternate" href="http://push-pub.appspot.com/entry/1104006" type="text/html" />
+        </entry>
+      </item>
+      <item>
+        <entry xmlns="http://www.w3.org/2005/Atom">
+          <id>http://push-pub.appspot.com/feed/1112001</id>
+          <published>2013-08-30T06:53:00Z</published>
+          <updated>2013-08-30T06:53:00Z</updated>
+          <title>hello</title>
+          <content type="text" >world</content>
+          <link title="hello" rel="alternate" href="http://push-pub.appspot.com/entry/1112001" type="text/html" />
+        </entry>
+      </item>
+      ...
+      <item>
+        <entry xmlns="http://www.w3.org/2005/Atom">
+          <id>http://push-pub.appspot.com/feed/1097004</id>
+          <published>2013-08-29T05:54:27Z</published>
+          <updated>2013-08-29T05:54:27Z</updated>
+          <title>Hello - bis</title>
+          <content type="text" >world - bis</content>
+          <link title="Hello - bis" rel="alternate" href="http://push-pub.appspot.com/entry/1097004" type="text/html" />
+        </entry>
+      </item>
+    </items>
+  </pubsub>
+</iq></code></pre>
+
+If you have not subscribed to the feed, you will receive a response like this one
+
+<pre class="language-markup"><code><iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
+  <pubsub xmlns="http://jabber.org/protocol/pubsub">
+    <items node="http://domain.tld/path/to/resource" >
+    </items>
+  </pubsub>
+</iq></code></pre>
+
 ### XMPP Notifications
+
+Once you're following a resource, your xmpp client must be **connected at all times** ant new content. You will miss messages if your client is offline for too long.
+
+We will send you a notification when we consider the resource as updated (see "[what can you subscribed to](/subscribers.html#whatcanyousubscribeto)".
+
+Please see the [schema information](/schema.html) for details on the status, as well as the feed and entry informations.
+
+<pre class="language-markup"><code><message from="firehoser.superfeedr.com" to="login@superfeedr.com">
+ <event xmlns="http://jabber.org/protocol/pubsub#event">
+  <status feed="http://domain.tld/feed.xml" xmlns="http://superfeedr.com/xmpp-pubsub-ext">
+   <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
+   <next_fetch>2009-05-10T11:19:38-07:00</next_fetch>
+   <title>Lorem Ipsum</title>
+  </status>
+  <items node="http://domain.tld/feed.xml">
+   <item >
+    <entry xmlns="http://www.w3.org/2005/Atom">
+     <title>Soliloquy</title>
+     <summary>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</summary>
+     <link rel="alternate" type="text/html" href="http://superfeedr.com/entries/12345789"/>
+     <id>tag:domain.tld,2009:Soliloquy-32397</id>
+     <published>2010-04-05T11:04:21Z</published>
+    </entry>
+   </item>
+   <item>
+    <entry xmlns="http://www.w3.org/2005/Atom">
+     <title>Finibus Bonorum et Malorum</title>
+     <summary>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</summary>
+     <link rel="alternate" type="text/html" href="http://superfeedr.com/entries/12345788"/>
+     <id>tag:domain.tld,2009:Finibus-32398</id>
+     <published>2010-04-06T08:54:02Z</published>
+    </entry>
+   </item>
+  </items>
+ </event>
+</message></code></pre>
+
 ### XMPP API Wrappers
+
+XMPP *can be scary*. For those of you who don't want to mess with that, we have various wrappers (including [Ruby](https://github.com/superfeedr/superfeedr-rb), [Perl](https://github.com/superfeedr/superfeedr-perl), [Python](https://github.com/superfeedr/superfeedr-python), [Node.js](https://github.com/superfeedr/superfeedr-node), [Java](https://github.com/superfeedr/superfeedr-java) and [PHP](https://github.com/superfeedr/superfeedr-php)) for the XMPP API. You can find them on our [Github page]((https://github.com/superfeedr/). 
+
+If you need one in another language, please contact us. Also, remember that these wrappers have been created by the community. Feel free to contribute to help improve them. 
+
