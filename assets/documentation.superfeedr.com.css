@@ -2,6 +2,7 @@
   font-size: 0.9em;
   margin-left: 10px;
 }
+
 .nav .nav a{
   padding: 5px 15px;
 }
@@ -9,13 +10,14 @@
 .affix {
   top: 60px;
 }
+
 .affix-top {
   top: 60px;
 }
+
 .affix-bottom {
   top: -60px;
 }
-
 
 .main {
   padding-top: 60px;
