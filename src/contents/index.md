@@ -2,7 +2,6 @@
 title: Superfeedr Documentation
 template: index.jade
 toc: {
-  "Introduction": {},
   "Table of Contents": {},
   "Audience": {},
   "Playing in the open": {},
@@ -14,8 +13,6 @@ toc: {
   }
 }
 ---
-
-## Introduction
 
 [Superfeedr](http://superfeedr.com) provides a realtime API to any application who wants to produce (publishers) or consume (subscribers) data feeds without wasting resources and maintaining an expensive and changing infrastructure.
 
