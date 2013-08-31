@@ -1,28 +1,29 @@
 header.navbar.navbar-fixed-top.navbar-inverse.navbar-default(role='navigation')
   div.container
-    div.col-md-3
-      .navbar-header
-        button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
-          span.sr-only Toggle navigation
-        a.navbar-brand.brand(href='/') Superfeedr Docs
-    div.col-md-9
-      .collapse.navbar-collapse.navbar-ex1-collapse
-        ul.nav.navbar-nav
-          li
-            a(href='https://github.com/superfeedr/documentation/issues') Questions
-          li.dropdown
-            a.dropdown-toggle(href='#', data-toggle='dropdown')
-              | Table of Content
-              b.caret
-            ul.dropdown-menu
-              li
-                a(href='/') Introduction
-              li
-                a(href='subscribers.html') Subscribers
-              li
-                a(href='publishers.html') Publishers
-              li
-                a(href='schema.html') Schema
-              li
-                a(href='misc.html') Misc
+    div.col-md-3.navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand.brand(href='/') Superfeedr Docs
+    nav.col-md-9.collapse.navbar-collapse.navbar-ex1-collapse
+      ul.nav.navbar-nav
+        li
+          a(href='https://github.com/superfeedr/documentation/issues') Questions
+        li.dropdown
+          a.dropdown-toggle(href='#', data-toggle='dropdown')
+            | Table of Content
+            b.caret
+          ul.dropdown-menu
+            li
+              a(href='/') Introduction
+            li
+              a(href='subscribers.html') Subscribers
+            li
+              a(href='publishers.html') Publishers
+            li
+              a(href='schema.html') Schema
+            li
+              a(href='misc.html') Misc
 

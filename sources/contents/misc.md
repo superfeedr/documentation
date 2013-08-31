@@ -3,7 +3,7 @@ title: Misc
 template: index.jade
 toc: {
   "Track": {},
-  "List of IPs": {}
+  "IP list": {}
 }
 ---
 

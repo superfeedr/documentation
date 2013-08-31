@@ -1,9 +1,14 @@
+a {
+  color: rgb(90, 163, 88);
+}
+
 .nav .nav {
   font-size: 0.9em;
   margin-left: 10px;
+  display: none;
 }
 
-.nav .nav a{
+.nav .nav a {
   padding: 5px 15px;
 }
 
@@ -27,4 +32,44 @@
   padding-left: 50px;
   background: url(/assets/img/superfeedr.png) no-repeat left center;
   background-size: 40px;
+}
+
+.nav > .active > a {
+  font-weight: bold;
+  border-right: 1px solid grey;
+}
+
+.active ul.nav {
+  display: block;
+}
+
+
+/* By default it's not affixed in mobile views, so undo that */
+.side-navbar.affix {
+  position: static;
+}
+/* Show and affix the side nav when space allows it */
+@media screen and (min-width: 992px) {
+  .side-navbar .nav > .active > ul {
+    display: block;
+  }
+  /* Widen the fixed sidebar */
+  .side-navbar.affix,
+  .side-navbar.affix-bottom {
+    width: 213px;
+  }
+  .side-navbar.affix {
+    position: fixed; /* Undo the static from mobile first approach */
+    top: 80px;
+  }
+  .side-navbar.affix-bottom {
+    position: absolute; /* Undo the static from mobile first approach */
+  }
+}
+@media screen and (min-width: 1200px) {
+  /* Widen the fixed sidebar again */
+  .side-navbar.affix-bottom,
+  .side-navbar.affix {
+    width: 263px;
+  }
 }

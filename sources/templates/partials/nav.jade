@@ -13,5 +13,9 @@ mixin toc(t)
           ul.nav
             +toc(item)
 
-ul.nav(data-spy="affix", data-offset-top="70")
-  +toc(page.metadata.toc)
+div.hidden-print.affix.side-navbar(role="complementary", id="sidenavbar")
+  ul.nav
+    +toc(page.metadata.toc)
+
+
+
