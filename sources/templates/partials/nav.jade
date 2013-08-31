@@ -13,7 +13,7 @@ mixin toc(t)
           ul.nav
             +toc(item)
 
-div.hidden-print.affix-top(role="complementary")
+div.hidden-print.affix.side-navbar(role="complementary", id="sidenavbar")
   ul.nav
     +toc(page.metadata.toc)
 
