@@ -489,9 +489,7 @@ Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive no
     "published": 1271851240,
     "actor": {
      "displayName": "First",
-     "image": {
-      "url": "http://domain.tld/first.png"
-     },
+     "image": "http://domain.tld/first.png",
      "permalinkUrl": "http://domain.tld/first/profile",
      "id": "id-first",
      "objectType": "dude",
