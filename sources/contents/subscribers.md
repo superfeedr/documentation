@@ -4,6 +4,7 @@ template: index.jade
 toc: {
   "Introduction": {},
   "What can you subscribe to": {
+    "Redirects": {},
     "XML based feeds": {},
     "JSON feeds": {},
     "HTML fragments": {},
@@ -39,6 +40,10 @@ It is also possible to retrieve *past* content. Finally, when possible we offer 
 In practice, Superfeedr lets you subscribe to anything that has a url. One significant caveat is that this url needs to be publicly accessible by our servers, which means that the resource cannot be located inside a private network or behind a firewall. 
 
 Urls may include an authentication element, but note that Superfeedr will not treat these urls with any kind of specific security concern, which means that we strongly discourage providing urls with an authentication mechanism.
+
+### Redirects
+
+When fetching resources, Superfeedr will follow all redirects, temporary or permanent and notify you of the actual content at the end of the redirect chain (we follow up to 5 redirect). It is also strongly recommanded, when applicable that you subscribe to the **canonical** url.
 
 ### XML based feeds
 
