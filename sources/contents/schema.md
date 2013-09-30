@@ -519,7 +519,7 @@ Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive no
       "id": "http://blog.superfeedr.com/",
       "title": "Superfeedr Blog",
       "updated": 1245776753,
-      "permalinkUrl": "http://blog.superfeedr.com/",
+      "permalinkUrl": "http://blog.superfeedr.com/"
     }
    },
    {
