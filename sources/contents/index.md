@@ -37,7 +37,7 @@ As we believe the web is a better ecosystem when **open protocols** are favored 
 
 ## Support and Questions
 
-For any question, you may either email us directly (info@superfeedr.com) or use the [Issues Section](/superfeedr/documentation/issues). We will try to respond as quickly as possible on either channel.
+For any question, you may either email us directly (info@superfeedr.com) or use the [Issues Section](https://github.com/superfeedr/documentation/issues?page=1&state=open). We will try to respond as quickly as possible on either channel.
 
 ## Contribution
 
