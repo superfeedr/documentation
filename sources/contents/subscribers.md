@@ -81,7 +81,7 @@ Timestamps, changing tracking codes... etc may create false positives.
 
 Superfeedr offers 2 different API : [XMPP PubSub](/subscribers.html#xmpppubsub) and [HTTP PubSubHubbub](/subscribers.html#webhooks). They have both purposes for which they've been created and, based on your goals using Superfeedr, you might want to select one or another. 
 
-The first decision factor is that one is HTTP-based and the other uses the XMPP protocol. Even though it is powerful, XMPP is an extremely different kind of protocol and most web developers are not familiar with it: **stick to HTTP PubSubHubbub if you're not confident with XMPP and if you're creating a web app**.
+The first decision factor is that one is HTTP-based and the other uses the XMPP protocol. Even though it is powerful, XMPP is an extremely different kind of protocol and most web developers are not familiar with it: **stick to HTTP Webhooks (PubSubHubbub) if you're not confident with XMPP and if you're creating a web app**.
 
 The second decision factor is that HTTP PubSubHubbub is not accessible behind the firewall so if you're creating an app that **does not need to live on the web**, then XMPP may be a better choice.
 
@@ -93,14 +93,14 @@ Our API is based on the [PubSubHubbub](https://en.wikipedia.org/wiki/PubSubHubbu
 
 > We strongly recommand that you read the [PubSubHubbub spec](https://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html).
 
-Our PubSubHubbub endpoint is at <code>[https://superfeedr.com/hubbub](https://superfeedr.com/hubbub)</code>.
+Our PubSubHubbub endpoint is at <code>[https://push.superfeedr.com/](https://push.superfeedr.com/)</code>.
 
 The most notable difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to authenticate your PubSubHubbub calls, making all *verification* steps of the requests optional.
 
 ### Adding Feeds with PubSubHubbub
 
 <div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 <table class="table table-striped table-condensed table-responsive">
@@ -145,7 +145,7 @@ Subscription at superfeedr are a unique combination of a resource url and a call
 
 #### Example
 
-<pre class="language-bash"><code>$ curl -D- https://superfeedr.com/hubbub 
+<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
   -X POST 
   -u demo:demo 
   -d'hub.mode=subscribe' 
@@ -167,7 +167,7 @@ Other HTTP response code have the meaning defined in the [HTTP spec.](https://en
 This call uses the exact same syntax used in the [adding feeds section](/subscribers.html#addingfeedswithpubsubhubbub). The only difference is the `hub.mode` value.
 
 <div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 <table class="table table-striped table-condensed table-responsive">
@@ -200,7 +200,7 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
 
 #### Example
 
-<pre class="language-bash"><code>$ curl -D- https://superfeedr.com/hubbub 
+<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
   -X POST 
   -u demo:demo 
   -d'hub.mode=unsubscribe' 
@@ -227,7 +227,7 @@ Other HTTP response code have the meaning defined in the [HTTP spec.](https://en
 ### Retrieving Entries with PubSubHubbub
 
 <div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 <table class="table table-striped table-condensed table-responsive">
@@ -265,7 +265,7 @@ Other HTTP response code have the meaning defined in the [HTTP spec.](https://en
 
 #### Example
 
-<pre class="language-bash"><code>$ curl -D- https://superfeedr.com/hubbub 
+<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
   -H 'Accept: application/json'
   -X GET 
   -u demo:demo 
