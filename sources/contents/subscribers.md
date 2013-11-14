@@ -71,6 +71,10 @@ We will also send you notification when a *resource is an HTTP error state*. The
 
 Superfeedr also provides the ability to subscribe to HTML fragments inside an HTML page.
 
+### Keywords and Expressions
+
+Superfeedr allows you to subscribe to keywords or complex expressions to match the data that goes thru Superfeedr itself. Check our [track section](/misc.html#track) for more details.
+
 ### Other
 
 When subscribing to any other HTTP resource, we will compute a signature from the bytes including in the document. When we fetch that resource again (after at least 5 minutes), if the signature changed, we will send you the whole document again.
@@ -97,6 +101,8 @@ Our PubSubHubbub endpoint is at <code>[https://push.superfeedr.com/](https://pus
 
 The most notable difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to authenticate your PubSubHubbub calls, making all *verification* steps of the requests optional.
 
+We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in case you want to manually specify an HTTP method different from the one used in the HTTP request.
+
 ### Adding Feeds with PubSubHubbub
 
 <div class="panel">
@@ -112,7 +118,7 @@ The most notable difference is that our endpoint uses [HTTP Basic Auth](https://
 <tr>
   <td>hub.mode</td>
   <td>required</td>
-  <td>'subscribe'</td>
+  <td><code>subscribe</code></td>
 </tr>
 <tr>
   <td>hub.topic</td>
@@ -122,7 +128,7 @@ The most notable difference is that our endpoint uses [HTTP Basic Auth](https://
 <tr>
   <td>hub.callback</td>
   <td>required</td>
-  <td>The URL to which notifications will be sent.</td>
+  <td>The webhook: it's the URL to which notifications will be sent. Make sure you it's web-accessible, ie not behind a firewall.</td>
 </tr>
 <tr>
   <td>hub.secret</td>
@@ -137,11 +143,16 @@ The most notable difference is that our endpoint uses [HTTP Basic Auth](https://
 <tr>
   <td>format</td>
   <td>optional</td>
-  <td>'json' if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
+  <td><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>. bu default, you will get <code>ATOM</code> notifications.</td>
+</tr>
+<tr>
+  <td>retrieve</td>
+  <td>optional</td>
+  <td>If set, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our <a href="/schema.html">Schema</a> for more details.</td>
 </tr>
 </table>
 
-Subscription at superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.
+Subscription at Superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.
 
 #### Example
 
@@ -179,7 +190,7 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
 <tr>
   <td>hub.mode</td>
   <td>required</td>
-  <td>'unsubscribe'</td>
+  <td><code>unsubscribe</code></td>
 </tr>
 <tr>
   <td>hub.topic</td>
@@ -226,6 +237,8 @@ Other HTTP response code have the meaning defined in the [HTTP spec.](https://en
 
 ### Retrieving Entries with PubSubHubbub
 
+This call will allow you to retrieve the past entries for a feed. Note that you need to be susbcribed to that resource to achieve that.
+
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
@@ -239,7 +252,7 @@ Other HTTP response code have the meaning defined in the [HTTP spec.](https://en
 <tr>
   <td>hub.mode</td>
   <td>required</td>
-  <td>'retrieve'</td>
+  <td><code>retrieve</code></td>
 </tr>
 <tr>
   <td>hub.topic</td>
@@ -254,7 +267,7 @@ Other HTTP response code have the meaning defined in the [HTTP spec.](https://en
 <tr>
   <td>format</td>
   <td>optional</td>
-  <td>'json' if you want to retrieve entries in json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
+  <td><code>json</code> if you want to retrieve entries in json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
 </tr>
 <tr>
   <td>callback</td>
@@ -363,7 +376,7 @@ Content-Length: 3550
 
 #### Response
 
-Superfeedr will return `200 with the content if we could retrieve the feed's past entries.
+Superfeedr will return <code>200</code> with the content if we could retrieve the feed's past entries.
 
 If you are not subscribed to the feed or if the feed has not yet been added to Superfeedr, we will return a `404`.
 
