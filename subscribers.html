@@ -43,6 +43,10 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <p>Superfeedr also provides the ability to subscribe to HTML fragments inside an HTML page.</p>
 
+<h3 id="keywordsandexpressions">Keywords and Expressions</h3>
+
+<p>Superfeedr allows you to subscribe to keywords or complex expressions to match the data that goes thru Superfeedr itself. Check our <a href="/misc.html#track">track section</a> for more details.</p>
+
 <h3 id="other">Other</h3>
 
 <p>When subscribing to any other HTTP resource, we will compute a signature from the bytes including in the document. When we fetch that resource again (after at least 5 minutes), if the signature changed, we will send you the whole document again.</p>
@@ -53,7 +57,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <p>Superfeedr offers 2 different API : <a href="/subscribers.html#xmpppubsub">XMPP PubSub</a> and <a href="/subscribers.html#webhooks">HTTP PubSubHubbub</a>. They have both purposes for which they&#8217;ve been created and, based on your goals using Superfeedr, you might want to select one or another. </p>
 
-<p>The first decision factor is that one is HTTP-based and the other uses the XMPP protocol. Even though it is powerful, XMPP is an extremely different kind of protocol and most web developers are not familiar with it: <strong>stick to HTTP PubSubHubbub if you&#8217;re not confident with XMPP and if you&#8217;re creating a web app</strong>.</p>
+<p>The first decision factor is that one is HTTP-based and the other uses the XMPP protocol. Even though it is powerful, XMPP is an extremely different kind of protocol and most web developers are not familiar with it: <strong>stick to HTTP Webhooks (PubSubHubbub) if you&#8217;re not confident with XMPP and if you&#8217;re creating a web app</strong>.</p>
 
 <p>The second decision factor is that HTTP PubSubHubbub is not accessible behind the firewall so if you&#8217;re creating an app that <strong>does not need to live on the web</strong>, then XMPP may be a better choice.</p>
 
@@ -67,14 +71,16 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
   <p>We strongly recommand that you read the <a href="https://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html">PubSubHubbub spec</a>.</p>
 </blockquote>
 
-<p>Our PubSubHubbub endpoint is at <code><a href="https://superfeedr.com/hubbub">https://superfeedr.com/hubbub</a></code>.</p>
+<p>Our PubSubHubbub endpoint is at <code><a href="https://push.superfeedr.com/">https://push.superfeedr.com/</a></code>.</p>
 
 <p>The most notable difference is that our endpoint uses <a href="https://httpd.apache.org/docs/1.3/howto/auth.html#basic">HTTP Basic Auth</a> to authenticate your PubSubHubbub calls, making all <em>verification</em> steps of the requests optional.</p>
+
+<p>We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in case you want to manually specify an HTTP method different from the one used in the HTTP request.</p>
 
 <h3 id="addingfeedswithpubsubhubbub">Adding Feeds with PubSubHubbub</h3>
 
 <div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
@@ -87,7 +93,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <tr>
   <td>hub.mode</td>
   <td>required</td>
-  <td>&#8216;subscribe&#8217;</td>
+  <td><code>subscribe</code></td>
 </tr>
 <tr>
   <td>hub.topic</td>
@@ -97,7 +103,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <tr>
   <td>hub.callback</td>
   <td>required</td>
-  <td>The URL to which notifications will be sent.</td>
+  <td>The webhook: it&#8217;s the URL to which notifications will be sent. Make sure you it&#8217;s web-accessible, ie not behind a firewall.</td>
 </tr>
 <tr>
   <td>hub.secret</td>
@@ -112,15 +118,20 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <tr>
   <td>format</td>
   <td>optional</td>
-  <td>&#8216;json&#8217; if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
+  <td><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>. bu default, you will get <code>ATOM</code> notifications.</td>
+</tr>
+<tr>
+  <td>retrieve</td>
+  <td>optional</td>
+  <td>If set, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our <a href="/schema.html">Schema</a> for more details.</td>
 </tr>
 </table>
 
-<p>Subscription at superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.</p>
+<p>Subscription at Superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.</p>
 
 <h4 id="example">Example</h4>
 
-<pre class="language-bash"><code><span class="cs">$</span> <span class="cs">curl</span> <span class="literal">-</span><span class="cs">D</span>- <span class="cs">https://superfeedr</span>.<span class="cs">com/hubbub</span> 
+<pre class="language-bash"><code><span class="cs">$</span> <span class="cs">curl</span> <span class="literal">-</span><span class="cs">D</span>- <span class="cs">https://push</span>.<span class="cs">superfeedr</span>.<span class="cs">com/</span> 
   <span class="literal">-</span><span class="cs">X</span> <span class="cs">POST</span> 
   <span class="literal">-</span><span class="cs">u</span> <span class="cs">demo:demo</span> 
   <span class="literal">-</span><span class="cs">d'hub</span>.<span class="cs">mode=subscribe'</span> 
@@ -142,7 +153,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <p>This call uses the exact same syntax used in the <a href="/subscribers.html#addingfeedswithpubsubhubbub">adding feeds section</a>. The only difference is the <code>hub.mode</code> value.</p>
 
 <div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
@@ -155,7 +166,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <tr>
   <td>hub.mode</td>
   <td>required</td>
-  <td>&#8216;unsubscribe&#8217;</td>
+  <td><code>unsubscribe</code></td>
 </tr>
 <tr>
   <td>hub.topic</td>
@@ -176,7 +187,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <h4 id="example">Example</h4>
 
-<pre class="language-bash"><code><span class="cs">$</span> <span class="cs">curl</span> <span class="literal">-</span><span class="cs">D</span>- <span class="cs">https://superfeedr</span>.<span class="cs">com/hubbub</span> 
+<pre class="language-bash"><code><span class="cs">$</span> <span class="cs">curl</span> <span class="literal">-</span><span class="cs">D</span>- <span class="cs">https://push</span>.<span class="cs">superfeedr</span>.<span class="cs">com/</span> 
   <span class="literal">-</span><span class="cs">X</span> <span class="cs">POST</span> 
   <span class="literal">-</span><span class="cs">u</span> <span class="cs">demo:demo</span> 
   <span class="literal">-</span><span class="cs">d'hub</span>.<span class="cs">mode=unsubscribe'</span> 
@@ -201,8 +212,10 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <h3 id="retrievingentrieswithpubsubhubbub">Retrieving Entries with PubSubHubbub</h3>
 
+<p>This call will allow you to retrieve the past entries for a feed. Note that you need to be susbcribed to that resource to achieve that.</p>
+
 <div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>http://superfeedr.com/hubbub</code>
+  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
@@ -215,7 +228,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <tr>
   <td>hub.mode</td>
   <td>required</td>
-  <td>&#8216;retrieve&#8217;</td>
+  <td><code>retrieve</code></td>
 </tr>
 <tr>
   <td>hub.topic</td>
@@ -230,7 +243,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <tr>
   <td>format</td>
   <td>optional</td>
-  <td>&#8216;json&#8217; if you want to retrieve entries in json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
+  <td><code>json</code> if you want to retrieve entries in json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
 </tr>
 <tr>
   <td>callback</td>
@@ -241,7 +254,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <h4 id="example">Example</h4>
 
-<pre class="language-bash"><code><span class="cs">$</span> <span class="cs">curl</span> <span class="literal">-</span><span class="cs">D</span>- <span class="cs">https://superfeedr</span>.<span class="cs">com/hubbub</span> 
+<pre class="language-bash"><code><span class="cs">$</span> <span class="cs">curl</span> <span class="literal">-</span><span class="cs">D</span>- <span class="cs">https://push</span>.<span class="cs">superfeedr</span>.<span class="cs">com/</span> 
   <span class="literal">-</span><span class="cs">H</span> <span class="cs">'Accept:</span> <span class="cs">application/json'</span>
   <span class="literal">-</span><span class="cs">X</span> <span class="cs">GET</span> 
   <span class="literal">-</span><span class="cs">u</span> <span class="cs">demo:demo</span> 
@@ -339,7 +352,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <h4 id="response">Response</h4>
 
-<p>Superfeedr will return `200 with the content if we could retrieve the feed&#8217;s past entries.</p>
+<p>Superfeedr will return <code>200</code> with the content if we could retrieve the feed&#8217;s past entries.</p>
 
 <p>If you are not subscribed to the feed or if the feed has not yet been added to Superfeedr, we will return a <code>404</code>.</p>
 
