@@ -272,7 +272,7 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
 <tr>
   <td>callback</td>
   <td>optional, only if you're using the JSON format</td>
-  <td>This will render the entries as a JSONp. </td>
+  <td>This will render the entries as a <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>. </td>
 </tr>
 </table>
 
