@@ -148,7 +148,7 @@ We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in ca
 <tr>
   <td>retrieve</td>
   <td>optional</td>
-  <td>If set, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our <a href="/schema.html">Schema</a> for more details.</td>
+  <td>If set to <code>true</code>, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our <a href="/schema.html">Schema</a> for more details.</td>
 </tr>
 </table>
 
