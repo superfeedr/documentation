@@ -169,6 +169,8 @@ HTTP/1.1 204 No Content
 
 Superfeedr will return `204` if the subscription was performed and `202` if the subscription has yet to be verified (only if you used supplied a <code>hub.verify=async</code> parameter).
 
+If you used the <code>retrieve</code> param, Superfeedr will respond with a 200 response and the content of the feed in the body.
+
 For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
 
 Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
