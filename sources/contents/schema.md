@@ -440,7 +440,7 @@ Entries may include all the above elements. They also contain specific nodes, li
 
 Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive notifications (both via [XMPP](/subscribers.html#xmpppubsub) and [PubSubHubbub](/subscribers.html#webhooks)) in JSON. It's a mapping of our Atom schema. This mapping was created with the goal of being compatible with the [OSync](http://osync.org/) and [ActivityStreams](http://activitystrea.ms/) JSON schemas.
 
-* Dates: the dates shown are Epoch Timestamps, expressed in UTC.
+* Dates: the dates shown are Unix Timestamps (seconds since Epoch), expressed in UTC.
 * Keys: expressed as camel case.
 
 #### Example
