@@ -138,7 +138,7 @@ We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in ca
 <tr>
   <td>hub.verify</td>
   <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verfication of intent synschronously or asynschronously.</td>
+  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verification of intent synschronously or asynschronously.</td>
 </tr>
 <tr>
   <td>format</td>
@@ -232,10 +232,61 @@ Other HTTP response code have the meaning defined in the [HTTP spec.](https://en
 
 ### Listing Feeds with PubSubHubbub
 
-<div class="panel panel-danger">
-  <div class="panel-body">Not Supported Yet</div>
-</div>
+This call will allow you to retrieve subscriptions that match a callback url. This callback URL may include a wildcard in the form of %.
 
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+  </div>
+</div>
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Parameter Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>hub.mode</td>
+  <td>required</td>
+  <td><code>list</code></td>
+</tr>
+<tr>
+  <td>hub.callback</td>
+  <td>required</td>
+  <td>The callback url with which you subscribed and for which you want to find subscriptions. It can include <code>%</code> as a wildcard.</td>
+</tr>
+<tr>
+  <td>page</td>
+  <td>optional</td>
+  <td>If there are more than 20 matching subscriptions, you may want to paginate over them. First page (default) is 1.</td>
+</tr>
+</table>
+
+#### Example
+
+<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
+  -X GET 
+  -u demo:demo 
+  -d'hub.mode=list' 
+  -d'hub.callback=http://mycallback.tld/%'
+  -d'page=2'
+HTTP/1.1 200 No Content
+</code></pre>
+
+#### Response
+
+Superfeedr will return `200` with the list of matching subscriptions, a JSON format. If you supplied a callback parameter (JSONP), the JSON will be wrapped in it.
+
+<pre class="language-javascript"><code>[{
+  "subscription": {
+    "format": "atom",
+    "endpoint": "http://mycallback.tld/ok",
+    "secret": null,
+    "feed": {
+      "title": "Publisher example",
+      "url": "http://push-pub.appspot.com/feed"
+    }
+  }
+}]</code></pre>
 
 ### Retrieving Entries with PubSubHubbub
 
