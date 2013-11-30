@@ -113,7 +113,7 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <tr>
   <td>hub.verify</td>
   <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verfication of intent synschronously or asynschronously.</td>
+  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verification of intent synschronously or asynschronously.</td>
 </tr>
 <tr>
   <td>format</td>
@@ -208,9 +208,62 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <h3 id="listingfeedswithpubsubhubbub">Listing Feeds with PubSubHubbub</h3>
 
-<div class="panel panel-danger">
-  <div class="panel-body">Not Supported Yet</div>
+<p>This call will allow you to retrieve subscriptions that match a callback url. This callback URL may include a wildcard in the form of %.</p>
+
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+  </div>
 </div>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Parameter Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>hub.mode</td>
+  <td>required</td>
+  <td><code>list</code></td>
+</tr>
+<tr>
+  <td>hub.callback</td>
+  <td>required</td>
+  <td>The callback url with which you subscribed and for which you want to find subscriptions. It can include <code>%</code> as a wildcard.</td>
+</tr>
+<tr>
+  <td>page</td>
+  <td>optional</td>
+  <td>If there are more than 20 matching subscriptions, you may want to paginate over them. First page (default) is 1.</td>
+</tr>
+</table>
+
+<h4 id="example">Example</h4>
+
+<pre class="language-bash"><code><span class="cs">$</span> <span class="cs">curl</span> <span class="literal">-</span><span class="cs">D</span>- <span class="cs">https://push</span>.<span class="cs">superfeedr</span>.<span class="cs">com/</span> 
+  <span class="literal">-</span><span class="cs">X</span> <span class="cs">GET</span> 
+  <span class="literal">-</span><span class="cs">u</span> <span class="cs">demo:demo</span> 
+  <span class="literal">-</span><span class="cs">d'hub</span>.<span class="cs">mode=list'</span> 
+  <span class="literal">-</span><span class="cs">d'hub</span>.<span class="cs">callback=http://mycallback</span>.<span class="cs">tld/%'</span>
+  <span class="literal">-</span><span class="cs">d'page=2'</span>
+<span class="cs">HTTP/1</span>.<span class="cs">1</span> <span class="cs">200</span> <span class="cs">No</span> <span class="cs">Content</span>
+</code></pre>
+
+<h4 id="response">Response</h4>
+
+<p>Superfeedr will return <code>200</code> with the list of matching subscriptions, a JSON format. If you supplied a callback parameter (JSONP), the JSON will be wrapped in it.</p>
+
+<pre class="language-javascript"><code>[{
+  "<span class="attribute">subscription</span>": <span class="value">{
+    "<span class="attribute">format</span>": <span class="value"><span class="string">"atom"</span></span>,
+    "<span class="attribute">endpoint</span>": <span class="value"><span class="string">"http://mycallback.tld/ok"</span></span>,
+    "<span class="attribute">secret</span>": <span class="value"><span class="literal">null</span></span>,
+    "<span class="attribute">feed</span>": <span class="value">{
+      "<span class="attribute">title</span>": <span class="value"><span class="string">"Publisher example"</span></span>,
+      "<span class="attribute">url</span>": <span class="value"><span class="string">"http://push-pub.appspot.com/feed"</span>
+    }</span>
+  }</span>
+}</span>]</code></pre>
 
 <h3 id="retrievingentrieswithpubsubhubbub">Retrieving Entries with PubSubHubbub</h3>
 
