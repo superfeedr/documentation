@@ -12,6 +12,7 @@ toc: {
   },
   "What API to choose": {},
   "Webhooks": {
+    "HTTP Authentication": {},
     "Adding Feeds with PubSubHubbub": {},
     "Removing Feeds with PubSubHubbub": {},
     "Listing Feeds with PubSubHubbub": {},
@@ -20,6 +21,7 @@ toc: {
     "PubSubHubbub API Wrappers": {}
   },
   "XMPP PubSub": {
+    "XMPP Authentication": {},
     "Adding Feeds with XMPP": {},
     "Removing Feeds with XMPP": {},
     "Listing Feeds with XMPP": {},
@@ -99,9 +101,32 @@ Our API is based on the [PubSubHubbub](https://en.wikipedia.org/wiki/PubSubHubbu
 
 Our PubSubHubbub endpoint is at <code>[https://push.superfeedr.com/](https://push.superfeedr.com/)</code>.
 
-The most notable difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to authenticate your PubSubHubbub calls, making all *verification* steps of the requests optional.
+The most notable difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to [authenticate](/subscribers.html#addingfeedswithpubsubhubbub) your PubSubHubbub calls, making all *verification* steps of the requests optional.
 
-We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in case you want to manually specify an HTTP method different from the one used in the HTTP request.
+We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in case you want to manually specify an HTTP method different from the one used in the HTTP request. 
+
+### HTTP Authentication
+
+Authentication using the Webhooks API is performed thru [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic). Most (if not all!) HTTP libraries will allow for an easy configuration.
+
+The username to use is your Superfeedr login and you can pick from different options for the password:
+
+* A password token that [you can generate](https://superfeedr.com/tokens/new).
+* your main Superfeedr password. However, please note that we recommand the use of a token for security reasons.
+
+You can generate an unlimited number of tokens, with different combination of rights associated to them:
+
+* [Subscribe](/subscribers.html#addingfeedswithpubsubhubbub)
+* [Unsubscribe](/subscribers.html#removingfeedswithpubsubhubbub)
+* [List](/subscribers.html#listingfeedswithpubsubhubbub)
+* [Retrieve](/subscribers.html#retrievingentrieswithpubsubhubbub)
+* [XMPP](/subscribers.html#xmppauthentication) (see below)
+
+The tokens **cannot** be used to log into the main [Superfeedr](http://www.superfeedr.com/) site. 
+
+Tokens can be made public, provided that you understand that any call made with them will be associated to your account. In particular, this means that if someone makes subscription calls with one of your tokens, your account will be billed with the following notifications.
+
+On the other hand, please remember to use <code>https</code> when sending authentication against our endpoint if you want to ensure full privacy of your credentials (including token information).
 
 ### Adding Feeds with PubSubHubbub
 
@@ -501,11 +526,15 @@ There exists multiple PubSubHubbub API wrapper in multiple langues and they shou
 
 ## XMPP PubSub
 
-You can connect your jabber client (or component) to superfeedr by using the JID <code>username@superfeedr.com</code> and your password.You can also specify another JID in your user settings if you'd like to connect from our own XMPP server.
-
 The XMPP API is based on the [XEP-0060 syntax](http://xmpp.org/extensions/xep-0060.html#subscriber-subscribe). Additional data has been included within a superfeedr-specific namespace.
 
-You can use the XMPP console of any XMPP desktop client to inspect that traffic, however, remember that if you have multiple clients connected with the same jid, we will only send messages to one of them, picked randomly.
+You can use the XMPP console of any XMPP desktop client to inspect that traffic.
+
+### Authentication
+
+You can connect your jabber client to superfeedr by using the JID <code>username@superfeedr.com</code> and your main Supefeedr password. You should however [create a specific token](https://superfeedr.com/tokens/new) as long as this token enables the XMPP right.
+
+You can also specify another JID in your user settings if you'd like to connect from our own XMPP server. This is the most flexible option, but it also requires you to host your own XMPP server.
 
 ### Adding Feeds with XMPP
 
