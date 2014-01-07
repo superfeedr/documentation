@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>Subscribers</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"><link rel="stylesheet" href="/assets/documentation.superfeedr.com.css"><link rel="stylesheet" href="/assets/prism.css"></head><body data-spy="scroll" data-target="#sidenavbar" data-offset="30"><header role="navigation" class="navbar navbar-fixed-top navbar-inverse navbar-default"><div class="container"><div class="col-md-3 navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand brand">Superfeedr Docs</a></div><nav class="col-md-9 collapse navbar-collapse navbar-ex1-collapse"><ul class="nav navbar-nav"><li><a href="https://github.com/superfeedr/documentation/issues">Questions</a></li><li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Table of Content<b class="caret"></b></a><ul class="dropdown-menu"><li><a href="/">Introduction</a></li><li><a href="subscribers.html">Subscribers</a></li><li><a href="publishers.html">Publishers</a></li><li><a href="schema.html">Schema</a></li><li><a href="misc.html">Misc</a></li></ul></li></ul></nav></div></header><div class="container main"><div class="row"><div class="col-md-3"><div role="complementary" id="sidenavbar" class="hidden-print affix side-navbar"><ul class="nav"><li><a href="#introduction">Introduction</a></li><li><a href="#whatcanyousubscribeto">What can you subscribe to</a><ul class="nav"><li><a href="#redirects">Redirects</a></li><li><a href="#xmlbasedfeeds">XML based feeds</a></li><li><a href="#jsonfeeds">JSON feeds</a></li><li><a href="#htmlfragments">HTML fragments</a></li><li><a href="#other">Other</a></li></ul></li><li><a href="#whatapitochoose">What API to choose</a></li><li><a href="#webhooks">Webhooks</a><ul class="nav"><li><a href="#addingfeedswithpubsubhubbub">Adding Feeds with PubSubHubbub</a></li><li><a href="#removingfeedswithpubsubhubbub">Removing Feeds with PubSubHubbub</a></li><li><a href="#listingfeedswithpubsubhubbub">Listing Feeds with PubSubHubbub</a></li><li><a href="#retrievingentrieswithpubsubhubbub">Retrieving Entries with PubSubHubbub</a></li><li><a href="#pubsubhubbubnotifications">PubSubHubbub Notifications</a></li><li><a href="#pubsubhubbubapiwrappers">PubSubHubbub API Wrappers</a></li></ul></li><li><a href="#xmpppubsub">XMPP PubSub</a><ul class="nav"><li><a href="#addingfeedswithxmpp">Adding Feeds with XMPP</a></li><li><a href="#removingfeedswithxmpp">Removing Feeds with XMPP</a></li><li><a href="#listingfeedswithxmpp">Listing Feeds with XMPP</a></li><li><a href="#retrievingentrieswithxmpp">Retrieving Entries with XMPP</a></li><li><a href="#xmppnotifications">XMPP Notifications</a></li><li><a href="#xmppapiwrappers">XMPP API Wrappers</a></li></ul></li></ul></div></div><div class="col-md-9"><h1>Subscribers</h1><h2 id="introduction">Introduction</h2>
+<!DOCTYPE html><html lang="en"><head><title>Subscribers</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"><link rel="stylesheet" href="/assets/documentation.superfeedr.com.css"><link rel="stylesheet" href="/assets/prism.css"></head><body data-spy="scroll" data-target="#sidenavbar" data-offset="30"><header role="navigation" class="navbar navbar-fixed-top navbar-inverse navbar-default"><div class="container"><div class="col-md-3 navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand brand">Superfeedr Docs</a></div><nav class="col-md-9 collapse navbar-collapse navbar-ex1-collapse"><ul class="nav navbar-nav"><li><a href="https://github.com/superfeedr/documentation/issues">Questions</a></li><li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Table of Content<b class="caret"></b></a><ul class="dropdown-menu"><li><a href="/">Introduction</a></li><li><a href="subscribers.html">Subscribers</a></li><li><a href="publishers.html">Publishers</a></li><li><a href="schema.html">Schema</a></li><li><a href="misc.html">Misc</a></li></ul></li></ul></nav></div></header><div class="container main"><div class="row"><div class="col-md-3"><div role="complementary" id="sidenavbar" class="hidden-print affix side-navbar"><ul class="nav"><li><a href="#introduction">Introduction</a></li><li><a href="#whatcanyousubscribeto">What can you subscribe to</a><ul class="nav"><li><a href="#redirects">Redirects</a></li><li><a href="#xmlbasedfeeds">XML based feeds</a></li><li><a href="#jsonfeeds">JSON feeds</a></li><li><a href="#htmlfragments">HTML fragments</a></li><li><a href="#other">Other</a></li></ul></li><li><a href="#whatapitochoose">What API to choose</a></li><li><a href="#webhooks">Webhooks</a><ul class="nav"><li><a href="#httpauthentication">HTTP Authentication</a></li><li><a href="#addingfeedswithpubsubhubbub">Adding Feeds with PubSubHubbub</a></li><li><a href="#removingfeedswithpubsubhubbub">Removing Feeds with PubSubHubbub</a></li><li><a href="#listingfeedswithpubsubhubbub">Listing Feeds with PubSubHubbub</a></li><li><a href="#retrievingentrieswithpubsubhubbub">Retrieving Entries with PubSubHubbub</a></li><li><a href="#pubsubhubbubnotifications">PubSubHubbub Notifications</a></li><li><a href="#pubsubhubbubapiwrappers">PubSubHubbub API Wrappers</a></li></ul></li><li><a href="#xmpppubsub">XMPP PubSub</a><ul class="nav"><li><a href="#xmppauthentication">XMPP Authentication</a></li><li><a href="#addingfeedswithxmpp">Adding Feeds with XMPP</a></li><li><a href="#removingfeedswithxmpp">Removing Feeds with XMPP</a></li><li><a href="#listingfeedswithxmpp">Listing Feeds with XMPP</a></li><li><a href="#retrievingentrieswithxmpp">Retrieving Entries with XMPP</a></li><li><a href="#xmppnotifications">XMPP Notifications</a></li><li><a href="#xmppapiwrappers">XMPP API Wrappers</a></li></ul></li></ul></div></div><div class="col-md-9"><h1>Subscribers</h1><h2 id="introduction">Introduction</h2>
 
 <p>Superfeedr is a tool which will push you content to which you can subscribe on the web and get notification in <strong>realtime</strong>.
 It is also possible to retrieve <em>past</em> content. Finally, when possible we offer a set of normalization options for easier consumption.</p>
@@ -73,9 +73,36 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <p>Our PubSubHubbub endpoint is at <code><a href="https://push.superfeedr.com/">https://push.superfeedr.com/</a></code>.</p>
 
-<p>The most notable difference is that our endpoint uses <a href="https://httpd.apache.org/docs/1.3/howto/auth.html#basic">HTTP Basic Auth</a> to authenticate your PubSubHubbub calls, making all <em>verification</em> steps of the requests optional.</p>
+<p>The most notable difference is that our endpoint uses <a href="https://httpd.apache.org/docs/1.3/howto/auth.html#basic">HTTP Basic Auth</a> to <a href="/subscribers.html#addingfeedswithpubsubhubbub">authenticate</a> your PubSubHubbub calls, making all <em>verification</em> steps of the requests optional.</p>
 
-<p>We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in case you want to manually specify an HTTP method different from the one used in the HTTP request.</p>
+<p>We also support the use of <code>X-HTTP-Method-Override</code> HTTP header in case you want to manually specify an HTTP method different from the one used in the HTTP request. </p>
+
+<h3 id="httpauthentication">HTTP Authentication</h3>
+
+<p>Authentication using the Webhooks API is performed thru <a href="https://httpd.apache.org/docs/1.3/howto/auth.html#basic">HTTP Basic Auth</a>. Most (if not all!) HTTP libraries will allow for an easy configuration.</p>
+
+<p>The username to use is your Superfeedr login and you can pick from different options for the password:</p>
+
+<ul>
+<li>A password token that <a href="https://superfeedr.com/tokens/new">you can generate</a>.</li>
+<li>your main Superfeedr password. However, please note that we recommand the use of a token for security reasons.</li>
+</ul>
+
+<p>You can generate an unlimited number of tokens, with different combination of rights associated to them:</p>
+
+<ul>
+<li><a href="/subscribers.html#addingfeedswithpubsubhubbub">Subscribe</a></li>
+<li><a href="/subscribers.html#removingfeedswithpubsubhubbub">Unsubscribe</a></li>
+<li><a href="/subscribers.html#listingfeedswithpubsubhubbub">List</a></li>
+<li><a href="/subscribers.html#retrievingentrieswithpubsubhubbub">Retrieve</a></li>
+<li><a href="/subscribers.html#xmppauthentication">XMPP</a> (see below)</li>
+</ul>
+
+<p>The tokens <strong>cannot</strong> be used to log into the main <a href="http://www.superfeedr.com/">Superfeedr</a> site. </p>
+
+<p>Tokens can be made public, provided that you understand that any call made with them will be associated to your account. In particular, this means that if someone makes subscription calls with one of your tokens, your account will be billed with the following notifications.</p>
+
+<p>On the other hand, please remember to use <code>https</code> when sending authentication against our endpoint if you want to ensure full privacy of your credentials (including token information).</p>
 
 <h3 id="addingfeedswithpubsubhubbub">Adding Feeds with PubSubHubbub</h3>
 
@@ -479,11 +506,15 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <h2 id="xmpppubsub">XMPP PubSub</h2>
 
-<p>You can connect your jabber client (or component) to superfeedr by using the JID <code>username@superfeedr.com</code> and your password.You can also specify another JID in your user settings if you&#8217;d like to connect from our own XMPP server.</p>
-
 <p>The XMPP API is based on the <a href="http://xmpp.org/extensions/xep-0060.html#subscriber-subscribe">XEP-0060 syntax</a>. Additional data has been included within a superfeedr-specific namespace.</p>
 
-<p>You can use the XMPP console of any XMPP desktop client to inspect that traffic, however, remember that if you have multiple clients connected with the same jid, we will only send messages to one of them, picked randomly.</p>
+<p>You can use the XMPP console of any XMPP desktop client to inspect that traffic.</p>
+
+<h3 id="authentication">Authentication</h3>
+
+<p>You can connect your jabber client to superfeedr by using the JID <code>username@superfeedr.com</code> and your main Supefeedr password. You should however <a href="https://superfeedr.com/tokens/new">create a specific token</a> as long as this token enables the XMPP right.</p>
+
+<p>You can also specify another JID in your user settings if you&#8217;d like to connect from our own XMPP server. This is the most flexible option, but it also requires you to host your own XMPP server.</p>
 
 <h3 id="addingfeedswithxmpp">Adding Feeds with XMPP</h3>
 
