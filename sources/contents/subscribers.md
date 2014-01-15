@@ -163,7 +163,7 @@ On the other hand, please remember to use <code>https</code> when sending authen
 <tr>
   <td>hub.verify</td>
   <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verification of intent synschronously or asynschronously.</td>
+  <td><code>sync</code> or <code>async</code>: will perform a [PubSubHubbub verification](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3) of intent synschronously or asynschronously.</td>
 </tr>
 <tr>
   <td>format</td>
@@ -232,7 +232,7 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
 <tr>
   <td>hub.verify</td>
   <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a PubSubHubbub verfication of intent synschronously or asynschronously.</td>
+  <td><code>sync</code> or <code>async</code>: will perform a [PubSubHubbub verification](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3) of intent synschronously or asynschronously.</td>
 </tr>
 </table>
 
