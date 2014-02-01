@@ -343,6 +343,16 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
   <td>Optional number of items you want to retrieve. Current max is 50 and default is 10.</td>  
 </tr>
 <tr>
+  <td>before</td>
+  <td>optional</td>
+  <td>The <code>id</code> of an entry in the feed. The response will only include entries published before this one.</td>  
+</tr>
+<tr>
+  <td>after</td>
+  <td>optional</td>
+  <td>The <code>id</code> of an entry in the feed. The response will only include entries published after this one.</td>  
+</tr>
+<tr>
   <td>format</td>
   <td>optional</td>
   <td><code>json</code> if you want to retrieve entries in json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code></td>
