@@ -4,11 +4,12 @@ template: index.jade
 toc: {
   "Introduction": {},
   "What can you subscribe to": {
-    "Redirects": {},
     "XML based feeds": {},
     "JSON feeds": {},
     "HTML fragments": {},
-    "Other": {}
+    "Keywords And Expressions": {},
+    "Other": {},
+    "Redirects": {}
   },
   "What API to choose": {},
   "Webhooks": {
@@ -42,10 +43,6 @@ It is also possible to retrieve *past* content. Finally, when possible we offer 
 In practice, Superfeedr lets you subscribe to anything that has a url. One significant caveat is that this url needs to be publicly accessible by our servers, which means that the resource cannot be located inside a private network or behind a firewall. 
 
 Urls may include an authentication element, but note that Superfeedr will not treat these urls with any kind of specific security concern, which means that we strongly discourage providing urls with an authentication mechanism.
-
-### Redirects
-
-When fetching resources, Superfeedr will follow all redirects, temporary or permanent and notify you of the actual content at the end of the redirect chain (we follow up to 5 redirect). It is also strongly recommanded, when applicable that you subscribe to the **canonical** url.
 
 ### XML based feeds
 
@@ -82,6 +79,10 @@ Superfeedr allows you to subscribe to keywords or complex expressions to match t
 When subscribing to any other HTTP resource, we will compute a signature from the bytes including in the document. When we fetch that resource again (after at least 5 minutes), if the signature changed, we will send you the whole document again.
 
 Timestamps, changing tracking codes... etc may create false positives.
+
+### Redirects
+
+When fetching resources, Superfeedr will follow all redirects, temporary or permanent and notify you of the actual content at the end of the redirect chain (we follow up to 5 redirect). It is also strongly recommanded, when applicable that you subscribe to the **canonical** url.
 
 ## What API to choose
 
@@ -163,7 +164,7 @@ On the other hand, please remember to use <code>https</code> when sending authen
 <tr>
   <td>hub.verify</td>
   <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a [PubSubHubbub verification](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3) of intent synschronously or asynschronously.</td>
+  <td><code>sync</code> or <code>async</code>: will perform a <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3">PubSubHubbub verification</a> of intent synschronously or asynschronously.</td>
 </tr>
 <tr>
   <td>format</td>
@@ -181,14 +182,14 @@ Subscription at Superfeedr are a unique combination of a resource url and a call
 
 #### Example
 
-<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
+<pre class="language-bash embedcurl">
+  curl https://push.superfeedr.com/ 
   -X POST 
   -u demo:demo 
   -d'hub.mode=subscribe' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
   -d'hub.callback=http://mycallback.tld/ok'
-HTTP/1.1 204 No Content
-</code></pre>
+</pre>
 
 #### Response
 
@@ -232,20 +233,19 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
 <tr>
   <td>hub.verify</td>
   <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a [PubSubHubbub verification](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3) of intent synschronously or asynschronously.</td>
+  <td><code>sync</code> or <code>async</code>: will perform a  <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3">PubSubHubbub verification</a> of intent synschronously or asynschronously.</td>
 </tr>
 </table>
 
 #### Example
 
-<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
+<pre class="language-bash embedcurl">curl https://push.superfeedr.com/ 
   -X POST 
   -u demo:demo 
   -d'hub.mode=unsubscribe' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
   -d'hub.callback=http://mycallback.tld/ok'
-HTTP/1.1 204 No Content
-</code></pre>
+</pre>
 
 #### Response
 
@@ -288,20 +288,19 @@ This call will allow you to retrieve subscriptions that match a callback url. Th
 
 #### Example
 
-<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
+<pre class="language-bash embedcurl">curl https://push.superfeedr.com/ 
   -X GET 
   -u demo:demo 
   -d'hub.mode=list' 
   -d'hub.callback=http://mycallback.tld/%'
   -d'page=2'
-HTTP/1.1 200 No Content
-</code></pre>
+</pre>
 
 #### Response
 
 Superfeedr will return `200` with the list of matching subscriptions, a JSON format. If you supplied a callback parameter (JSONP), the JSON will be wrapped in it.
-
-<pre class="language-javascript"><code>[{
+<pre class="language-bash">
+<code>[{
   "subscription": {
     "format": "atom",
     "endpoint": "http://mycallback.tld/ok",
@@ -311,7 +310,8 @@ Superfeedr will return `200` with the list of matching subscriptions, a JSON for
       "url": "http://push-pub.appspot.com/feed"
     }
   }
-}]</code></pre>
+}]</code>
+</pre>
 
 ### Retrieving Entries with PubSubHubbub
 
@@ -366,13 +366,17 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
 
 #### Example
 
-<pre class="language-bash"><code>$ curl -D- https://push.superfeedr.com/ 
+<pre class="language-bash embedcurl">curl https://push.superfeedr.com/ 
   -H 'Accept: application/json'
   -X GET 
   -u demo:demo 
   -d'hub.mode=retrieve' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
+</pre>
 
+**Response:**
+
+<pre class="language-bash">
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Status: 200 OK
@@ -879,3 +883,4 @@ XMPP *can be scary*. For those of you who don't want to mess with that, we have 
 
 If you need one in another language, please contact us. Also, remember that these wrappers have been created by the community. Feel free to contribute to help improve them. 
 
+<script src="https://www.embedcurl.com/embedcurl.min.js" async></script>
