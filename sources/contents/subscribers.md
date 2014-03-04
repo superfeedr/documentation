@@ -227,13 +227,13 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
 </tr>
 <tr>
   <td>hub.callback</td>
-  <td>required</td>
-  <td>The URL to which notifications will be sent.</td>
+  <td>optional</td>
+  <td>The URL to which notifications will be sent. It is optional if you are only subscribed to the feed 'once', with a single <code>hub.callback</code>. If you have multiple subscriptions, you will need to supply the <code>hub.callback</code> parameter. It is also required if you use the <code>hub.verify</code> param. (see below). </td>
 </tr>
 <tr>
   <td>hub.verify</td>
   <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a  <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3">PubSubHubbub verification</a> of intent synschronously or asynschronously.</td>
+  <td><code>sync</code> or <code>async</code>. We will perform a <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3">PubSubHubbub verification</a> of intent synschronously or asynschronously.</td>
 </tr>
 </table>
 
