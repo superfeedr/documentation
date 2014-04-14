@@ -26,7 +26,7 @@ The next step consist in building your track feed. They all start with the same 
 <tr>
   <td>include</td>
   <td>required</td>
-  <td>Just add as many keywords that you need, separated by a coma. Please note that each word will be downcased and stemmed (english stemming only). This means that "HOUSING" will match also "house", and "technologies" will match "technology". You need at least one 'include' for any track search, and this tracked keyword needs to be at least 4 characters long.</td>
+  <td>Just add as many keywords that you need, separated by a coma. Each of these words needs to have at least 4 characters. Please note that each word will be downcased and stemmed (english stemming only for now). This means that "HOUSING" will match also "house", and "technologies" will match "technology". You need at least one 'include' for any track search.</td>
 </tr>
 <tr>
   <td>exclude</td>
