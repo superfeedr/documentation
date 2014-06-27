@@ -193,7 +193,7 @@ Subscription at Superfeedr are a unique combination of a resource url and a call
 
 #### Response
 
-Superfeedr will return `204` if the subscription was performed and `202` if the subscription has yet to be verified (only if you used supplied a <code>hub.verify=async</code> parameter).
+Superfeedr will return `204` if the subscription was performed and `202` if the subscription has yet to be verified (only if you supplied a <code>hub.verify=async</code> parameter).
 
 If you used the <code>retrieve</code> param, Superfeedr will respond with a 200 response and the content of the feed in the body.
 
@@ -249,7 +249,7 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
 
 #### Response
 
-Superfeedr will return `204` if the unsubscription was performed and `202` if the subscription has yet to be verified (only if you used supplied a <code>hub.verify=async</code> parameter).
+Superfeedr will return `204` if the unsubscription was performed and `202` if the subscription has yet to be verified (only if you supplied a <code>hub.verify=async</code> parameter).
 
 For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
 
