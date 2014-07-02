@@ -18,6 +18,7 @@ toc: {
     "Removing Feeds with PubSubHubbub": {},
     "Listing Feeds with PubSubHubbub": {},
     "Retrieving Entries with PubSubHubbub": {},
+    "Streaming RSS": {},
     "PubSubHubbub Notifications": {},
     "PubSubHubbub API Wrappers": {}
   },
@@ -120,7 +121,7 @@ You can generate an unlimited number of tokens, with different combination of ri
 * [Subscribe](/subscribers.html#addingfeedswithpubsubhubbub)
 * [Unsubscribe](/subscribers.html#removingfeedswithpubsubhubbub)
 * [List](/subscribers.html#listingfeedswithpubsubhubbub)
-* [Retrieve](/subscribers.html#retrievingentrieswithpubsubhubbub)
+* [Retrieve](/subscribers.html#retrievingentrieswithpubsubhubbub) (used for [Streaming](/subscribers.html#streamingrss) as well)
 * [XMPP](/subscribers.html#xmppauthentication) (see below)
 
 The tokens **cannot** be used to log into the main [Superfeedr](http://www.superfeedr.com/) site. 
@@ -321,6 +322,7 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
+
 <table class="table table-striped table-condensed table-responsive">
 <tr>
   <th>Parameter Name</th>
@@ -475,6 +477,43 @@ If you are not subscribed to the feed or if the feed has not yet been added to S
 For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
 
 Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
+### Streaming RSS
+
+When retrieving past RSS content, it is possible to keep the HTTP connection to Superfeedr alive so that new entries are sent directly to your client.
+
+For this, you need to send use the <code>stream.superfeedr.com</code> endpoint: 
+
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://stream.superfeedr.com</code>
+  </div>
+</div>
+
+You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithpubsubhubbub), with the following extra parameter:
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Parameter Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>wait</td>
+  <td>required</td>
+  <td><code>stream</code> or <code>poll</code></td>
+</tr>
+</table>
+
+#### Stream
+
+If you supply the <code>stream</code> value, Superfeedr will return the content corresponding to the retrieve API call, but will also keep the connection and serve any future entry to this connection. You can connect multiple concurrent streams and all of them will receive the same data. 
+
+#### Poll
+
+If you supply the <code>poll</code> value, Superfeedr 2 cases will arise. 
+
+* If Superfeedr has content matching the corresponding retrieve API call (past entries), then the response will include this content and will be closed after that.
+
+* If Superfeedr does not have content matching the corresponding retrieve call, then, the connection will be kept alive, until new entries are added to the feed. These new entries will then be served and the connection will be closed. If you use the <code>poll</code> value, we strongly recommend that you use <code>after</code> query paramter as well. This will let you keep the connection open until new content after the latest entry has been added.
 
 ### PubSubHubbub Notifications
 
