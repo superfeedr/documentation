@@ -446,28 +446,29 @@ Content-Length: 3550
 }
 </pre>
 
-#### Response
+<h4 id="response">Response</h4>
 
-Superfeedr will return <code>200</code> with the content if we could retrieve the feed&#8217;s past entries.
+<p>Superfeedr will return <code>200</code> with the content if we could retrieve the feed&#8217;s past entries.</p>
 
-If you are not subscribed to the feed or if the feed has not yet been added to Superfeedr, we will return a `404`.
+<p>If you are not subscribed to the feed or if the feed has not yet been added to Superfeedr, we will return a <code>404</code>.</p>
 
-For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
+<p>For <code>422</code> HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.</p>
 
-Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+<p>Other HTTP response code have the meaning defined in the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP spec.</a></p>
 
-### Streaming RSS
+<h3 id="streamingrss">Streaming RSS</h3>
 
-When retrieving past RSS content, it is possible to keep the HTTP connection to Superfeedr alive so that new entries are sent directly to your client.
+<p>When retrieving past RSS content, it is possible to keep the HTTP connection to Superfeedr alive so that new entries are sent directly to your client.</p>
 
-For this, you need to send use the <code>stream.superfeedr.com</code> endpoint: 
+<p>For this, you need to send use the <code>stream.superfeedr.com</code> endpoint: </p>
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://stream.superfeedr.com</code>
   </div>
 </div>
 
-You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithpubsubhubbub), with the following extra parameter:
+<p>You will then perform a <a href="/subscribers.html#retrievingentrieswithpubsubhubbub">retrieve call</a>, with the following extra parameter:</p>
+
 <table class="table table-striped table-condensed table-responsive">
 <tr>
   <th>Parameter Name</th>
@@ -481,23 +482,24 @@ You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithp
 </tr>
 </table>
 
-#### Stream
+<h4 id="stream">Stream</h4>
 
-If you supply the <code>stream</code> value, Superfeedr will return the content corresponding to the retrieve API call, but will also keep the connection and serve any future entry to this connection. You can connect multiple concurrent streams and all of them will receive the same data. 
+<p>If you supply the <code>stream</code> value, Superfeedr will return the content corresponding to the retrieve API call, but will also keep the connection and serve any future entry to this connection. You can connect multiple concurrent streams and all of them will receive the same data. </p>
 
-#### Poll
+<h4 id="poll">Poll</h4>
 
-If you supply the <code>poll</code> value, Superfeedr 2 cases will arise. 
+<p>If you supply the <code>poll</code> value, Superfeedr 2 cases will arise. </p>
 
-* If Superfeedr has content matching the corresponding retrieve API call (past entries), then the response will include this content and will be closed after that.
+<ul>
+<li><p>If Superfeedr has content matching the corresponding retrieve API call (past entries), then the response will include this content and will be closed after that.</p></li>
+<li><p>If Superfeedr does not have content matching the corresponding retrieve call, then, the connection will be kept alive, until new entries are added to the feed. These new entries will then be served and the connection will be closed. If you use the <code>poll</code> value, we strongly recommend that you use <code>after</code> query paramter as well. This will let you keep the connection open until new content after the latest entry has been added.</p></li>
+</ul>
 
-* If Superfeedr does not have content matching the corresponding retrieve call, then, the connection will be kept alive, until new entries are added to the feed. These new entries will then be served and the connection will be closed. If you use the <code>poll</code> value, we strongly recommend that you use <code>after</code> query paramter as well. This will let you keep the connection open until new content after the latest entry has been added.
+<h4 id="serversentevents">Server Sent Events</h4>
 
-#### Server Sent Events
+<p>Superfeedr also supports <a href="http://www.w3.org/TR/eventsource/">Server Sent Events</a> (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events.</p>
 
-Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/) (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events.
-
-Example:
+<p>Example:</p>
 
 <pre class="language-javascript embedcurl">
 var url = "https://stream.superfeedr.com/";
