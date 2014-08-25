@@ -515,6 +515,25 @@ If you supply the <code>poll</code> value, Superfeedr 2 cases will arise.
 
 * If Superfeedr does not have content matching the corresponding retrieve call, then, the connection will be kept alive, until new entries are added to the feed. These new entries will then be served and the connection will be closed. If you use the <code>poll</code> value, we strongly recommend that you use <code>after</code> query paramter as well. This will let you keep the connection open until new content after the latest entry has been added.
 
+#### Server Sent Events
+
+Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/) (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events.
+
+Example:
+
+<pre class="language-javascript embedcurl">
+var url = "https://stream.superfeedr.com/";
+url += "&hub.mode=retrieve";
+url += "&hub.topic=<topic url>";
+url += "&authorization=<token>";
+
+var source = new EventSource(url);
+source.addEventListener("notification", function(e) {
+  var notification = JSON.parse(e.data);
+});
+</pre>
+
+
 ### PubSubHubbub Notifications
 
 Notifications are POST requests sent to the callback you specified for the [subscription](/subscribers.html#addingfeedswithpubsubhubbub). The body of the response includes the notification in the format that you specified upon subscription. Please check our [schema](/schema.html) for more information.
