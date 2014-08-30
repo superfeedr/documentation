@@ -170,7 +170,7 @@ On the other hand, please remember to use <code>https</code> when sending authen
 <tr>
   <td>format</td>
   <td>optional</td>
-  <td><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>. bu default, you will get <code>ATOM</code> notifications.</td>
+  <td><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>. By default, you will get <code>ATOM</code> notifications.</td>
 </tr>
 <tr>
   <td>retrieve</td>
