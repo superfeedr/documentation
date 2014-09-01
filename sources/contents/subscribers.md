@@ -170,7 +170,11 @@ On the other hand, please remember to use <code>https</code> when sending authen
 <tr>
   <td>format</td>
   <td>optional</td>
-  <td><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>. By default, you will get <code>ATOM</code> notifications.</td>
+  <td>
+    <ul>
+      <li><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>.</li>
+      <li><code>atom</code> if you explicitly want to receive notification as Atom. This is used by default for any resource that's either Atom or RSS.</li>
+      <li>If you don't specify any, we will send you the data pulled from the HTTP resource, (excluding feeds).</li></td>
 </tr>
 <tr>
   <td>retrieve</td>
