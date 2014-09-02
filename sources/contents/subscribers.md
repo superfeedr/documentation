@@ -772,7 +772,7 @@ You can list your existing subscriptions. This list is paginated with 20 items p
 <tr>
   <td>subscriptions[@page]</td>
   <td></td>
-  <td>Page number (subscriptions will be sent by batches of 20)</td>
+  <td>Page number (subscriptions will be sent by batches of 20).  First page (default) is 1.</td>
 </tr>
 
 <tr>
