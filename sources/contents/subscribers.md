@@ -613,6 +613,8 @@ You can connect your jabber client to superfeedr by using the JID <code>username
 
 You can also specify another JID in your user settings if you'd like to connect from our own XMPP server. This is the most flexible option, but it also requires you to host your own XMPP server.
 
+Also, make sure your clients sends a <pre class="language-markup"><code><presence><code></pre> stanza when your client is fully connected.
+
 ### Adding Feeds with XMPP
 
 Subscribing to a new feed will allow you to get notifications with the upcoming entries from that feed.
