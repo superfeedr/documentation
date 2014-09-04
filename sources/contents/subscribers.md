@@ -71,6 +71,12 @@ We will also send you notification when a *resource is an HTTP error state*. The
 
 Superfeedr also provides the ability to subscribe to HTML fragments inside an HTML page.
 
+A fragment is a portion of an HTML document, defined by a <em>CSS path</em>. You can then subscribe to DOM elements inside a page as long as there is a CSS path that leads to them. You will append the URL-escaped CSS path to the document URL, using the fragment part of the url. 
+
+If there are multiple elements matching your CSS path, Superfeedr will concatenate all these elements.
+
+For example, if you want to subscribe to the <code>.h-entry</code> element of <code>http://blog.superfeedr.com</code>, you will need to subscribe to <code>http://blog.superfeedr.com#.h-entry</code>.
+
 ### Keywords and Expressions
 
 Superfeedr allows you to subscribe to keywords or complex expressions to match the data that goes thru Superfeedr itself. Check our [track section](/misc.html#track) for more details.
