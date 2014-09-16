@@ -16,7 +16,7 @@ toc: {
     "HTTP Authentication": {},
     "Adding Feeds with PubSubHubbub": {},
     "Removing Feeds with PubSubHubbub": {},
-    "Listing Feeds with PubSubHubbub": {},
+    "Listing Subscriptions with PubSubHubbub": {},
     "Retrieving Entries with PubSubHubbub": {},
     "Streaming RSS": {},
     "PubSubHubbub Notifications": {},
@@ -266,9 +266,10 @@ For `422` HTTP response code, please check the body as it includes the reason of
 
 Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
-### Listing Feeds with PubSubHubbub
+### Listing Subscriptions with PubSubHubbub
 
-This call will allow you to retrieve subscriptions that match a callback url. This callback URL may include a wildcard in the form of %.
+This call will allow you to retrieve subscriptions on your account. 
+You can also use the <code>search</code> parameter to search for specific subscriptions to specific feeds.
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
@@ -286,16 +287,18 @@ This call will allow you to retrieve subscriptions that match a callback url. Th
   <td><code>list</code></td>
 </tr>
 <tr>
-  <td>hub.callback</td>
-  <td>required</td>
-  <td>The callback url with which you subscribed and for which you want to find subscriptions. It can include <code>%</code> as a wildcard.</td>
-</tr>
-<tr>
   <td>page</td>
   <td>optional</td>
   <td>If there are more than 20 matching subscriptions, you may want to paginate over them. First page (default) is 1.</td>
 </tr>
+<tr>
+  <td>search</td>
+  <td>optional</td>
+  <td>A search query. Please see below for the various fields and values to use.</td>
+</tr>
 </table>
+
+Please note that subscriptions are listed in the order of creation. The oldest subscriptions are first, while the most recent one is the last one.
 
 #### Example
 
@@ -303,7 +306,6 @@ This call will allow you to retrieve subscriptions that match a callback url. Th
   -X GET 
   -u demo:demo 
   -d'hub.mode=list' 
-  -d'hub.callback=http://mycallback.tld/%'
   -d'page=2'
 </pre>
 
@@ -323,6 +325,78 @@ Superfeedr will return `200` with the list of matching subscriptions, a JSON for
   }
 }]</code>
 </pre>
+
+#### Search Queries
+
+Search queries are nested query string parameters using the following keys.
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Query</th>
+  <th>Note</th>
+  <th>Example</th>
+</tr>
+<tr>
+  <td><code>format</code></td>
+  <td>can either be <code>JSON</code> or <code>ATOM</code> and will return all subscription made using that format</td>
+  <td><em>search[format]=json</em></td>
+</tr>
+
+<tr>
+  <td><code>feed url</code></td>
+  <td>an exact match of the feed url.</td>
+  <td><em>search[feed][url]=http://blog.superfeedr.com/atom.xml</em></td>
+</tr>
+
+<tr>
+  <td><code>feed inurl</code></td>
+  <td>string (sequence of characters) included in the URL. The match is done using n-grams so approchaing sequences will also match</td>
+  <td><em>search[feed][inurl]=superfeedr</em></td>
+</tr>
+
+<tr>
+  <td><code>feed hostname</code></td>
+  <td>an exact match of the feed's URL hostname.</td>
+  <td><em>search[feed][hostname]=blog.superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>feed hostname</code></td>
+  <td>an exact match of the feed's URL hostname.</td>
+  <td><em>search[feed][hostname]=blog.superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint jid</code></td>
+  <td>an exact match of the jid when you subscribed with XMPP.</td>
+  <td><em>search[endpoint][jid]=julien@superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint domain jid</code></td>
+  <td>an exact match of the domain part of the jid when you subscribed with XMPP.</td>
+  <td><em>search[endpoint][domain]=superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint url</code></td>
+  <td>an exact match of pubsubhubbub <code>hub.callback</code> URL.</td>
+  <td><em>search[endpoint][url]=http://my.domain.tld/feed/1</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint inurl</code></td>
+  <td>string (sequence of characters) included in the  <code>hub.callback</code> URL. The match is done using n-grams so approchaing sequences will also match</td>
+  <td><em>search[endpoint][inurl]=domain</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint hostname</code></td>
+  <td>an exact match of the <code>hub.callback</code>'s URL hostname.</td>
+  <td><em>search[endpoint][hostname]=domain.tld</em></td>
+</tr>
+</table>
+
 
 ### Retrieving Entries with PubSubHubbub
 

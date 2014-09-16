@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><title>Subscribers</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"><link rel="stylesheet" href="/assets/documentation.superfeedr.com.css"><link rel="stylesheet" href="/assets/prism.css"></head><body data-spy="scroll" data-target="#sidenavbar" data-offset="30"><header role="navigation" class="navbar navbar-inverse navbar-default"><div class="container"><div class="col-md-3 navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand brand">Superfeedr Docs</a></div><nav class="col-md-9 collapse navbar-collapse navbar-ex1-collapse"><ul class="nav navbar-nav"><li><a href="https://github.com/superfeedr/documentation/issues">Questions</a></li><li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Table of Content<b class="caret"></b></a><ul class="dropdown-menu"><li><a href="/">Introduction</a></li><li><a href="subscribers.html">Subscribers</a></li><li><a href="publishers.html">Publishers</a></li><li><a href="schema.html">Schema</a></li><li><a href="misc.html">Misc</a></li></ul></li></ul></nav></div></header><div class="container main"><div class="row"><div class="col-md-3"><div role="complementary" id="sidenavbar" class="hidden-print affix side-navbar"><ul class="nav"><li><a href="#introduction">Introduction</a></li><li><a href="#whatcanyousubscribeto">What can you subscribe to</a><ul class="nav"><li><a href="#xmlbasedfeeds">XML based feeds</a></li><li><a href="#jsonfeeds">JSON feeds</a></li><li><a href="#htmlfragments">HTML fragments</a></li><li><a href="#keywordsandexpressions">Keywords And Expressions</a></li><li><a href="#other">Other</a></li><li><a href="#redirects">Redirects</a></li></ul></li><li><a href="#whatapitochoose">What API to choose</a></li><li><a href="#webhooks">Webhooks</a><ul class="nav"><li><a href="#httpauthentication">HTTP Authentication</a></li><li><a href="#addingfeedswithpubsubhubbub">Adding Feeds with PubSubHubbub</a></li><li><a href="#removingfeedswithpubsubhubbub">Removing Feeds with PubSubHubbub</a></li><li><a href="#listingfeedswithpubsubhubbub">Listing Feeds with PubSubHubbub</a></li><li><a href="#retrievingentrieswithpubsubhubbub">Retrieving Entries with PubSubHubbub</a></li><li><a href="#streamingrss">Streaming RSS</a></li><li><a href="#pubsubhubbubnotifications">PubSubHubbub Notifications</a></li><li><a href="#pubsubhubbubapiwrappers">PubSubHubbub API Wrappers</a></li></ul></li><li><a href="#xmpppubsub">XMPP PubSub</a><ul class="nav"><li><a href="#xmppauthentication">XMPP Authentication</a></li><li><a href="#addingfeedswithxmpp">Adding Feeds with XMPP</a></li><li><a href="#removingfeedswithxmpp">Removing Feeds with XMPP</a></li><li><a href="#listingfeedswithxmpp">Listing Feeds with XMPP</a></li><li><a href="#retrievingentrieswithxmpp">Retrieving Entries with XMPP</a></li><li><a href="#xmppnotifications">XMPP Notifications</a></li><li><a href="#xmppapiwrappers">XMPP API Wrappers</a></li></ul></li></ul></div></div><div class="col-md-9"><h1>Subscribers</h1><h2 id="introduction">Introduction</h2>
+<!DOCTYPE html><html lang="en"><head><title>Subscribers</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-theme.min.css"><link rel="stylesheet" href="/assets/documentation.superfeedr.com.css"><link rel="stylesheet" href="/assets/prism.css"></head><body data-spy="scroll" data-target="#sidenavbar" data-offset="30"><header role="navigation" class="navbar navbar-inverse navbar-default"><div class="container"><div class="col-md-3 navbar-header"><button type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand brand">Superfeedr Docs</a></div><nav class="col-md-9 collapse navbar-collapse navbar-ex1-collapse"><ul class="nav navbar-nav"><li><a href="https://github.com/superfeedr/documentation/issues">Questions</a></li><li class="dropdown"><a href="#" data-toggle="dropdown" class="dropdown-toggle">Table of Content<b class="caret"></b></a><ul class="dropdown-menu"><li><a href="/">Introduction</a></li><li><a href="subscribers.html">Subscribers</a></li><li><a href="publishers.html">Publishers</a></li><li><a href="schema.html">Schema</a></li><li><a href="misc.html">Misc</a></li></ul></li></ul></nav></div></header><div class="container main"><div class="row"><div class="col-md-3"><div role="complementary" id="sidenavbar" class="hidden-print affix side-navbar"><ul class="nav"><li><a href="#introduction">Introduction</a></li><li><a href="#whatcanyousubscribeto">What can you subscribe to</a><ul class="nav"><li><a href="#xmlbasedfeeds">XML based feeds</a></li><li><a href="#jsonfeeds">JSON feeds</a></li><li><a href="#htmlfragments">HTML fragments</a></li><li><a href="#keywordsandexpressions">Keywords And Expressions</a></li><li><a href="#other">Other</a></li><li><a href="#redirects">Redirects</a></li></ul></li><li><a href="#whatapitochoose">What API to choose</a></li><li><a href="#webhooks">Webhooks</a><ul class="nav"><li><a href="#httpauthentication">HTTP Authentication</a></li><li><a href="#addingfeedswithpubsubhubbub">Adding Feeds with PubSubHubbub</a></li><li><a href="#removingfeedswithpubsubhubbub">Removing Feeds with PubSubHubbub</a></li><li><a href="#listingsubscriptionswithpubsubhubbub">Listing Subscriptions with PubSubHubbub</a></li><li><a href="#retrievingentrieswithpubsubhubbub">Retrieving Entries with PubSubHubbub</a></li><li><a href="#streamingrss">Streaming RSS</a></li><li><a href="#pubsubhubbubnotifications">PubSubHubbub Notifications</a></li><li><a href="#pubsubhubbubapiwrappers">PubSubHubbub API Wrappers</a></li></ul></li><li><a href="#xmpppubsub">XMPP PubSub</a><ul class="nav"><li><a href="#xmppauthentication">XMPP Authentication</a></li><li><a href="#addingfeedswithxmpp">Adding Feeds with XMPP</a></li><li><a href="#removingfeedswithxmpp">Removing Feeds with XMPP</a></li><li><a href="#listingfeedswithxmpp">Listing Feeds with XMPP</a></li><li><a href="#retrievingentrieswithxmpp">Retrieving Entries with XMPP</a></li><li><a href="#xmppnotifications">XMPP Notifications</a></li><li><a href="#xmppapiwrappers">XMPP API Wrappers</a></li></ul></li></ul></div></div><div class="col-md-9"><h1>Subscribers</h1><h2 id="introduction">Introduction</h2>
 
 <p>Superfeedr is a tool which will push you content to which you can subscribe on the web and get notification in <strong>realtime</strong>.
 It is also possible to retrieve <em>past</em> content. Finally, when possible we offer a set of normalization options for easier consumption.</p>
@@ -38,6 +38,12 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 <h3 id="htmlfragments">HTML fragments</h3>
 
 <p>Superfeedr also provides the ability to subscribe to HTML fragments inside an HTML page.</p>
+
+<p>A fragment is a portion of an HTML document, defined by a <em>CSS path</em>. You can then subscribe to DOM elements inside a page as long as there is a CSS path that leads to them. You will append the URL-escaped CSS path to the document URL, using the fragment part of the url. </p>
+
+<p>If there are multiple elements matching your CSS path, Superfeedr will concatenate all these elements.</p>
+
+<p>For example, if you want to subscribe to the <code>.h-entry</code> element of <code>http://blog.superfeedr.com</code>, you will need to subscribe to <code>http://blog.superfeedr.com#.h-entry</code>.</p>
 
 <h3 id="keywordsandexpressions">Keywords and Expressions</h3>
 
@@ -236,9 +242,10 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
 
 <p>Other HTTP response code have the meaning defined in the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP spec.</a></p>
 
-<h3 id="listingfeedswithpubsubhubbub">Listing Feeds with PubSubHubbub</h3>
+<h3 id="listingsubscriptionswithpubsubhubbub">Listing Subscriptions with PubSubHubbub</h3>
 
-<p>This call will allow you to retrieve subscriptions that match a callback url. This callback URL may include a wildcard in the form of %.</p>
+<p>This call will allow you to retrieve subscriptions on your account. 
+You can also use the <code>search</code> parameter to search for specific subscriptions to specific feeds.</p>
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
@@ -257,16 +264,18 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
   <td><code>list</code></td>
 </tr>
 <tr>
-  <td>hub.callback</td>
-  <td>required</td>
-  <td>The callback url with which you subscribed and for which you want to find subscriptions. It can include <code>%</code> as a wildcard.</td>
-</tr>
-<tr>
   <td>page</td>
   <td>optional</td>
   <td>If there are more than 20 matching subscriptions, you may want to paginate over them. First page (default) is 1.</td>
 </tr>
+<tr>
+  <td>search</td>
+  <td>optional</td>
+  <td>A search query. Please see below for the various fields and values to use.</td>
+</tr>
 </table>
+
+<p>Please note that subscriptions are listed in the order of creation. The oldest subscriptions are first, while the most recent one is the last one.</p>
 
 <h4 id="example">Example</h4>
 
@@ -274,7 +283,6 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
   -X GET 
   -u demo:demo 
   -d'hub.mode=list' 
-  -d'hub.callback=http://mycallback.tld/%'
   -d'page=2'
 </pre>
 
@@ -295,6 +303,77 @@ It is also possible to retrieve <em>past</em> content. Finally, when possible we
   }</span>
 }</span>]</code>
 </pre>
+
+<h4 id="searchqueries">Search Queries</h4>
+
+<p>Search queries are nested query string parameters using the following keys.</p>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Query</th>
+  <th>Note</th>
+  <th>Example</th>
+</tr>
+<tr>
+  <td><code>format</code></td>
+  <td>can either be <code>JSON</code> or <code>ATOM</code> and will return all subscription made using that format</td>
+  <td><em>search[format]=json</em></td>
+</tr>
+
+<tr>
+  <td><code>feed url</code></td>
+  <td>an exact match of the feed url.</td>
+  <td><em>search[feed][url]=http://blog.superfeedr.com/atom.xml</em></td>
+</tr>
+
+<tr>
+  <td><code>feed inurl</code></td>
+  <td>string (sequence of characters) included in the URL. The match is done using n-grams so approchaing sequences will also match</td>
+  <td><em>search[feed][inurl]=superfeedr</em></td>
+</tr>
+
+<tr>
+  <td><code>feed hostname</code></td>
+  <td>an exact match of the feed&#8217;s URL hostname.</td>
+  <td><em>search[feed][hostname]=blog.superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>feed hostname</code></td>
+  <td>an exact match of the feed&#8217;s URL hostname.</td>
+  <td><em>search[feed][hostname]=blog.superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint jid</code></td>
+  <td>an exact match of the jid when you subscribed with XMPP.</td>
+  <td><em>search[endpoint][jid]=julien@superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint domain jid</code></td>
+  <td>an exact match of the domain part of the jid when you subscribed with XMPP.</td>
+  <td><em>search[endpoint][domain]=superfeedr.com</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint url</code></td>
+  <td>an exact match of pubsubhubbub <code>hub.callback</code> URL.</td>
+  <td><em>search[endpoint][url]=http://my.domain.tld/feed/1</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint inurl</code></td>
+  <td>string (sequence of characters) included in the  <code>hub.callback</code> URL. The match is done using n-grams so approchaing sequences will also match</td>
+  <td><em>search[endpoint][inurl]=domain</em></td>
+</tr>
+
+<tr>
+  <td><code>endpoint hostname</code></td>
+  <td>an exact match of the <code>hub.callback</code>&#8216;s URL hostname.</td>
+  <td><em>search[endpoint][hostname]=domain.tld</em></td>
+</tr>
+</table>
 
 <h3 id="retrievingentrieswithpubsubhubbub">Retrieving Entries with PubSubHubbub</h3>
 
@@ -591,6 +670,8 @@ source.addEventListener("notification", function(e) {
 
 <p>You can also specify another JID in your user settings if you&#8217;d like to connect from our own XMPP server. This is the most flexible option, but it also requires you to host your own XMPP server.</p>
 
+<p>Also, make sure your clients sends a <pre class="language-markup"><code><span class="tag">&lt;<span class="title">presence</span>&gt;</span><span class="tag">&lt;<span class="title">code</span>&gt;</span><span class="tag">&lt;/<span class="title">code</span>&gt;</span><span class="tag">&lt;/<span class="title">presence</span>&gt;</span></code></pre> stanza when your client is fully connected.</p>
+
 <h3 id="addingfeedswithxmpp">Adding Feeds with XMPP</h3>
 
 <p>Subscribing to a new feed will allow you to get notifications with the upcoming entries from that feed.</p>
@@ -750,7 +831,7 @@ source.addEventListener("notification", function(e) {
 <tr>
   <td>subscriptions[@page]</td>
   <td></td>
-  <td>Page number (subscriptions will be sent by batches of 20)</td>
+  <td>Page number (subscriptions will be sent by batches of 20).  First page (default) is 1.</td>
 </tr>
 
 <tr>
@@ -770,7 +851,7 @@ source.addEventListener("notification", function(e) {
 
 <h4 id="response">Response</h4>
 
-<p>The server sends the list of resources to which you&#8217;re subscribed for the page requested, as well as the status information for each of them.</p>
+<p>The server sends the list of resources to which you're subscribed for the page requested, as well as the status information for each of them.</p>
 
 <pre class="language-markup"><code><span class="tag">&lt;<span class="title">iq</span> <span class="attribute">type</span>=<span class="value">"result"</span> <span class="attribute">to</span>=<span class="value">"login@superfeedr.com/home"</span> <span class="attribute">id</span>=<span class="value">"subman1"</span> <span class="attribute">from</span>=<span class="value">"firehoser.superfeedr.com"</span>&gt;</span>
  <span class="tag">&lt;<span class="title">pubsub</span> <span class="attribute">xmlns</span>=<span class="value">"http://jabber.org/protocol/pubsub"</span> <span class="attribute">xmlns:superfeedr</span>=<span class="value">"http://superfeedr.com/xmpp-pubsub-ext"</span>&gt;</span>
@@ -793,7 +874,7 @@ source.addEventListener("notification", function(e) {
 
 <h3 id="retrievingentrieswithxmpp">Retrieving Entries with XMPP</h3>
 
-<p>It is possible to query Superfeedr for previous entries in feeds to which you&#8217;ve subscribed.</p>
+<p>It is possible to query Superfeedr for previous entries in feeds to which you've subscribed.</p>
 
 <table class="table table-striped table-condensed table-responsive">
 <tr>
@@ -882,9 +963,9 @@ source.addEventListener("notification", function(e) {
 
 <h3 id="xmppnotifications">XMPP Notifications</h3>
 
-<p>Once you&#8217;re following a resource, your xmpp client must be <strong>connected at all times</strong> ant new content. You will miss messages if your client is offline for too long.</p>
+<p>Once you're following a resource, your xmpp client must be <strong>connected at all times</strong> ant new content. You will miss messages if your client is offline for too long.</p>
 
-<p>We will send you a notification when we consider the resource as updated (see &#8220;<a href="/subscribers.html#whatcanyousubscribeto">what can you subscribed to</a>&#8220;.</p>
+<p>We will send you a notification when we consider the resource as updated (see "<a href="/subscribers.html#whatcanyousubscribeto">what can you subscribed to</a>".</p>
 
 <p>Please see the <a href="/schema.html">schema information</a> for details on the status, as well as the feed and entry informations.</p>
 
@@ -920,7 +1001,7 @@ source.addEventListener("notification", function(e) {
 
 <h3 id="xmppapiwrappers">XMPP API Wrappers</h3>
 
-<p>XMPP <em>can be scary</em>. For those of you who don&#8217;t want to mess with that, we have various wrappers (including <a href="https://github.com/superfeedr/superfeedr-rb">Ruby</a>, <a href="https://github.com/superfeedr/superfeedr-perl">Perl</a>, <a href="https://github.com/superfeedr/superfeedr-python">Python</a>, <a href="https://github.com/superfeedr/superfeedr-node">Node.js</a>, <a href="https://github.com/superfeedr/superfeedr-java">Java</a> and <a href="https://github.com/superfeedr/superfeedr-php">PHP</a>) for the XMPP API. You can find them on our <a href="/(https://github.com/superfeedr/">Github page</a>. </p>
+<p>XMPP <em>can be scary</em>. For those of you who don't want to mess with that, we have various wrappers (including <a href="https://github.com/superfeedr/superfeedr-rb">Ruby</a>, <a href="https://github.com/superfeedr/superfeedr-perl">Perl</a>, <a href="https://github.com/superfeedr/superfeedr-python">Python</a>, <a href="https://github.com/superfeedr/superfeedr-node">Node.js</a>, <a href="https://github.com/superfeedr/superfeedr-java">Java</a> and <a href="https://github.com/superfeedr/superfeedr-php">PHP</a>) for the XMPP API. You can find them on our <a href="/(https://github.com/superfeedr/">Github page</a>. </p>
 
 <p>If you need one in another language, please contact us. Also, remember that these wrappers have been created by the community. Feel free to contribute to help improve them. </p>
 
