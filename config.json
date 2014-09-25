@@ -1,5 +1,5 @@
 {
-  "output": "../",
+  "output": "./build",
   "locals": {
     "title": "Superfeedr Documentation"
   },
