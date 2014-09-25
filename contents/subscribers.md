@@ -87,7 +87,8 @@ For this, we use the [JSONPath](http://goessner.net/articles/JsonPath/) syntax. 
 #### Example
 
 We have the following document at <code>http://for.sale/inventory.json</code>:
-<pre class="language-javascript"></code>{ "store": {
+<pre class="language-javascript"></code>{ 
+  "store": {
     "book": [ 
       { "category": "reference",
         "author": "Nigel Rees",
