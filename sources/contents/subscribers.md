@@ -7,6 +7,7 @@ toc: {
     "XML based feeds": {},
     "JSON feeds": {},
     "HTML fragments": {},
+    "JSON fragments": {},
     "Keywords And Expressions": {},
     "Other": {},
     "Redirects": {}
@@ -76,6 +77,49 @@ A fragment is a portion of an HTML document, defined by a <em>CSS path</em>. You
 If there are multiple elements matching your CSS path, Superfeedr will concatenate all these elements.
 
 For example, if you want to subscribe to the <code>.h-entry</code> element of <code>http://blog.superfeedr.com</code>, you will need to subscribe to <code>http://blog.superfeedr.com#.h-entry</code>.
+
+### JSON fragments
+
+Similarly to HTML fragments, you can use Superfeedr to subscribe to parts of a JSON document, using our fragments API.
+
+For this, we use the [JSONPath](http://goessner.net/articles/JsonPath/) syntax. To build the topic url, you will append the URL-escaped JSONpath to the document URL, using the fragment part of the url. 
+
+#### Example
+
+We have the following document at <code>http://for.sale/inventory.json</code>:
+<pre></code>{ "store": {
+    "book": [ 
+      { "category": "reference",
+        "author": "Nigel Rees",
+        "title": "Sayings of the Century",
+        "price": 8.95
+      },
+      { "category": "fiction",
+        "author": "Evelyn Waugh",
+        "title": "Sword of Honour",
+        "price": 12.99
+      },
+      { "category": "fiction",
+        "author": "Herman Melville",
+        "title": "Moby Dick",
+        "isbn": "0-553-21311-3",
+        "price": 8.99
+      },
+      { "category": "fiction",
+        "author": "J. R. R. Tolkien",
+        "title": "The Lord of the Rings",
+        "isbn": "0-395-19395-8",
+        "price": 22.99
+      }
+    ],
+    "bicycle": {
+      "color": "red",
+      "price": 19.95
+    }
+  }
+}</code></pre>
+
+If you're interested in changes to the price of the bicycle, you will subscribe to <code>http://for.sale/inventory.json#%24.store.bicycle.price</code>. Read [this section](http://goessner.net/articles/JsonPath/index.html#e3) for more examples.
 
 ### Keywords and Expressions
 
