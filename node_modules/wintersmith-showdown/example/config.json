@@ -1,0 +1,6 @@
+{
+  "plugins": ["./../"],
+  "locals": {
+    "title": "Showdown Example"
+  }
+}
