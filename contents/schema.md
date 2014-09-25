@@ -93,7 +93,8 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 
 #### Example
 
-<pre class="language-markup"><code><status feed="http://domain.tld/feed.xml" xmlns="http://superfeedr.com/xmpp-pubsub-ext">
+```xml
+<status feed="http://domain.tld/feed.xml" xmlns="http://superfeedr.com/xmpp-pubsub-ext">
   <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
   <next_fetch>2013-05-10T11:19:38-07:00</next_fetch>
   <period>900</period>
@@ -102,7 +103,8 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <last_maintenance_at>2013-05-10T09:45:08-07:00</last_maintenance_at>
   <entries_count_since_last_maintenance>5</entries_count_since_last_maintenance>
   <tilte>Lorem Ipsum</tilte>
-</status></code></pre>
+</status>
+```
 
 ## Entry Schema (feeds only)
 
@@ -143,8 +145,10 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-<pre class="language-markup"><code><link href="http://domain.tld/entries/12345" rel="alternate" type="text/html" title="The sky is Blue" />
-<link href="http://domain.tld/entries/12345/comments.xml" rel="replies" type="application/atom+xml" title="Comments on The sky is Blue" /></code></pre>
+```xml
+<link href="http://domain.tld/entries/12345" rel="alternate" type="text/html" title="The sky is Blue" />
+<link href="http://domain.tld/entries/12345/comments.xml" rel="replies" type="application/atom+xml" title="Comments on The sky is Blue" />
+```
 
 ### Category
 
@@ -163,8 +167,10 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-<pre class="language-markup"><code><category term="tag" />
-<category term="category" /></code></pre>
+```xml
+<category term="tag" />
+<category term="category" />
+``` 
 
 ### Point
 
@@ -183,7 +189,9 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-<pre class="language-markup"><code><point xmlns="http://www.georss.org/georss">47.597553 -122.15925</point></code></pre>
+```xml
+<point xmlns="http://www.georss.org/georss">47.597553 -122.15925</point>
+```
 
 ### Author
 
@@ -228,13 +236,15 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-<pre class="language-markup"><code><author>
+```xml
+<author>
  <name>John Doe</name>
  <email>john@superfeedr.com</email>
  <uri>http://twitter.com/superfeedr</uri>
  <as:object-type>http://activitystrea.ms/schema/1.0/person</as:object-type>
  <link type="image/png" title="John Doe" href="http://domain.tld/john.png" rel="image"/>
-</author></code></pre>
+</author>
+```
 
 ### Object
 
@@ -298,7 +308,8 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-<pre class="language-markup"><code><as:object-type>http://gowalla.com/schema/1.0/spot</as:object-type>
+```xml
+<as:object-type>http://gowalla.com/schema/1.0/spot</as:object-type>
 <as:object-type>http://activitystrea.ms/schema/1.0/place</as:object-type>
 <id>object-id</id>
 <title>Title of the Object</title>
@@ -311,7 +322,8 @@ Here are the components used to build the entries. Please note that they may use
   <email>second@domain.tld</email>
 </author>
 <link type="text/html" title="" href="http://domain.tld/object/2" rel="alternate"/>
-<link type="text/html" title="" href="http://domain.tld/object/2" rel="alternate"/></code></pre>
+<link type="text/html" title="" href="http://domain.tld/object/2" rel="alternate"/>
+```
 
 ### Verb
 
@@ -330,7 +342,9 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-<pre class="language-markup"><code><as:verb>http://activitystrea.ms/schema/1.0/post</as:verb></code></pre>
+```xml
+<as:verb>http://activitystrea.ms/schema/1.0/post</as:verb>
+```
 
 ### Entries
 
@@ -380,7 +394,8 @@ Entries may include all the above elements. They also contain specific nodes, li
 </tr>
 </table>
 
-<pre class="language-markup"><code><entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xml:lang="en">
+```xml
+<entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xml:lang="en">
    <id>domain.tld:09/05/03-1</id>
    <published>2013-04-21T14:00:40+02:00</published>
    <updated>2013-04-21T14:00:40+02:00</updated>
@@ -434,7 +449,8 @@ Entries may include all the above elements. They also contain specific nodes, li
     <link href="http://domain.tld/entries/12345" rel="alternate" type="text/html" title="The sky is Blue" />
     <link href="http://domain.tld/entries/12345/comments.xml" rel="replies" type="application/atom+xml" title="Comments on The sky is Blue" />
   </source>
-</entry></code></pre>
+</entry>
+```
 
 ## JSON
 
@@ -445,7 +461,8 @@ Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive no
 
 #### Example
 
-<pre class="language-javascript"><code>{
+```javascript
+{
  "status": {
    "entriesCountSinceLastMaintenance": 24,
    "lastParse": 1290793065,
@@ -550,6 +567,7 @@ Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive no
   "id": "http://domain.tld/feed.xml",
   "title": "A wonderful feed",
   "updated": 1290800265
- }</code></pre>
+ }
+```
 
-It is recommended that you check the schema for some of the feeds to which you subscribe to endure that all the required field for your application are included. Feel free to get in touch if you miss any content in the feeds.
+It is recommended that you check the schema for some of the feeds to which you subscribe to make sure that all the required field for your application are included. Feel free to get in touch if you miss any content in the feeds.

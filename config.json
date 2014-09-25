@@ -4,6 +4,5 @@
     "title": "Superfeedr Documentation"
   },
   "plugins": [
-    "./node_modules/wintersmith-showdown/"
   ]
 }

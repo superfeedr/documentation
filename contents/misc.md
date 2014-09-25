@@ -52,7 +52,7 @@ The next step consist in building your track feed. They all start with the same 
 
 #### Examples
 
-<pre class="language-bash"><code>http://superfeedr.com/track?include=superfeedr : Any mention of "superfeedr" will match.
+<pre><code>http://superfeedr.com/track?include=superfeedr : Any mention of "superfeedr" will match.
 
 http://superfeedr.com/track?include=starbucks&lat=37.781841&lon=-122.420311&within=10 : Any mention of starbucks within 10km of San Francisco.
 
@@ -66,7 +66,7 @@ If you use Superfeedr to host your hub, you may want to make sure we can access 
 
 You can also certainly check the **UserAgent**, however, we have a tendency to change them quite often to communicate with other servers. You can still check that it contains Superfeedr. 
 
-<pre class="language-bash"><code>You should see most of our requests from theses guys (used for fetching and parsing):
+<pre><code>You should see most of our requests from theses guys (used for fetching and parsing):
  
 supernoder1 50.116.30.23
 supernoder2 198.58.103.28

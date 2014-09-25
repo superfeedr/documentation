@@ -87,7 +87,9 @@ For this, we use the [JSONPath](http://goessner.net/articles/JsonPath/) syntax. 
 #### Example
 
 We have the following document at <code>http://for.sale/inventory.json</code>:
-<pre class="language-javascript"></code>{ 
+
+```javascript
+{ 
   "store": {
     "book": [ 
       { "category": "reference",
@@ -118,7 +120,8 @@ We have the following document at <code>http://for.sale/inventory.json</code>:
       "price": 19.95
     }
   }
-}</code></pre>
+}
+```
 
 If you're interested in changes to the price of the bicycle, you will subscribe to <code>http://for.sale/inventory.json#%24.store.bicycle.price</code>. Read [this section](http://goessner.net/articles/JsonPath/index.html#e3) for more examples.
 
@@ -128,7 +131,7 @@ Superfeedr allows you to subscribe to keywords or complex expressions to match t
 
 ### Other
 
-When subscribing to any other HTTP resource, we will compute a signature from the bytes including in the document. When we fetch that resource again (after at least 5 minutes), if the signature changed, we will send you the whole document again.
+When subscribing to any other HTTP resource, we will compute a signature from the bytes including in the document. When we fetch that resource again, if the signature changed, we will send you the whole document again.
 
 Timestamps, changing tracking codes... etc may create false positives.
 
@@ -187,6 +190,7 @@ On the other hand, please remember to use <code>https</code> when sending authen
   <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
+
 <table class="table table-striped table-condensed table-responsive">
 <tr>
   <th>Parameter Name</th>
@@ -236,7 +240,9 @@ On the other hand, please remember to use <code>https</code> when sending authen
 
 Subscription at Superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.
 
+
 #### Example
+
 
 <pre class="language-bash embedcurl">
   curl https://push.superfeedr.com/ 
@@ -265,6 +271,7 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
   <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
+
 <table class="table table-striped table-condensed table-responsive">
 <tr>
   <th>Parameter Name</th>
@@ -320,6 +327,7 @@ You can also use the <code>search</code> parameter to search for specific subscr
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
+
 <table class="table table-striped table-condensed table-responsive">
 <tr>
   <th>Parameter Name</th>
@@ -357,8 +365,9 @@ Please note that subscriptions are listed in the order of creation. The oldest s
 #### Response
 
 Superfeedr will return `200` with the list of matching subscriptions, a JSON format. If you supplied a callback parameter (JSONP), the JSON will be wrapped in it.
-<pre class="language-bash">
-<code>[{
+
+```javascript
+[{
   "subscription": {
     "format": "atom",
     "endpoint": "http://mycallback.tld/ok",
@@ -368,8 +377,8 @@ Superfeedr will return `200` with the list of matching subscriptions, a JSON for
       "url": "http://push-pub.appspot.com/feed"
     }
   }
-}]</code>
-</pre>
+}]
+```
 
 #### Search Queries
 
@@ -507,7 +516,7 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
 
 **Response:**
 
-<pre class="language-bash">
+```bash
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Status: 200 OK
@@ -595,8 +604,7 @@ Content-Length: 3550
         }
     ]
 }
-</pre>
-
+```
 
 #### Response
 
@@ -649,9 +657,9 @@ If you supply the <code>poll</code> value, Superfeedr 2 cases will arise.
 
 Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/) (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events.
 
-Example:
+##### Example:
 
-<pre class="language-javascript embedcurl">
+```javascript
 var url = "https://stream.superfeedr.com/";
 url += "&hub.mode=retrieve";
 url += "&hub.topic=<topic url>";
@@ -661,7 +669,7 @@ var source = new EventSource(url);
 source.addEventListener("notification", function(e) {
   var notification = JSON.parse(e.data);
 });
-</pre>
+```
 
 
 ### PubSubHubbub Notifications
@@ -738,7 +746,7 @@ You can connect your jabber client to superfeedr by using the JID <code>username
 
 You can also specify another JID in your user settings if you'd like to connect from our own XMPP server. This is the most flexible option, but it also requires you to host your own XMPP server.
 
-Also, make sure your clients sends a <pre class="language-markup"><code><presence><code></pre> stanza when your client is fully connected.
+Also, make sure your clients sends a <code>&lt;presence&gt;</code> stanza when your client is fully connected.
 
 ### Adding Feeds with XMPP
 
@@ -781,14 +789,16 @@ Subscribing to a new feed will allow you to get notifications with the upcoming 
 
 #### Example
 
-<pre class="language-markup"><code><iq type="set" from="login@superfeedr.com" to="firehoser.superfeedr.com" id="sub1">
+```xml
+<iq type="set" from="login@superfeedr.com" to="firehoser.superfeedr.com" id="sub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
   <subscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
   <subscribe node="http://domain.tld/feed2.xml" jid="login@superfeedr.com"/>
   <subscribe node="http://domain.tld/feed3.xml" jid="login@superfeedr.com"/>
   <subscribe node="http://domain.tld/path/to/resource" jid="login@superfeedr.com" superfeedr:format="atom" />
  </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 You can add up to 20 resources in your subscription query, as long as they have all the same <code>subscribe[@jid]</code>. If you need to subscribe with multiple jids, we suggest that you send multiple subscription queries.
 
@@ -796,7 +806,8 @@ You can add up to 20 resources in your subscription query, as long as they have 
 
 The server acknowledges the subscription(s) and sends the status information for each resource.
 
-<pre class="language-markup"><code><iq type="result" to="login@superfeedr.com/home" from="firehoser.superfeedr.com" id="sub1">
+```xml
+<iq type="result" to="login@superfeedr.com/home" from="firehoser.superfeedr.com" id="sub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub">
   <subscription jid="login@superfeedr.com" subscription="subscribed" node="http://domain.tld/path/to/resource">
    <status xmlns="http://superfeedr.com/xmpp-pubsub-ext">
@@ -817,7 +828,8 @@ The server acknowledges the subscription(s) and sends the status information for
    </status>
   </subscription>
  </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 In other cases, you will receive an iq with <code>type="error"</code>, please check that your subscription query abides by the constraints explained above.
 
@@ -858,13 +870,15 @@ When you remove a feed, you will stop receiving notifications for that feed.
 
 #### Example
 
-<pre class="language-markup"><code><iq type="set" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="unsub1">
+```xml
+<iq type="set" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="unsub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub">
   <unsubscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
   <unsubscribe node="http://domain.tld/feed2.xml" jid="login@superfeedr.com"/>
   <unsubscribe node="http://domain.tld/feed3.xml" jid="login@superfeedr.com" />
  </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 You can remove up to 20 resources in your unsubscription query.
 
@@ -872,7 +886,9 @@ You can remove up to 20 resources in your unsubscription query.
 
 The server acknowledges the unsubscription.
 
-<pre class="language-markup"><code><iq type="result" from="firehoser.superfeedr.com" to="login@superfeedr.com/home" id="unsub1" /></code></pre>
+```xml
+<iq type="result" from="firehoser.superfeedr.com" to="login@superfeedr.com/home" id="unsub1" />
+```
 
 ### Listing Feeds with XMPP
 
@@ -911,17 +927,20 @@ You can list your existing subscriptions. This list is paginated with 20 items p
 
 #### Example
 
-<pre class="language-markup"><code><iq type="get" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="subman1">
+```xml
+<iq type="get" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="subman1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
   <subscriptions jid="login@superfeedr.com" superfeedr:page="3"/>
  </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 #### Response 
 
 The server sends the list of resources to which you're subscribed for the page requested, as well as the status information for each of them.
 
-<pre class="language-markup"><code><iq type="result"  to="login@superfeedr.com/home" id="subman1" from="firehoser.superfeedr.com">
+```xml
+<iq type="result"  to="login@superfeedr.com/home" id="subman1" from="firehoser.superfeedr.com">
  <pubsub xmlns="http://jabber.org/protocol/pubsub"  xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext" >
   <subscriptions superfeedr:page="3">
    <subscription node="http://domain.tld/path/to/resource" subscription="subscribed" jid="login@superfeedr.com" >
@@ -938,7 +957,8 @@ The server sends the list of resources to which you're subscribed for the page r
    </subscription>
   </subscriptions>
  </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 ### Retrieving Entries with XMPP
 
@@ -972,17 +992,20 @@ It is possible to query Superfeedr for previous entries in feeds to which you've
 
 #### Example
 
-<pre class="language-markup"><code><iq type='get' to="firehoser.superfeedr.com" id='items1'>
+```xml
+<iq type='get' to="firehoser.superfeedr.com" id='items1'>
   <pubsub xmlns='http://jabber.org/protocol/pubsub'>
     <items node='http://domain.tld/path/to/resource'/>
   </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 #### Response
 
 At this point, you will get a maximum of 10 items per feed.
 
-<pre class="language-markup"><code><iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
+```xml
+<iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
   <pubsub xmlns="http://jabber.org/protocol/pubsub">
     <items node="http://domain.tld/path/to/resource" >
       <item>
@@ -1018,16 +1041,19 @@ At this point, you will get a maximum of 10 items per feed.
       </item>
     </items>
   </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 If you have not subscribed to the feed, you will receive a response like this one
 
-<pre class="language-markup"><code><iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
+```xml
+<iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
   <pubsub xmlns="http://jabber.org/protocol/pubsub">
     <items node="http://domain.tld/path/to/resource" >
     </items>
   </pubsub>
-</iq></code></pre>
+</iq>
+```
 
 ### XMPP Notifications
 
@@ -1037,7 +1063,8 @@ We will send you a notification when we consider the resource as updated (see "[
 
 Please see the [schema information](/schema.html) for details on the status, as well as the feed and entry informations.
 
-<pre class="language-markup"><code><message from="firehoser.superfeedr.com" to="login@superfeedr.com">
+```xml
+<message from="firehoser.superfeedr.com" to="login@superfeedr.com">
  <event xmlns="http://jabber.org/protocol/pubsub#event">
   <status feed="http://domain.tld/feed.xml" xmlns="http://superfeedr.com/xmpp-pubsub-ext">
    <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
@@ -1065,7 +1092,8 @@ Please see the [schema information](/schema.html) for details on the status, as 
    </item>
   </items>
  </event>
-</message></code></pre>
+</message>
+```
 
 ### XMPP API Wrappers
 
