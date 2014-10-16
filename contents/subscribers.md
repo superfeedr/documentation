@@ -399,55 +399,55 @@ Search queries are nested query string parameters using the following keys.
 <tr>
   <td><code>feed url</code></td>
   <td>an exact match of the feed url.</td>
-  <td><em>search[feed][url]=http://blog.superfeedr.com/atom.xml</em></td>
+  <td><em>search[feed][url]=http://blog.superfeedr.com/atom.xml</em> or <em>search[feed.url]=http://blog.superfeedr.com/atom.xml</em></td>
 </tr>
 
 <tr>
   <td><code>feed inurl</code></td>
   <td>string (sequence of characters) included in the URL. The match is done using n-grams so approchaing sequences will also match</td>
-  <td><em>search[feed][inurl]=superfeedr</em></td>
+  <td><em>search[feed][inurl]=superfeedr</em> or <em>search[feed.inurl]=superfeedr</em></td>
 </tr>
 
 <tr>
   <td><code>feed hostname</code></td>
   <td>an exact match of the feed's URL hostname.</td>
-  <td><em>search[feed][hostname]=blog.superfeedr.com</em></td>
+  <td><em>search[feed][hostname]=blog.superfeedr.com</em> or <em>search[feed.hostname]=blog.superfeedr.com</em></td>
 </tr>
 
 <tr>
   <td><code>feed hostname</code></td>
   <td>an exact match of the feed's URL hostname.</td>
-  <td><em>search[feed][hostname]=blog.superfeedr.com</em></td>
+  <td><em>search[feed][hostname]=blog.superfeedr.com</em> or <em>search[feed.hostname]=blog.superfeedr.com</em></td>
 </tr>
 
 <tr>
   <td><code>endpoint jid</code></td>
   <td>an exact match of the jid when you subscribed with XMPP.</td>
-  <td><em>search[endpoint][jid]=julien@superfeedr.com</em></td>
+  <td><em>search[endpoint][jid]=julien@superfeedr.com</em> or <em>search[endpoint.jid]=julien@superfeedr.com</em></td>
 </tr>
 
 <tr>
   <td><code>endpoint domain jid</code></td>
   <td>an exact match of the domain part of the jid when you subscribed with XMPP.</td>
-  <td><em>search[endpoint][domain]=superfeedr.com</em></td>
+  <td><em>search[endpoint][domain]=superfeedr.com</em> or <em>search[endpoint.domain]=superfeedr.com</em></td>
 </tr>
 
 <tr>
   <td><code>endpoint url</code></td>
   <td>an exact match of pubsubhubbub <code>hub.callback</code> URL.</td>
-  <td><em>search[endpoint][url]=http://my.domain.tld/feed/1</em></td>
+  <td><em>search[endpoint][url]=http://my.domain.tld/feed/1</em> or <em>search[endpoint.url]=http://my.domain.tld/feed/1</em></td>
 </tr>
 
 <tr>
   <td><code>endpoint inurl</code></td>
   <td>string (sequence of characters) included in the  <code>hub.callback</code> URL. The match is done using n-grams so approchaing sequences will also match</td>
-  <td><em>search[endpoint][inurl]=domain</em></td>
+  <td><em>search[endpoint][inurl]=domain</em> or <em>search[endpoint.inurl]=domain</em></td>
 </tr>
 
 <tr>
   <td><code>endpoint hostname</code></td>
   <td>an exact match of the <code>hub.callback</code>'s URL hostname.</td>
-  <td><em>search[endpoint][hostname]=domain.tld</em></td>
+  <td><em>search[endpoint][hostname]=domain.tld</em> or <em>search[endpoint.hostname]=domain.tld</em></td>
 </tr>
 </table>
 
