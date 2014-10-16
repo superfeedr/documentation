@@ -3,7 +3,9 @@ title: Publishers
 template: index.jade
 toc: {
   "Discovery": {},
-  "Ping": {}
+  "Ping": {},
+  "Subscription Callback": {},
+  "Fat Pings": {}
 }
 ---
 
@@ -69,3 +71,32 @@ Send an POST request to <code>http://&lt;your-hub&gt;.superfeedr.com</code>, wit
 * <code>hub.url=&lt;the url of the feed that was updated&gt;</code>
 
 Note: we wanted to make it simple for you to implement the PubSubHubbub protocol, so if you have implemented any type of ping, please get in touch, as we're probably able to receive these too. For example, we porvide an XML-RPC endpoint...
+
+## Subscription callback
+
+**This feature is for Pro Hubs only**.
+
+Your Superfeedr hosted hub allows access to your feeds. We want to make sure you have control over this. If you enter a url below, we will forward any subscription request to your content.
+
+* If you want to *allow subscription*, just return `204`.
+* If you don't want to allow the subscription, please return `401`. Also, please include any reason for the refusal to in the body of the response (as text). We will forward that to the subscriber. The message can also include requirements for subscription to your hub, like the inclusion of an API key, contact information... etc. We will forward to your callback url any additional parameter submitted by the subscriber.
+
+If the URL is not accessible, or if you don't return a 204 code, we will refuse any subscription to it.
+
+## Fat Pings
+
+**This feature is for Pro Hubs only**.
+
+If you have millions of feeds in our system and are constantly pinging us for new content, we suggest you start to **fat ping us**
+
+The standard PubSubHubbub protocol specifies that the publisher (you) does light pings to the hub, because the origin of these pings cannot be verified. When we get a light ping, we will then poll your feed to identify the new content.
+
+However, this polling can become pretty expensive if you have tens of thousands of feeds and more. In this case, you can start to perform fat pings.
+
+You will use the same syntax as light pings, but add 2 additional parameters :
+
+* `hub.content` : the content of the feed, including **only** the new entry(ies). We will directly parse this content, rather than poll the feed.
+* `hub.signature` : this is an HMAC signature computed with the secret shown below, and the `hub.content`. This will allow us to know that this content is coming from you and wasn't forged by a 3rd party.
+
+
+
