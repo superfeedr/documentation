@@ -349,6 +349,11 @@ You can also use the <code>search</code> parameter to search for specific subscr
   <td>optional</td>
   <td>A search query. Please see below for the various fields and values to use.</td>
 </tr>
+<tr>
+  <td>detailed</td>
+  <td>optional</td>
+  <td>Get feed details along with the subscriptions. Check the <a href="/schema.html">Schema section</a> for more details.</td>
+</tr>
 </table>
 
 Please note that subscriptions are listed in the order of creation. The oldest subscriptions are first, while the most recent one is the last one.
