@@ -345,6 +345,11 @@ You can also use the <code>search</code> parameter to search for specific subscr
   <td>If there are more than 20 matching subscriptions, you may want to paginate over them. First page (default) is 1.</td>
 </tr>
 <tr>
+  <td>by_page</td>
+  <td>optional</td>
+  <td>Number of items per page. Max is 500. Min is 1.</td>
+</tr>
+<tr>
   <td>search</td>
   <td>optional</td>
   <td>A search query. Please see below for the various fields and values to use.</td>
