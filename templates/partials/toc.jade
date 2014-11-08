@@ -4,10 +4,10 @@ mixin toc(t)
     - each item, anchor in t
       li
         if Object.keys(item).length == 0
-          a(href="#" + anchor.replace(/ /g,'-').toLowerCase())
+          a(href="#" + anchor.replace(/ /g,'-').toLowerCase(), id="toc-" + anchor.replace(/ /g,'-').toLowerCase())
             != anchor
         else
-          a(href="#" + anchor.replace(/ /g,'-').toLowerCase())
+          a(href="#" + anchor.replace(/ /g,'-').toLowerCase(), id="toc-" + anchor.replace(/ /g,'-').toLowerCase())
             != anchor
           ul.nav
             +toc(item)
