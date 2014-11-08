@@ -1,29 +1,18 @@
-header.navbar.navbar-inverse.navbar-default(role='navigation')
-  div.container
-    div.col-md-3.navbar-header
-      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-ex1-collapse')
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand.brand(href='/') Superfeedr Docs
-    nav.col-md-9.collapse.navbar-collapse.navbar-ex1-collapse
-      ul.nav.navbar-nav
-        li
-          a(href='https://github.com/superfeedr/documentation/issues') Questions
-        li.dropdown
-          a.dropdown-toggle(href='#', data-toggle='dropdown')
-            | Table of Content
-            b.caret
-          ul.dropdown-menu
-            li
-              a(href='/') Introduction
-            li
-              a(href='subscribers.html') Subscribers
-            li
-              a(href='publishers.html') Publishers
-            li
-              a(href='schema.html') Schema
-            li
-              a(href='misc.html') Misc
-
+header.header(role='navigation')
+  .container
+    h1.header-logo
+      a(href='/')
+        img(src='/assets/img/logo.png', alt='')
+        span Superfeedr
+    nav.nav-header
+      ul.nav-items
+        li.nav-item
+          a.nav-link.nav-link-current(href='/about.html') About
+        li.nav-item
+          a.nav-link(href='/publishers.html') Publishers
+        li.nav-item
+          a.nav-link(href='/subscribers.html') Subscribers
+        li.nav-item
+          a.nav-link(href='/pricing.html') Pricing
+        li.nav-item
+          a.nav-link.nav-link-bubble(href='#') Login

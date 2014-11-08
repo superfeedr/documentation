@@ -1,0 +1,39 @@
+//- Declaration
+mixin toc(t)
+  if t
+    - each item, anchor in t
+      li
+        if Object.keys(item).length == 0
+          a(href="#" + anchor.replace(/ /g,'-').toLowerCase())
+            != anchor
+        else
+          a(href="#" + anchor.replace(/ /g,'-').toLowerCase())
+            != anchor
+          ul.nav
+            +toc(item)
+            div
+
+header.docs-inline-nav-header
+  h3 Contents
+ul.docs-inline-nav
+  +toc(page.metadata.toc)
+
+
+//- ul.docs-inline-nav
+//-   li.active
+//-     a(href='#table-of-contents') Table of Contents
+//-   li
+//-     a(href='#audience') Audience
+//-   li
+//-     a(href='#playing-in-the-open') Playing in the open
+//-   li
+//-     a(href='#support-and-questions') Support and Questions
+//-   li
+//-     a(href='#contribution') Contribution
+//-   li
+//-     a(href='#definitions') Definitions
+//-     ul.docs-inline-nav
+//-       li
+//-         a(href='#publisher') Publisher
+//-       li
+//-         a(href='#subscriber') Subscriber

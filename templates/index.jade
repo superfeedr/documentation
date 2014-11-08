@@ -1,17 +1,23 @@
-doctype html
+//- doctype html
 html(lang='en')
-  head
-    include partials/head
-  body(data-spy="scroll", data-target="#sidenavbar", data-offset="30")
-    include partials/header
-    div.container.main
-      div.row
-        div.col-md-3
-          include partials/nav
-        div.col-md-9
-          h1= page.title
-          != page.html
+head
+  include partials/head
+body(data-spy="scroll", data-target="#sidenavbar", data-offset="30")
+  include partials/header
+  main.container.body
+    header.body-header
+      h2
+        strong= "Documentation › " + page.title
+      
+      include partials/nav
 
-      include partials/footer
+    .body-content
+      .column.column--quarter.docs-inline-nav-wrap
+        include partials/toc
+      section.column.column--three-quarters.docs-content-text
+        != page.html
 
-    include partials/scripts
+  include partials/footer
+
+include partials/scripts
+

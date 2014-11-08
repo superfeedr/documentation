@@ -1,21 +1,14 @@
+mixin navlink(url, title)
+  if url == page.url
+    a.docs-nav-link.docs-nav-link-current(href=url) 
+      !=title
+  else
+    a.docs-nav-link(href=url) 
+      !=title
 
-//- Declaration
-mixin toc(t)
-  if t
-    - each item, anchor in t
-      li
-        if Object.keys(item).length == 0
-          a(href="#" + anchor.replace(/ /g,'-').toLowerCase())
-            != anchor
-        else
-          a(href="#" + anchor.replace(/ /g,'-').toLowerCase())
-            != anchor
-          ul.nav
-            +toc(item)
-
-div.hidden-print.affix.side-navbar(role="complementary", id="sidenavbar")
-  ul.nav
-    +toc(page.metadata.toc)
-
-
-
+nav.docs-nav
+  +navlink('/', 'Introduction')
+  +navlink('/subscribers.html', 'Subscribers')
+  +navlink('/publishers.html', 'Publishers')
+  +navlink('/schema.html', 'Schema')
+  +navlink('/misc.html', 'Miscellaneous')
