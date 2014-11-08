@@ -526,7 +526,7 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
 
 **Response:**
 
-```bash
+```javascript
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Status: 200 OK
@@ -799,7 +799,7 @@ Subscribing to a new feed will allow you to get notifications with the upcoming 
 
 #### Example
 
-```xml
+```markup
 <iq type="set" from="login@superfeedr.com" to="firehoser.superfeedr.com" id="sub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
   <subscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
@@ -816,7 +816,7 @@ You can add up to 20 resources in your subscription query, as long as they have 
 
 The server acknowledges the subscription(s) and sends the status information for each resource.
 
-```xml
+```markup
 <iq type="result" to="login@superfeedr.com/home" from="firehoser.superfeedr.com" id="sub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub">
   <subscription jid="login@superfeedr.com" subscription="subscribed" node="http://domain.tld/path/to/resource">
@@ -880,7 +880,7 @@ When you remove a feed, you will stop receiving notifications for that feed.
 
 #### Example
 
-```xml
+```markup
 <iq type="set" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="unsub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub">
   <unsubscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
@@ -896,7 +896,7 @@ You can remove up to 20 resources in your unsubscription query.
 
 The server acknowledges the unsubscription.
 
-```xml
+```markup
 <iq type="result" from="firehoser.superfeedr.com" to="login@superfeedr.com/home" id="unsub1" />
 ```
 
@@ -937,7 +937,7 @@ You can list your existing subscriptions. This list is paginated with 20 items p
 
 #### Example
 
-```xml
+```markup
 <iq type="get" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="subman1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
   <subscriptions jid="login@superfeedr.com" superfeedr:page="3"/>
@@ -949,7 +949,7 @@ You can list your existing subscriptions. This list is paginated with 20 items p
 
 The server sends the list of resources to which you're subscribed for the page requested, as well as the status information for each of them.
 
-```xml
+```markup
 <iq type="result"  to="login@superfeedr.com/home" id="subman1" from="firehoser.superfeedr.com">
  <pubsub xmlns="http://jabber.org/protocol/pubsub"  xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext" >
   <subscriptions superfeedr:page="3">
@@ -1002,7 +1002,7 @@ It is possible to query Superfeedr for previous entries in feeds to which you've
 
 #### Example
 
-```xml
+```markup
 <iq type='get' to="firehoser.superfeedr.com" id='items1'>
   <pubsub xmlns='http://jabber.org/protocol/pubsub'>
     <items node='http://domain.tld/path/to/resource'/>
@@ -1014,7 +1014,7 @@ It is possible to query Superfeedr for previous entries in feeds to which you've
 
 At this point, you will get a maximum of 10 items per feed.
 
-```xml
+```markup
 <iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
   <pubsub xmlns="http://jabber.org/protocol/pubsub">
     <items node="http://domain.tld/path/to/resource" >
@@ -1056,7 +1056,7 @@ At this point, you will get a maximum of 10 items per feed.
 
 If you have not subscribed to the feed, you will receive a response like this one
 
-```xml
+```markup
 <iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
   <pubsub xmlns="http://jabber.org/protocol/pubsub">
     <items node="http://domain.tld/path/to/resource" >
@@ -1073,7 +1073,7 @@ We will send you a notification when we consider the resource as updated (see "[
 
 Please see the [schema information](/schema.html) for details on the status, as well as the feed and entry informations.
 
-```xml
+```markup
 <message from="firehoser.superfeedr.com" to="login@superfeedr.com">
  <event xmlns="http://jabber.org/protocol/pubsub#event">
   <status feed="http://domain.tld/feed.xml" xmlns="http://superfeedr.com/xmpp-pubsub-ext">

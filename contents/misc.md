@@ -52,13 +52,13 @@ The next step consist in building your track feed. They all start with the same 
 
 #### Examples
 
-<pre><code>http://superfeedr.com/track?include=superfeedr : Any mention of "superfeedr" will match.
+* `http://superfeedr.com/track?include=superfeedr` : Any mention of "superfeedr" will match.
 
-http://superfeedr.com/track?include=starbucks&lat=37.781841&lon=-122.420311&within=10 : Any mention of starbucks within 10km of San Francisco.
+* `http://superfeedr.com/track?include=starbucks&lat=37.781841&lon=-122.420311&within=10` : Any mention of starbucks within 10km of San Francisco.
 
-http://superfeedr.com/track?include=france,paris : Any entry that matches both france and paris.
+* `http://superfeedr.com/track?include=france,paris` : Any entry that matches both france and paris.
 
-http://superfeedr.com/track?include=apple&exclude=iphone : Any mention of Apple, without iPhone</code></pre>
+* `http://superfeedr.com/track?include=apple&exclude=iphone` : Any mention of Apple, without iPhone.
 
 ## IP list
 
@@ -66,8 +66,9 @@ If you use Superfeedr to host your hub, you may want to make sure we can access 
 
 You can also certainly check the **UserAgent**, however, we have a tendency to change them quite often to communicate with other servers. You can still check that it contains Superfeedr. 
 
-<pre><code>You should see most of our requests from theses guys (used for fetching and parsing):
- 
+You should see most of our requests from theses guys (used for fetching and parsing):
+
+```markup 
 supernoder1 50.116.30.23
 supernoder2 198.58.103.28
 supernoder3 198.58.103.36
@@ -88,5 +89,6 @@ supernoder17 198.58.103.102
 supernoder18 50.116.28.209
 supernoder19 198.58.96.215
 supernoder20 198.58.99.82
+``
 
-Please remember that we can add or remove IPs to this list at any time, as we mostly use cloud services. Do not implement any blocking or limitation based on this list. </code></pre>
+Please remember that we can add or remove IPs to this list at any time, as we mostly use cloud services. Do not implement any blocking or limitation based on this list. 

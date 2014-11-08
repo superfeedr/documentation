@@ -15,19 +15,19 @@ The [PubSubHubbubb](http://pubsubhubbub.superfeedr.com/) hubs that Superfeedr ho
 
 Discovery is aimed at informing your current (and future) subscribers (who poll your resources) that they can get content from your Superfeedr hosted hub. It's as easy as adding the following to your resources:
 
+### Any HTTP resources
 
-#### Any HTTP resources
+For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers.
+Include the following HTTP Header with each resource:
 
-```
-# For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers.
-# Include the following HTTP Header with each resource:
+```javascript
 Link: <http://your-hub-name.superfeedr.com/> rel="hub"
 Link: <http://your-resource-url> rel="self"
 ```
 
-#### RSS
+### RSS
 
-```xml
+```markup
 <?xml version="1.0"?>
 <rss>
  <channel>
@@ -44,9 +44,9 @@ Link: <http://your-resource-url> rel="self"
 </rss>
 ```
 
-#### Atom
+### Atom
 
-```xml
+```markup
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
  <title>...</title>
  <link href="..." rel="self" type="application/atom+xml"/>

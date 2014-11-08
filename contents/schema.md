@@ -93,7 +93,7 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 
 #### Example
 
-```xml
+```markup
 <status feed="http://domain.tld/feed.xml" xmlns="http://superfeedr.com/xmpp-pubsub-ext">
   <http code="200">9718 bytes fetched in 1.462708s : 2 new entries.</http>
   <next_fetch>2013-05-10T11:19:38-07:00</next_fetch>
@@ -145,7 +145,7 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-```xml
+```markup
 <link href="http://domain.tld/entries/12345" rel="alternate" type="text/html" title="The sky is Blue" />
 <link href="http://domain.tld/entries/12345/comments.xml" rel="replies" type="application/atom+xml" title="Comments on The sky is Blue" />
 ```
@@ -167,7 +167,7 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-```xml
+```markup
 <category term="tag" />
 <category term="category" />
 ``` 
@@ -189,7 +189,7 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-```xml
+```markup
 <point xmlns="http://www.georss.org/georss">47.597553 -122.15925</point>
 ```
 
@@ -236,7 +236,7 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-```xml
+```markup
 <author>
  <name>John Doe</name>
  <email>john@superfeedr.com</email>
@@ -308,7 +308,7 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-```xml
+```markup
 <as:object-type>http://gowalla.com/schema/1.0/spot</as:object-type>
 <as:object-type>http://activitystrea.ms/schema/1.0/place</as:object-type>
 <id>object-id</id>
@@ -342,7 +342,7 @@ Here are the components used to build the entries. Please note that they may use
 
 #### Example
 
-```xml
+```markup
 <as:verb>http://activitystrea.ms/schema/1.0/post</as:verb>
 ```
 
@@ -394,7 +394,7 @@ Entries may include all the above elements. They also contain specific nodes, li
 </tr>
 </table>
 
-```xml
+```markup
 <entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xml:lang="en">
    <id>domain.tld:09/05/03-1</id>
    <published>2013-04-21T14:00:40+02:00</published>
