@@ -78,6 +78,12 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 </tr>
 
 <tr>
+  <td>velocity</td>
+  <td></td>
+  <td>The number of updates in the previous maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
+</tr>
+
+<tr>
   <td>title</td>
   <td>only upon notification</td>
   <td>The feed title</td>
@@ -102,6 +108,7 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <last_parse>2013-05-10T11:17:19-07:00</last_parse>
   <last_maintenance_at>2013-05-10T09:45:08-07:00</last_maintenance_at>
   <entries_count_since_last_maintenance>5</entries_count_since_last_maintenance>
+  <velocity>12</velocity>
   <tilte>Lorem Ipsum</tilte>
 </status>
 ```
@@ -465,6 +472,7 @@ Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive no
 {
  "status": {
    "entriesCountSinceLastMaintenance": 24,
+   "velocity": 50,
    "lastParse": 1290793065,
    "period": "600",
    "lastMaintenanceAt": 1290778665,
