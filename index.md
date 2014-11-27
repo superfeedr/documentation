@@ -1,6 +1,6 @@
 ---
+layout: page
 title: Introduction
-template: index.jade
 toc: {
   "Table of Contents": {},
   "Audience": {},

@@ -1,6 +1,6 @@
 ---
 title: Misc
-template: index.jade
+layout: page
 toc: {
   "Track": {},
   "IP list": {}

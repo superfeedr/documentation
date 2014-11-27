@@ -1,6 +1,6 @@
 ---
 title: Publishers
-template: index.jade
+layout: page
 toc: {
   "Discovery": {},
   "Ping": {},

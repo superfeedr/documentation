@@ -1,6 +1,6 @@
 ---
 title: Schema & Data Formats
-template: index.jade
+layout: page
 toc: {
   "Status": {},
   "Entry": {},

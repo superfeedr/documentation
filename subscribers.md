@@ -1,6 +1,6 @@
 ---
 title: Subscribers
-template: index.jade
+layout: page
 toc: {
   "Introduction": {},
   "What can you subscribe to": {
