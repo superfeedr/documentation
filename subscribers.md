@@ -191,22 +191,66 @@ On the other hand, please remember to use <code>https</code> when sending authen
   </div>
 </div>
 
-{:.table .table-striped .table-condensed .table-responsive}
-|Parameter Name|Note|Value|
-|---|---|---|
-|hub.mode|required|`subscribe`|
-|hub.topic|required|The URL of the HTTP resource to which you want to subscribe.|
-|hub.callback|required|The webhook: it's the URL to which notifications will be sent. Make sure you it's web-accessible (not behind a firewall)|
-|hub.secret|optional, recommanded|A unique secret string which will be used by us to [compute a signature](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify). You should check this signature when getting notifications.|
-|hub.verify|optional|`sync` or `async`: will perform a [PubSubHubbub verification](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3) of intent synschronously or asynschronously.|
-|format|optional| - `json` if you want to receive notifications as json format (for feeds only!). You can also use an `Accept` HTTP header like this: `Accept: application/json`. - `atom` if you explicitly want to receive notification as Atom. This is used by default for any resource that's either Atom or RSS. - If you don't specify any, we will send you the data pulled from the HTTP resource, (excluding feeds).|
-|retrieve|optional|If set to `true`, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our [Schema](/schema.html) for more details.|
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Parameter Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>hub.mode</td>
+        <td>required</td>
+        <td><code>subscribe</code></td>
+      </tr>
+      <tr>
+        <td>hub.topic</td>
+        <td>required</td>
+        <td>The URL of the HTTP resource to which you want to subscribe.</td>
+      </tr>
+      <tr>
+        <td>hub.callback</td>
+        <td>required</td>
+        <td>The webhook: it's the URL to which notifications will be sent. Make sure you it's web-accessible, ie not behind a firewall.</td>
+      </tr>
+      <tr>
+        <td>hub.secret</td>
+        <td>optional, recommanded</td>
+        <td>A unique secret string which will be used by us to compute a signature. You should check this signature when getting notifications.</td>  
+      </tr>
+      <tr>
+        <td>hub.verify</td>
+        <td>optional</td>
+        <td><code>sync</code> or <code>async</code>: will perform a <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3">PubSubHubbub verification</a> of intent synschronously or asynschronously.</td>
+      </tr>
+      <tr>
+        <td>format</td>
+        <td>optional</td>
+        <td>
+          <ul>
+            <li><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>.</li>
+            <li><code>atom</code> if you explicitly want to receive notification as Atom. This is used by default for any resource that's either Atom or RSS.</li>
+            <li>If you don't specify any, we will send you the data pulled from the HTTP resource, (excluding feeds).</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>retrieve</td>
+        <td>optional</td>
+        <td>If set to <code>true</code>, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our <a href="/schema.html">Schema</a> for more details.</td>
+      </tr>
+  </tbody>
+  </table>
+</div>
+
 
 Subscriptions at Superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.
 
 #### Example
 
-{:.embedcurl}
 {% prism markup %}
   curl https://push.superfeedr.com/ 
   -X POST 
@@ -235,12 +279,17 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
   </div>
 </div>
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+      <thead class="box__header">
 <tr>
+
   <th>Parameter Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>hub.mode</td>
   <td>required</td>
@@ -261,7 +310,9 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
   <td>optional</td>
   <td><code>sync</code> or <code>async</code>. We will perform a <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3">PubSubHubbub verification</a> of intent synschronously or asynschronously.</td>
 </tr>
+</tbody>
 </table>
+</div>
 
 #### Example
 
@@ -293,12 +344,17 @@ You can also use the <code>search</code> parameter to search for specific subscr
   </div>
 </div>
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Parameter Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>hub.mode</td>
   <td>required</td>
@@ -324,7 +380,10 @@ You can also use the <code>search</code> parameter to search for specific subscr
   <td>optional</td>
   <td>Get feed details along with the subscriptions. Check the <a href="/schema.html">Schema section</a> for more details.</td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 Please note that subscriptions are listed in the order of creation. The oldest subscriptions are first, while the most recent one is the last one.
 
@@ -360,12 +419,17 @@ Superfeedr will return `200` with the list of matching subscriptions, a JSON for
 
 Search queries are nested query string parameters using the following keys.
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Query</th>
   <th>Note</th>
   <th>Example</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td><code>format</code></td>
   <td>can either be <code>JSON</code> or <code>ATOM</code> and will return all subscription made using that format</td>
@@ -425,7 +489,10 @@ Search queries are nested query string parameters using the following keys.
   <td>an exact match of the <code>hub.callback</code>'s URL hostname.</td>
   <td><em>search[endpoint][hostname]=domain.tld</em> or <em>search[endpoint.hostname]=domain.tld</em></td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 
 ### Retrieving Entries with PubSubHubbub
@@ -437,12 +504,17 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
   </div>
 </div>
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Parameter Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>hub.mode</td>
   <td>required</td>
@@ -478,7 +550,10 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
   <td>optional, only if you're using the JSON format</td>
   <td>This will render the entries as a <a href="http://en.wikipedia.org/wiki/JSONP">JSONP</a>. </td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 #### Example
 
@@ -606,18 +681,26 @@ For this, you need to send use the <code>stream.superfeedr.com</code> endpoint:
 
 You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithpubsubhubbub), with the following extra parameter:
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Parameter Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>wait</td>
   <td>required</td>
   <td><code>stream</code> or <code>poll</code></td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 #### Stream
 
@@ -658,12 +741,17 @@ We will consider the notification as successful if we can reach your callback an
 
 Additionally, the notification will include the following headers which you should inspect:
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Header Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>X-Superfeedr-Credits</td>
   <td></td>
@@ -692,7 +780,10 @@ Additionally, the notification will include the following headers which you shou
   <td>optional</td>
   <td>If this header is present, it means we had trouble notification you on previous attempts. You should make sure your app doesn't encounter health issues.</td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 ### Best Practices
 
@@ -730,12 +821,17 @@ Also, make sure your clients sends a <code>&lt;presence&gt;</code> stanza when y
 
 Subscribing to a new feed will allow you to get notifications with the upcoming entries from that feed.
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>iq[@from]</td>
   <td></td>
@@ -763,7 +859,10 @@ Subscribing to a new feed will allow you to get notifications with the upcoming 
   <td>optional</td>
   <td>This must belong to the Superfeedr namespace (<code>http://superfeedr.com/xmpp-pubsub-ext</code>). You can specify the format of the payload in notifications. Currently, we support atom (default) and json. See [schema](/schema.html) for more details.</td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 #### Example
 
@@ -815,12 +914,17 @@ In other cases, you will receive an iq with <code>type="error"</code>, please ch
 
 When you remove a feed, you will stop receiving notifications for that feed.
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>iq[@from]</td>
   <td></td>
@@ -844,7 +948,10 @@ When you remove a feed, you will stop receiving notifications for that feed.
   <td></td>
   <td>Use the jid that you used for the subscription.</td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 #### Example
 
@@ -872,12 +979,17 @@ The server acknowledges the unsubscription.
 
 You can list your existing subscriptions. This list is paginated with 20 items per page.
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>iq[@from]</td>
   <td></td>
@@ -901,7 +1013,10 @@ You can list your existing subscriptions. This list is paginated with 20 items p
   <td></td>
   <td>The jid for which you want to list subscriptions. If you used a component jid (using your own XMPP server), you can use a more specific jid to filter subscriptions by jid.</td>
 </tr>
+  </tbody>
+
 </table>
+</div>
 
 #### Example
 
@@ -942,12 +1057,17 @@ The server sends the list of resources to which you're subscribed for the page r
 
 It is possible to query Superfeedr for previous entries in feeds to which you've subscribed.
 
-<table class="table table-striped table-condensed table-responsive">
+<div class="box">
+  <table class="feed-table table">
+          <thead class="box__header">
+
 <tr>
   <th>Name</th>
   <th>Note</th>
   <th>Value</th>
 </tr>
+    </thead>
+    <tbody>
 <tr>
   <td>iq[@from]</td>
   <td></td>
@@ -965,8 +1085,10 @@ It is possible to query Superfeedr for previous entries in feeds to which you've
   <td></td>
   <td>The resource url for which you want to retrieve content.</td>
 </tr>
+  </tbody>
 
 </table>
+</div>
 
 #### Example
 
