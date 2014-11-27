@@ -2,46 +2,32 @@
 layout: default
 ---
 
-<div class="sticky-wrapper">
-	<div class="column column--quarter docs-inline-nav-wrap">
-		<header class="docs-inline-nav-header">
-			<h3>Contents</h3>
-		</header>
+<header class="body-header">
+	<h2>
+		<span>Documentation › </span> <strong>{{ page.title }}</strong>
+	</h2>
 
-		{{page.toc}}
+	<nav class="docs-nav">
+		{% navlink /, Introduction %}
+		{% navlink /subscribers.html, Subscribers %}
+		{% navlink /publishers.html, Publishers %}
+		{% navlink /schema.html, Schema %}
+		{% navlink /misc.html, Miscellaneous %}
+	</nav>
+</header>
+<div class="body-content">
+	<div class="sticky-wrapper">
+		<div class="column column--quarter docs-inline-nav-wrap">
+			<header class="docs-inline-nav-header">
+				<h3>Contents</h3>
+			</header>
 
-		<!-- <ul id="docsnav" class="docs-inline-nav nav nav-list">
-			<li>
-				<a href="#table-of-contents">Table of Contents</a>
-			</li>
-			<li>
-				<a href="#audience">Audience</a>
-			</li>
-			<li>
-				<a href="#playing-in-the-open">Playing in the open</a>
-			</li>
-			<li>
-				<a href="#support-and-questions">Support and Questions</a>
-			</li>
-			<li>
-				<a href="#contribution">Contribution</a>
-			</li>
-			<li>
-				<a href="#definitions">Definitions</a>
-				<ul class="docs-inline-nav">
-					<li>
-						<a href="#publisher">Publisher</a>
-					</li>
-					<li>
-						<a href="#subscriber">Subscriber</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
- -->
+			{% toc page.toc %}
 
+
+		</div>
 	</div>
+	<section class="column column--three-quarters docs-content-text">
+		{{content}}
+	</section>
 </div>
-<section class="column column--three-quarters docs-content-text">
-	{{content}}
-</section>

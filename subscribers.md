@@ -88,7 +88,7 @@ For this, we use the [JSONPath](http://goessner.net/articles/JsonPath/) syntax. 
 
 We have the following document at <code>http://for.sale/inventory.json</code>:
 
-```javascript
+{% prism javascript %}
 { 
   "store": {
     "book": [ 
@@ -121,7 +121,7 @@ We have the following document at <code>http://for.sale/inventory.json</code>:
     }
   }
 }
-```
+{% endprism %}
 
 If you're interested in changes to the price of the bicycle, you will subscribe to <code>http://for.sale/inventory.json#%24.store.bicycle.price</code>. Read [this section](http://goessner.net/articles/JsonPath/index.html#e3) for more examples.
 
@@ -191,67 +191,30 @@ On the other hand, please remember to use <code>https</code> when sending authen
   </div>
 </div>
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Parameter Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>hub.mode</td>
-  <td>required</td>
-  <td><code>subscribe</code></td>
-</tr>
-<tr>
-  <td>hub.topic</td>
-  <td>required</td>
-  <td>The URL of the HTTP resource to which you want to subscribe.</td>
-</tr>
-<tr>
-  <td>hub.callback</td>
-  <td>required</td>
-  <td>The webhook: it's the URL to which notifications will be sent. Make sure you it's web-accessible, ie not behind a firewall.</td>
-</tr>
-<tr>
-  <td>hub.secret</td>
-  <td>optional, recommanded</td>
-  <td>A unique secret string which will be used by us to compute a signature. You should check this signature when getting notifications.</td>  
-</tr>
-<tr>
-  <td>hub.verify</td>
-  <td>optional</td>
-  <td><code>sync</code> or <code>async</code>: will perform a <a href="http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3">PubSubHubbub verification</a> of intent synschronously or asynschronously.</td>
-</tr>
-<tr>
-  <td>format</td>
-  <td>optional</td>
-  <td>
-    <ul>
-      <li><code>json</code> if you want to receive notifications as json format (for feeds only!). You can also use an <code>Accept</code> HTTP header like this: <code>Accept: application/json</code>.</li>
-      <li><code>atom</code> if you explicitly want to receive notification as Atom. This is used by default for any resource that's either Atom or RSS.</li>
-      <li>If you don't specify any, we will send you the data pulled from the HTTP resource, (excluding feeds).</li></td>
-</tr>
-<tr>
-  <td>retrieve</td>
-  <td>optional</td>
-  <td>If set to <code>true</code>, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our <a href="/schema.html">Schema</a> for more details.</td>
-</tr>
-</table>
+{:.table .table-striped .table-condensed .table-responsive}
+|Parameter Name|Note|Value|
+|---|---|---|
+|hub.mode|required|`subscribe`|
+|hub.topic|required|The URL of the HTTP resource to which you want to subscribe.|
+|hub.callback|required|The webhook: it's the URL to which notifications will be sent. Make sure you it's web-accessible (not behind a firewall)|
+|hub.secret|optional, recommanded|A unique secret string which will be used by us to [compute a signature](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#authednotify). You should check this signature when getting notifications.|
+|hub.verify|optional|`sync` or `async`: will perform a [PubSubHubbub verification](https://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html#rfc.section.5.3) of intent synschronously or asynschronously.|
+|format|optional| - `json` if you want to receive notifications as json format (for feeds only!). You can also use an `Accept` HTTP header like this: `Accept: application/json`. - `atom` if you explicitly want to receive notification as Atom. This is used by default for any resource that's either Atom or RSS. - If you don't specify any, we will send you the data pulled from the HTTP resource, (excluding feeds).|
+|retrieve|optional|If set to `true`, the response will include the current representation of the feed as stored in Superfeedr, in the format desired. Please check our [Schema](/schema.html) for more details.|
 
-Subscription at Superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.
-
+Subscriptions at Superfeedr are a unique combination of a resource url and a callback url. If you resubscribe with the same urls, we will only keep one. However, if you use a different callback url for the same feed url, we will keep both.
 
 #### Example
 
-
-<pre class="language-bash embedcurl">
+{:.embedcurl}
+{% prism markup %}
   curl https://push.superfeedr.com/ 
   -X POST 
   -u demo:demo 
   -d'hub.mode=subscribe' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
   -d'hub.callback=http://mycallback.tld/ok'
-</pre>
+{% endprism %}
 
 #### Response
 
@@ -302,13 +265,14 @@ This call uses the exact same syntax used in the [adding feeds section](/subscri
 
 #### Example
 
-<pre class="language-bash embedcurl">curl https://push.superfeedr.com/ 
+{% prism markup %}
+curl https://push.superfeedr.com/ 
   -X POST 
   -u demo:demo 
   -d'hub.mode=unsubscribe' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
   -d'hub.callback=http://mycallback.tld/ok'
-</pre>
+{% endprism %}
 
 #### Response
 
@@ -317,6 +281,7 @@ Superfeedr will return `204` if the unsubscription was performed and `202` if th
 For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
 
 Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
 
 ### Listing Subscriptions with PubSubHubbub
 
@@ -365,18 +330,19 @@ Please note that subscriptions are listed in the order of creation. The oldest s
 
 #### Example
 
-<pre class="language-bash embedcurl">curl https://push.superfeedr.com/ 
+{% prism markup %}
+curl https://push.superfeedr.com/ 
   -X GET 
   -u demo:demo 
   -d'hub.mode=list' 
   -d'page=2'
-</pre>
+{% endprism %}
 
 #### Response
 
 Superfeedr will return `200` with the list of matching subscriptions, a JSON format. If you supplied a callback parameter (JSONP), the JSON will be wrapped in it.
 
-```javascript
+{% prism javascript %}
 [{
   "subscription": {
     "format": "atom",
@@ -388,7 +354,7 @@ Superfeedr will return `200` with the list of matching subscriptions, a JSON for
     }
   }
 }]
-```
+{% endprism %}
 
 #### Search Queries
 
@@ -516,17 +482,18 @@ This call will allow you to retrieve the past entries for a feed. Note that you 
 
 #### Example
 
-<pre class="language-bash embedcurl">curl https://push.superfeedr.com/ 
+{% prism markup %}
+curl https://push.superfeedr.com/ 
   -H 'Accept: application/json'
   -X GET 
   -u demo:demo 
   -d'hub.mode=retrieve' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
-</pre>
+{% endprism %}
 
 **Response:**
 
-```javascript
+{% prism javascript %}
 Content-Type: application/json; charset=utf-8
 Connection: keep-alive
 Status: 200 OK
@@ -614,7 +581,7 @@ Content-Length: 3550
         }
     ]
 }
-```
+{% endprism %}
 
 #### Response
 
@@ -638,6 +605,7 @@ For this, you need to send use the <code>stream.superfeedr.com</code> endpoint:
 </div>
 
 You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithpubsubhubbub), with the following extra parameter:
+
 <table class="table table-striped table-condensed table-responsive">
 <tr>
   <th>Parameter Name</th>
@@ -669,7 +637,7 @@ Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/)
 
 ##### Example:
 
-```javascript
+{% prism javascript %}
 var url = "https://stream.superfeedr.com/";
 url += "&hub.mode=retrieve";
 url += "&hub.topic=<topic url>";
@@ -679,7 +647,7 @@ var source = new EventSource(url);
 source.addEventListener("notification", function(e) {
   var notification = JSON.parse(e.data);
 });
-```
+{% endprism %}
 
 
 ### PubSubHubbub Notifications
@@ -799,7 +767,7 @@ Subscribing to a new feed will allow you to get notifications with the upcoming 
 
 #### Example
 
-```markup
+{% prism markup %}
 <iq type="set" from="login@superfeedr.com" to="firehoser.superfeedr.com" id="sub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
   <subscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
@@ -808,7 +776,7 @@ Subscribing to a new feed will allow you to get notifications with the upcoming 
   <subscribe node="http://domain.tld/path/to/resource" jid="login@superfeedr.com" superfeedr:format="atom" />
  </pubsub>
 </iq>
-```
+{% endprism %}
 
 You can add up to 20 resources in your subscription query, as long as they have all the same <code>subscribe[@jid]</code>. If you need to subscribe with multiple jids, we suggest that you send multiple subscription queries.
 
@@ -816,7 +784,7 @@ You can add up to 20 resources in your subscription query, as long as they have 
 
 The server acknowledges the subscription(s) and sends the status information for each resource.
 
-```markup
+{% prism markup %}
 <iq type="result" to="login@superfeedr.com/home" from="firehoser.superfeedr.com" id="sub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub">
   <subscription jid="login@superfeedr.com" subscription="subscribed" node="http://domain.tld/path/to/resource">
@@ -839,7 +807,7 @@ The server acknowledges the subscription(s) and sends the status information for
   </subscription>
  </pubsub>
 </iq>
-```
+{% endprism %}
 
 In other cases, you will receive an iq with <code>type="error"</code>, please check that your subscription query abides by the constraints explained above.
 
@@ -880,7 +848,7 @@ When you remove a feed, you will stop receiving notifications for that feed.
 
 #### Example
 
-```markup
+{% prism markup %}
 <iq type="set" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="unsub1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub">
   <unsubscribe node="http://domain.tld/feed1.xml" jid="login@superfeedr.com"/>
@@ -888,7 +856,7 @@ When you remove a feed, you will stop receiving notifications for that feed.
   <unsubscribe node="http://domain.tld/feed3.xml" jid="login@superfeedr.com" />
  </pubsub>
 </iq>
-```
+{% endprism %}
 
 You can remove up to 20 resources in your unsubscription query.
 
@@ -896,9 +864,9 @@ You can remove up to 20 resources in your unsubscription query.
 
 The server acknowledges the unsubscription.
 
-```markup
+{% prism markup %}
 <iq type="result" from="firehoser.superfeedr.com" to="login@superfeedr.com/home" id="unsub1" />
-```
+{% endprism %}
 
 ### Listing Feeds with XMPP
 
@@ -937,19 +905,19 @@ You can list your existing subscriptions. This list is paginated with 20 items p
 
 #### Example
 
-```markup
+{% prism markup %}
 <iq type="get" from="login@superfeedr.com/home" to="firehoser.superfeedr.com" id="subman1">
  <pubsub xmlns="http://jabber.org/protocol/pubsub" xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext">
   <subscriptions jid="login@superfeedr.com" superfeedr:page="3"/>
  </pubsub>
 </iq>
-```
+{% endprism %}
 
 #### Response 
 
 The server sends the list of resources to which you're subscribed for the page requested, as well as the status information for each of them.
 
-```markup
+{% prism markup %}
 <iq type="result"  to="login@superfeedr.com/home" id="subman1" from="firehoser.superfeedr.com">
  <pubsub xmlns="http://jabber.org/protocol/pubsub"  xmlns:superfeedr="http://superfeedr.com/xmpp-pubsub-ext" >
   <subscriptions superfeedr:page="3">
@@ -968,7 +936,7 @@ The server sends the list of resources to which you're subscribed for the page r
   </subscriptions>
  </pubsub>
 </iq>
-```
+{% endprism %}
 
 ### Retrieving Entries with XMPP
 
@@ -1002,19 +970,19 @@ It is possible to query Superfeedr for previous entries in feeds to which you've
 
 #### Example
 
-```markup
+{% prism markup %}
 <iq type='get' to="firehoser.superfeedr.com" id='items1'>
   <pubsub xmlns='http://jabber.org/protocol/pubsub'>
     <items node='http://domain.tld/path/to/resource'/>
   </pubsub>
 </iq>
-```
+{% endprism %}
 
 #### Response
 
 At this point, you will get a maximum of 10 items per feed.
 
-```markup
+{% prism markup %}
 <iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
   <pubsub xmlns="http://jabber.org/protocol/pubsub">
     <items node="http://domain.tld/path/to/resource" >
@@ -1052,18 +1020,18 @@ At this point, you will get a maximum of 10 items per feed.
     </items>
   </pubsub>
 </iq>
-```
+{% endprism %}
 
 If you have not subscribed to the feed, you will receive a response like this one
 
-```markup
+{% prism markup %}
 <iq from="firehoser.superfeedr.com" type="result" to="login@superfeedr.com/home" id="items1" >
   <pubsub xmlns="http://jabber.org/protocol/pubsub">
     <items node="http://domain.tld/path/to/resource" >
     </items>
   </pubsub>
 </iq>
-```
+{% endprism %}
 
 ### XMPP Notifications
 
@@ -1073,7 +1041,7 @@ We will send you a notification when we consider the resource as updated (see "[
 
 Please see the [schema information](/schema.html) for details on the status, as well as the feed and entry informations.
 
-```markup
+{% prism markup %}
 <message from="firehoser.superfeedr.com" to="login@superfeedr.com">
  <event xmlns="http://jabber.org/protocol/pubsub#event">
   <status feed="http://domain.tld/feed.xml" xmlns="http://superfeedr.com/xmpp-pubsub-ext">
@@ -1103,12 +1071,13 @@ Please see the [schema information](/schema.html) for details on the status, as 
   </items>
  </event>
 </message>
-```
+{% endprism %}
 
 ### XMPP API Wrappers
 
-XMPP *can be scary*. For those of you who don't want to mess with that, we have various wrappers (including [Ruby](https://github.com/superfeedr/superfeedr-rb), [Perl](https://github.com/superfeedr/superfeedr-perl), [Python](https://github.com/superfeedr/superfeedr-python), [Node.js](https://github.com/superfeedr/superfeedr-node), [Java](https://github.com/superfeedr/superfeedr-java) and [PHP](https://github.com/superfeedr/superfeedr-php)) for the XMPP API. You can find them on our [Github page]((https://github.com/superfeedr/). 
+XMPP *can be scary*. For those of you who don't want to mess with that, we have various wrappers (including [Ruby](https://github.com/superfeedr/superfeedr-rb), [Perl](https://github.com/superfeedr/superfeedr-perl), [Python](https://github.com/superfeedr/superfeedr-python), [Node.js](https://github.com/superfeedr/superfeedr-node), [Java](https://github.com/superfeedr/superfeedr-java) and [PHP](https://github.com/superfeedr/superfeedr-php)) for the XMPP API. You can find them on our [Github page](https://github.com/superfeedr/). 
 
 If you need one in another language, please contact us. Also, remember that these wrappers have been created by the community. Feel free to contribute to help improve them. 
 
-<script src="https://www.embedcurl.com/embedcurl.min.js" async></script>
+
+
