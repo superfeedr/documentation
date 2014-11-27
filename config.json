@@ -1,8 +1,0 @@
-{
-  "output": "./build",
-  "locals": {
-    "title": "Superfeedr Documentation"
-  },
-  "plugins": [
-  ]
-}
