@@ -56,7 +56,7 @@ The next step consist in building your track feed. They all start with the same 
 <tr>
   <td>bozo</td>
   <td>optional</td>
-  <td>If you set this to <code>ok</code>, we will not filter data from bozo sources. Check the [status section of our schema](/schema.html#status) for more details.</td>
+  <td>If you set this to <code>ok</code>, we will not filter data from bozo sources. Check the <a href="/schema.html#status">status section of our schema</a> for more details.</td>
 </tr>
 </table>
 
