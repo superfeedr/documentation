@@ -80,7 +80,7 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 <tr>
   <td>velocity</td>
   <td></td>
-  <td>The number of updates in the previous maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
+  <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
 </tr>
 
 <tr>
@@ -93,6 +93,18 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <td>publisher</td>
   <td>only upon retrieve</td>
   <td>Set to true if Superfeedr hosts a hub for this feed.</td>
+</tr>
+
+<tr>
+  <td>porn_rank</td>
+  <td>only upon notification, if available</td>
+  <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
+</tr>
+
+<tr>
+  <td>bozo_rank</td>
+  <td>only upon notification, if available</td>
+  <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
 </tr>
 
 </table>

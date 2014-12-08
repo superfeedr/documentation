@@ -48,6 +48,16 @@ The next step consist in building your track feed. They all start with the same 
   <td>optional</td>
   <td>Filtering based on the hub: use the hub's url for the host to filter content from this hub only.</td>
 </tr>
+<tr>
+  <td>porn</td>
+  <td>optional</td>
+  <td>If you set this to <code>ok</code>, we will not filter data from porn sources.</td>
+</tr>
+<tr>
+  <td>bozo</td>
+  <td>optional</td>
+  <td>If you set this to <code>ok</code>, we will not filter data from bozo sources. Check the [status section of our schema](/schema.html#status) for more details.</td>
+</tr>
 </table>
 
 #### Examples
