@@ -801,8 +801,6 @@ Your callback urls should be *hard to guess*, but, more importantly, you should 
 
 ### Replaying Notifications
 
-### Retrieving Entries with PubSubHubbub
-
 This call is mostly a debugging tool as it will let you replay past notifications. 
 
 The token used to perform the call **must have** the **retrieve** right set to true.
@@ -832,6 +830,11 @@ The token used to perform the call **must have** the **retrieve** right set to t
         <td>hub.topic</td>
         <td>required</td>
         <td>The URL of the HTTP resource for which you want the past entries.</td>
+      </tr>
+      <tr>
+        <td>hub.callback</td>
+        <td>required</td>
+        <td>The hub.callback parameter of the subscription.</td>
       </tr>
       <tr>
         <td>count</td>
