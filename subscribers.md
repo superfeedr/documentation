@@ -21,6 +21,7 @@ toc: {
     "Retrieving Entries with PubSubHubbub": {},
     "Streaming RSS": {},
     "PubSubHubbub Notifications": {},
+    "Replaying Notifications": {},
     "PubSubHubbub API Wrappers": {}
   },
   "XMPP PubSub": {
@@ -785,19 +786,82 @@ Additionally, the notification will include the following headers which you shou
 </table>
 </div>
 
-### Best Practices
 
-#### Use HTTPS
+#### Best Practice: use HTTPS
 
 You should *always* use the https endpoints when sending requests to Superfeedr. Additionnaly we recommand that you use `https` for your endpoints. This will garantee privacy and integrity of the full notification (headers included).
 
-#### Use hub.secret
+#### Best Practice: use hub.secret
 
 When subscribing you should use a `hub.secret`, unless of course you use https for your callback urls. This secret will be used to compute a signature for each notification. You should of course make sure these signatures match. [Read more](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html#authednotify) about that.
 
-#### Use different callback urls
+#### Best Practice: use different callback urls
 
 Your callback urls should be *hard to guess*, but, more importantly, you should **use different callbacks for each of your subscriptions**. This way you can quickly identify what feed is involved in each notification, without having to parse the content itself. It will also be easier to identify problems using the access logs of your HTTP servers.
+
+### Replaying Notifications
+
+### Retrieving Entries with PubSubHubbub
+
+This call is mostly a debugging tool as it will let you replay past notifications. 
+
+The token used to perform the call **must have** the **retrieve** right set to true.
+
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+  </div>
+</div>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+
+      <tr>
+        <th>Parameter Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>hub.mode</td>
+        <td>required</td>
+        <td><code>replay</code></td>
+      </tr>
+      <tr>
+        <td>hub.topic</td>
+        <td>required</td>
+        <td>The URL of the HTTP resource for which you want the past entries.</td>
+      </tr>
+      <tr>
+        <td>count</td>
+        <td>optional</td>
+        <td>Optional number of items you want to retrieve. Current max is 50 and default is 1.</td>  
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+#### Example
+
+{% prism markup %}
+curl https://push.superfeedr.com/ 
+  -X GET 
+  -u demo:demo 
+  -d'hub.mode=replay' 
+  -d'hub.topic=http://push-pub.appspot.com/feed' 
+  -d'hub.callback=http://mycallback.tld/ok'
+{% endprism %}
+
+#### Response
+
+Superfeedr will return <code>204</code>  if the notification was performed successfuly. 
+
+If you are not subscribed to the feed or if the feed has not yet been added to Superfeedr, we will return a `404`.
+
+For `422` HTTP response code, please check the body as it includes the reason of why the subscription could not be performed.
+
+Other HTTP response code have the meaning defined in the [HTTP spec.](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
 
 ### PubSubHubbub API Wrappers
 
