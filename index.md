@@ -14,9 +14,16 @@ toc: {
 }
 ---
 
-[Superfeedr](http://superfeedr.com) provides a realtime API to any application who wants to produce (publishers) or consume (subscribers) data feeds without wasting resources and maintaining an expensive and changing infrastructure.
+Maintaining real-time feeds – either to publish on them or to consume from them – is expensive and time-consuming.
 
-This documentation shows how to integrate Superfeedr into a variety of diverse infrastructure, as well as highlights most of the features offered by Superfeedr.
+If you’re a publisher, [Superfeedr](http://superfeedr.com) provides a real-time API that allows you to publish unlimited content, while providing push notifications to all your subscribers. 
+
+And if you’re a subscriber, the [Superfeedr](http://superfeedr.com) Push API brings you every update as it happens. 
+
+The following documentation outlines all the key features of Superfeedr, and will show you how it can be seamlessly integrated into a wide range of infrastructures.
+
+So whether you’re a publisher wanting to leverage your RSS for SEO purposes, or a subscriber wanting instant results without any messy RSS to JSON conversions, you’re in the right place.
+
 
 ## Table of Contents
 
@@ -28,28 +35,33 @@ You can find links to the pages below in the top menu bar as well.
 * [Schema](/schema.html): learn about the data sent by Superfeedr
 * [Misc](/misc.html): extra features and information.
 
+## Who this is for
+If you’re a Superfeedr user, we’re assuming you have a strong knowledge of the web’s main protocols, and how to work within their design constraints. 
 
-## Audience
-It is expected that the reader has a strong knowledge of the web's main protocols, as well as its design constraints. 
+## Why we use open protocols
 
-## Playing in the open
-As we believe the web is a better ecosystem when **open protocols** are favored over proprietary APIs, we have decided to build on *existing protocols and implementations*. This means that there exists several libraries and modules, which, even though they have not been built with Superfeedr in mind could (and should!) be used to interract with our endpoints. We also strongly encourage that you inspect these protocols and the data formats to extract the biggest value out of them.
+We like to think of the web as an ecosystem. And the more resources any ecosystem has, the more it thrives. That’s why Superfeedr uses **open protocols** over proprietary APIs.  
+
+We built Superfeedr on *existing protocols and implementations*, so you would be able to get easy access to existing libraries and modules that will interact with our endpoints. 
+
+This makes your life much easier, and saves you from wasting precious time and resources learning a new system.
+
+Using these resources will help you get the most out of Superfeedr, and we really encourage you to make use of them.
 
 ## Support and Questions
 
-For any question, you may either email us directly (info@superfeedr.com) or use the [Issues Section](https://github.com/superfeedr/documentation/issues?page=1&state=open). We will try to respond as quickly as possible on either channel.
+For any question, you may either email us directly ([info@superfeedr.com](info@superfeedr.com)) or use the [Issues Section](https://github.com/superfeedr/documentation/issues?page=1&state=open). We will try to respond as quickly as possible on either channel.
 
 ## Contribution
 
-If you see any discrepancy, typo or if you wish to add any missing information, please, **fork** that repository, and send us a **pull request**. *You're in a better position than us to make this doc awesome for you!*
-
+Is something wrong? Let us know! Any discrepancy, typo, or gap in the information – we want to hear about it! If you come across an issue, please **fork** the repository and send us a **pull request**. 
 ## Definitions
 
 ### Publisher
 
-A publisher is an *application* which produces and serves content to be consumed by subscribers. Ideally, new content is regularly added or updated and subscribers may be interested in receiving that content when it's been published.
+Superfeedr publishers are *applications* that produce and serve content for subscribers to consume. Ideally, new content would be added or updated regularly, to be sent to interested subscribers.
 
 ### Subscriber
 
-In Superfeedr's context, a subscriber is an *application* which consumes content published by 3rd party sites and services in the form of feeds. Subscribers register their interest in getting later notifications when the content to which they subscribed was updated.
+A Superfeedr subscriber is an *application* that consumes content published to third party feeds. Subscribers register their interest in receiving notifications whenever new content is published. 
 

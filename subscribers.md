@@ -38,7 +38,7 @@ toc: {
 
 ## Introduction
 
-Superfeedr is a tool which will push you content to which you can subscribe on the web and get notification in **realtime**.
+Superfeedr is a tool which will push you content to which you can subscribe on the web and get notification in **real-time**.
 It is also possible to retrieve *past* content. Finally, when possible we offer a set of normalization options for easier consumption.
 
 ## What can you subscribe to
@@ -49,7 +49,7 @@ Urls may include an authentication element, but note that Superfeedr will not tr
 
 ### XML based feeds
 
-Our *historical* use case is to allow you to subscribe to RSS or Atom feeds and get that content pushed to you in realtime. These are also normalized (see the [schema section](/schema.html)) for easier consumption on your end. We support RSS, Atom and RDF, as well as a couple of namespaces.
+Our *historical* use case is to allow you to subscribe to RSS or Atom feeds and get that content pushed to you in real-time. These are also normalized (see the [schema section](/schema.html)) for easier consumption on your end. We support RSS, Atom and RDF, as well as a couple of namespaces.
 
 > Updates will be detected **when one or more item has been added** to the feed and the notification will only include this (or these) new items as well as part of the feed's main attributes (title, ... etc).
 
