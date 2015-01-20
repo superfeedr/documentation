@@ -8,108 +8,104 @@ toc: {
 }
 ---
 
-> This section applies mostly to **feed** subscriptions. If you’re subscribing to arbitrary content resources, we will send you the exact content of that resource. Sometimes the status information is available to non-feed resources as well.
+> This section mostly applies to **feed** subscriptions. If you're subscribing to arbitrary content resources, we will send you the exact content of the resource to which you've subscribed. Some of the status information is available to non-feeds resources as well.
 
-Whatever the original format (RSS, Atom, or any other namespace), the notification you will receive will use **standard Atom** and a few other namespaces, outlined below.
-
-In order to make consumption easy and consistent, Superfeedr matches as much content as possible to this format.
+Whatever the original format (RSS, Atom, or any other namespace) is, the notification that we will send to subscribers will use **standard ATOM**, as well as a few other namespaces detailed below. We will match as much as we can into this format. The overall goal here is to make it easy for the subscriber to consume a consistent schema.
 
 ## Status
 
-When subscribing ([XMPP](/subscribers.html#xmpppubsub) only), retrieving content or receiving notifications from Superfeedr, you may see the following information. This data tells you the current state of the resource you are looking at.
-
-Please note that some information may be missing at various points, either because we haven’t processed the feed yet or because the data would be inaccurate.
+Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only), or when retrieving a resource's content from Superfeedr, you'll see that it *may* include the following information. This data is useful for you to know the current state of a resource. Please note that some items my be missing at some point, either because we haven't processed the feed yet, or because they wouldn't be accurate.
 
 <table class="table table-striped table-condensed table-responsive">
-  <tr>
-    <th>Name</th>
-    <th>Note</th>
-    <th>Value</th>
-  </tr>
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
 
-  <tr>
-    <td>status[@feed]</td>
-    <td>&nbsp;</td>
-    <td>contains the URL of the resource</td>
-  </tr>
+<tr>
+  <td>status[@feed]</td>
+  <td>&nbsp;</td>
+  <td>contains the URL of the resource</td>
+</tr>
 
-  <tr>
-    <td>http[@code]</td>
-    <td>&nbsp;</td>
-    <td>last HTTP status code, please see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status Code Definitions</a></td>
-  </tr>
+<tr>
+  <td>http[@code]</td>
+  <td>&nbsp;</td>
+  <td>last HTTP status code, please see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status Code Definitions</a></td>
+</tr>
 
-  <tr>
-    <td>http</td>
-    <td>&nbsp;</td>
-    <td>the content of that tag is a more explicit log message for your information</td>
-  </tr>
+<tr>
+  <td>http</td>
+  <td>&nbsp;</td>
+  <td>the content of that tag is a more explicit log message for your information</td>
+</tr>
 
-  <tr>
-    <td>next_fetch</td>
-    <td>&nbsp;</td>
-    <td>the resource will be fetched at most before this time</td>
-  </tr>
+<tr>
+  <td>next_fetch</td>
+  <td>&nbsp;</td>
+  <td>the resource will be fetched at most before this time</td>
+</tr>
 
-  <tr>
-    <td>period</td>
-    <td>&nbsp;</td>
-    <td>the polling frequency in seconds for this resource (at least 60 seconds for feeds and at least 300 seconds for arbitrary content)</td>
-  </tr>
+<tr>
+  <td>period</td>
+  <td>&nbsp;</td>
+  <td>the polling frequency in seconds for this resource (at least 60 seconds for feeds and at least 300 seconds for arbitrary content)</td>
+</tr>
 
-  <tr>
-    <td>last_fetch</td>
-    <td>&nbsp;</td>
-    <td>the last time at which we fetched the resource</td>
-  </tr>
+<tr>
+  <td>last_fetch</td>
+  <td>&nbsp;</td>
+  <td>the last time at which we fetched the resource</td>
+</tr>
 
-  <tr>
-    <td>last_parse</td>
-    <td>&nbsp;</td>
-    <td>the last time at which we parsed the resource. It happens that we fetch a resource and do not parse it as its content hasn't been modified</td>
-  </tr>
+<tr>
+  <td>last_parse</td>
+  <td>&nbsp;</td>
+  <td>the last time at which we parsed the resource. It happens that we fetch a resource and do not parse it as its content hasn't been modified</td>
+</tr>
 
-  <tr>
-    <td>last_maintenance_at</td>
-    <td>&nbsp;</td>
-    <td>Each resource inside Superfeedr has a maintenance cycle that we use to detect stale resource, or related resource. We normally run maintenance at most every 24hour for each resource, but this is a low priority task, so it may go beyond this</td>
-  </tr>
+<tr>
+  <td>last_maintenance_at</td>
+  <td>&nbsp;</td>
+  <td>Each resource inside Superfeedr has a maintenance cycle that we use to detect stale resource, or related resource. We normally run maintenance at most every 24hour for each resource, but this is a low priority task, so it may go beyond this</td>
+</tr>
 
-  <tr>
-    <td>entries_count_since_last_maintenance</td>
-    <td></td>
-    <td>The number of updates in the resource since we last ran the maintenance script. This is a very good indicator of the verboseness of a resource. You may want to remove resources that are too verbose</td>
-  </tr>
+<tr>
+  <td>entries_count_since_last_maintenance</td>
+  <td>only upon notification</td>
+  <td>The number of updates in the resource since we last ran the maintenance script. This is a very good indicator of the verboseness of a resource. You may want to remove resources that are too verbose</td>
+</tr>
 
-  <tr>
-    <td>velocity</td>
-    <td></td>
-    <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
-  </tr>
+<tr>
+  <td>velocity</td>
+  <td></td>
+  <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
+</tr>
 
-  <tr>
-    <td>title</td>
-    <td>only upon notification</td>
-    <td>The feed title</td>
-  </tr>
+<tr>
+  <td>title</td>
+  <td>only upon notification</td>
+  <td>The feed title</td>
+</tr>
 
-  <tr>
-    <td>publisher</td>
-    <td>only upon retrieve</td>
-    <td>Set to true if Superfeedr hosts a hub for this feed.</td>
-  </tr>
+<tr>
+  <td>publisher</td>
+  <td>only upon retrieve</td>
+  <td>Set to true if Superfeedr hosts a hub for this feed.</td>
+</tr>
 
-  <tr>
-    <td>porn_rank</td>
-    <td>only upon notification, if available</td>
-    <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
-  </tr>
+<tr>
+  <td>porn_rank</td>
+  <td>only upon notification, if available</td>
+  <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
+</tr>
 
-  <tr>
-    <td>bozo_rank</td>
-    <td>only upon notification, if available</td>
-    <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
-  </tr>
+<tr>
+  <td>bozo_rank</td>
+  <td>only upon notification, if available</td>
+  <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
+</tr>
 
 </table>
 
@@ -131,9 +127,9 @@ Please note that some information may be missing at various points, either becau
 
 ## Entry Schema (feeds only)
 
-Notification entries will have the standard Atom form, outlined below. Please note that an entry may not have every element.
+Notification entries will have the following form. It is standard ATOM. Please note that an entry might not have all of them.
 
-These are the components used to build each entry. Please note that they may use specific namespaces.
+Here are the components used to build the entries. Please note that they may use specific namespaces.
 
 ### Link
 
@@ -477,9 +473,7 @@ Entries may include all the above elements. They also contain specific nodes, li
 
 ## JSON
 
-Superfeedr offers the ability to subscribe to Atom and RSS feeds while receiving notifications in JSON, both via [XMPP](/subscribers.html#xmpppubsub) and [PubSubHubbub](/subscribers.html#webhooks).
-
-It’s a mapping of our Atom schema, which was created with the goal of being compatible with the [OSync](http://osync.org/) and [ActivityStreams](http://activitystrea.ms/)  JSON schemas.
+Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive notifications (both via [XMPP](/subscribers.html#xmpppubsub) and [PubSubHubbub](/subscribers.html#webhooks)) in JSON. It's a mapping of our Atom schema. This mapping was created with the goal of being compatible with the [OSync](http://osync.org/) and [ActivityStreams](http://activitystrea.ms/) JSON schemas.
 
 * Dates: the dates shown are Unix Timestamps (seconds since Epoch), expressed in UTC.
 * Keys: expressed as camel case.
@@ -563,7 +557,8 @@ It’s a mapping of our Atom schema, which was created with the goal of being co
       "title": "Superfeedr Blog",
       "updated": 1245776753,
       "permalinkUrl": "http://blog.superfeedr.com/"
-    }
+    },
+    "language": "en"
    },
    {
     "permalinkUrl": "http://www.macrumors.com/2009/05/06/adwhirl-free-ad-supported-iphone-apps-can-very-lucrative/",
@@ -596,6 +591,4 @@ It’s a mapping of our Atom schema, which was created with the goal of being co
  }
 {% endprism %}
 
-We recommend that you check the schema of some of the feeds you subscribe to, in order to confirm that the all the fields needed for your application are included. You should also use the [replay feature](/subscribers.html#replaying-notifications) to check past content's mapping.
-
-If you miss any of the content in the feeds, feel free to contact us at [info@superfeedr.com](mailto:info@superfeedr.com).
+It is recommended that you check the schema for some of the feeds to which you subscribe to make sure that all the required field for your application are included. Feel free to get in touch if you miss any content in the feeds.
