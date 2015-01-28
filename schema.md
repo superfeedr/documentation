@@ -73,7 +73,7 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 
 <tr>
   <td>entries_count_since_last_maintenance</td>
-  <td>only upon notification</td>
+  <td><br />only upon notification</td>
   <td>The number of updates in the resource since we last ran the maintenance script. This is a very good indicator of the verboseness of a resource. You may want to remove resources that are too verbose</td>
 </tr>
 
