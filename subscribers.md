@@ -137,12 +137,6 @@ We have the following document at <code>http://for.sale/inventory.json</code>:
 
 If you wanted to keep an eye on the price of the bicycle, you would subscribe to: `http://for.sale/inventory.json#%24.store.bicycle.price`. Want more examples? [Click here](http://goessner.net/articles/JsonPath/index.html#e3).
 
-### Keywords and Expressions
-
-Superfeedr allows you to subscribe to keywords or complex expressions to match the data that goes through Superfeedr itself.
- 
-If you would like more detail on this, see the [track section](/misc.html#track).
-
 ### Other Resources
 
 When you are subscribing to any other type of HTML resource, Superfeedr will compute a signature from the bytes included in the document.
@@ -185,12 +179,16 @@ And in case you want to manually specify an HTTP method different to the one use
 
 ### HTTP Authentication
 
-Authentication using the Webhooks API is performed through HTTP Basic Auth. Most HTTP libraries will allow for an easy configuration with this.
+Authentication using the Webhooks API is performed through [HTTP Basic Autentication](http://tools.ietf.org/html/rfc2617). Most HTTP libraries will allow for an easy configuration with this. 
  
 To get started with an authentication, use your Superfeedr login, then pick from one of these options for your password:
 
 * A password token that [you can generate](https://superfeedr.com/tokens/new).
 * Your main Superfeedr password (though we recommend using a token for security purposes).
+
+If your HTTP library does not support HTTP headers, you should submit a base64 encoded string of `login:token` as a query string parameter named `authorization`.
+
+#### Tokens 
 
 You can create an unlimited number of tokens, with different combinations of rights associated with them:
 
