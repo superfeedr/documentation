@@ -3,14 +3,13 @@ title: Trackers
 layout: page
 toc: {
   "Introduction": {},
-  "Building": {
+  "Building Track Feeds": {
     "Queries": {},
-    "Quotes": {},
-    "site:": {},
-    "link:": {},
-    "language:": {},
-    "porn:ok": {},
-    "bozo:ok": {}
+    "Site": {},
+    "Link": {},
+    "Language": {},
+    "Porn filtering": {},
+    "Bozo Filtering": {}
   },
   "Testing": {},
   "Scope": {}
@@ -89,7 +88,7 @@ Here are valid examples of queries:
 </div>
 
 
-### site:
+### Site
 
 The `site:` flag allows you to define from which site the content must have been published. The value needs to be any domain or subdomain and will match the host from which the content has been published.
 
@@ -143,7 +142,7 @@ This is useful when refining tracking feeds for which a lot of content is coming
 </div>
 
 
-### link:
+### Link
 
 The `link:` flag allows you to select only the documents which include a link to a a specific page, or a domain.
 
@@ -191,7 +190,7 @@ Similarly to `site`, You can use the *negation* of this flag by using `-link:` a
 </div>
 
 
-### language:
+### Language
 
 Superfeedr is able to extract the language of every entry individually. This means you can filter entries matching a specific language or excluse those from specific languages using  `-language`. A given entry cannot have more than one language, which mean you can't use more than one `language` operand. However, you can exclude multiple languages using multiple `-language` operands. The value should be the 2 letter value of the language using [ISO_639-1](https://en.wikipedia.org/wiki/ISO_639-1).
 
@@ -220,7 +219,7 @@ Please note that in some cases, we are unable to extract the language (not enoug
   </table>
 </div>
 
-### porn:
+### Porn Filtering
 
 By default, Superfeedr tries to identify porn content and will filter it out of matching requests. Please note that this algorithm "learns" from any given feed before it can start to classify an entry as porn, which means that if the exclusion of porn content is an absolute requirement, you should *also* implement filtering on your side.
 
@@ -244,7 +243,7 @@ That said, for some cases, (building porn filters for example!), it makes sense 
   </table>
 </div>
 
-### bozo:
+### Bozo Filtering
 
 Similar to porn filtering, Superfeedr is able to filter out matching entries from feeds we consider broken or spammy. For example, some feeds will generate infinite amounts of data using a random `id` for each new entry.
 
