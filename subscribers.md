@@ -392,7 +392,7 @@ This call allows you to retrieve subscriptions on your account. You can also use
       <tr>
         <td>search</td>
         <td>optional</td>
-        <td>A search query. Please see below for the various fields and values to use.</td>
+        <td>A search query. Please <a href="#search-queries">see below</a> for the various fields and values to use.</td>
       </tr>
       <tr>
         <td>detailed</td>
@@ -516,7 +516,7 @@ Search queries are nested string parameters. We use the following keys:
 
 ### Retrieving Entries with PubSubHubbub
 
-This call allows you to retrieve past entries from a feed. Note that you need to be subscribed to the resource in order to do this.
+This call allows you to retrieve past entries from one or more feeds. Note that you need to be subscribed to the feed(s) in order to do this.
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
@@ -541,8 +541,13 @@ This call allows you to retrieve past entries from a feed. Note that you need to
       </tr>
       <tr>
         <td>hub.topic</td>
-        <td>required</td>
+        <td>optional</td>
         <td>The URL of the HTTP resource for which you want the past entries.</td>
+      </tr>
+      <tr>
+        <td>hub.callback</td>
+        <td>optional</td>
+        <td>The value can either be a callback with which you are subscribed to one or more feeds or a search query that should match one or more callback urls used to subscribed to several feeds. Please, use the query syntax used to <a href="#search-queries">search for subscriptions</a>. In both cases, make sure there are less than 200 matching feeds.</td>
       </tr>
       <tr>
         <td>count</td>
@@ -573,7 +578,7 @@ This call allows you to retrieve past entries from a feed. Note that you need to
   </table>
 </div>
 
-#### Example
+#### Example (retrieving by topic)
 
 {% prism markup %}
 curl https://push.superfeedr.com/ 
@@ -676,11 +681,33 @@ Content-Length: 3550
 }
 {% endprism %}
 
+#### Example (retrieving by matching callback)
+
+{% prism markup %}
+curl https://push.superfeedr.com/ 
+  -H 'Accept: application/json'
+  -X GET 
+  -u demo:demo 
+  -d'hub.mode=retrieve' 
+  -d'hub.callback=http://my.domain.com/webhook/1' 
+{% endprism %}
+
+#### Example (retrieving by searching callback)
+
+{% prism markup %}
+curl https://push.superfeedr.com/ 
+  -H 'Accept: application/json'
+  -X GET 
+  -u demo:demo 
+  -d'hub.mode=retrieve' 
+  -d'hub.callback[endpoint][hostname]=my.domain.com' 
+{% endprism %}
+
 #### Response
 
-Superfeedr will return `200` with the content if it could retrieve the resource’s past entries.
+Superfeedr will return `200` with the content if it could retrieve the past entries.
 
-If you are not subscribed to the feed, or if the feed has not yet been added to Superfeedr, you will receive a `404`.
+If you are not subscribed to the corresponding feed(s), or if the feed has not yet been added to Superfeedr, you will receive a `404`.
 
 If you receive a `422` HTTP, please check the body as it will include the reason for the failure.
 
@@ -722,6 +749,12 @@ You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithp
 
 If you supply the `stream` value, Superfeedr will return the content that corresponds to the retrieve API call. It will also keep the connection and serve any future entries to this connection.
 
+##### Example:
+
+{% prism bash %}
+curl -X GET 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.callback=http://my.webhook.com/path&format=json' -u'demo:demo' -D-
+{% endprism %}
+
 #### Poll
 
 If you supply the `poll` value, there are two potential responses.
@@ -729,6 +762,12 @@ If you supply the `poll` value, there are two potential responses.
 * If Superfeedr has the content that corresponds to the retrieve API call (for past entries), the response will include that content. The connection will be closed after that.
 
 * If Superfeedr does not have the corresponding content, then the connection will be kept alive until new entries are added to the feed. These new entries will then be served and the connection will be closed. If you use the `poll` value, we strongly recommend using the `after` query parameter as well. This will let you keep the connection open until new content has been added.
+
+##### Example:
+
+{% prism bash %}
+curl -X GET 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.topic=http://push-pub.appspot.com/feed&format=json' -u'demo:demo' -D-
+{% endprism %}
 
 #### Server Sent Events
 
@@ -747,7 +786,6 @@ source.addEventListener("notification", function(e) {
   var notification = JSON.parse(e.data);
 });
 {% endprism %}
-
 
 ### PubSubHubbub Notifications
 
