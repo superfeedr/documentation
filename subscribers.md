@@ -171,7 +171,7 @@ However, you can use your *subscriber* code with *any other hub*. You can also u
 
 > To get the most out of Superfeedr and the PubSubHubbub protocol, we recommend reading the [PubSubHubbub spec](https://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html).
 
-Our PubSubHubbub endpoint is at <code>[https://push.superfeedr.com/](https://push.superfeedr.com/)</code>.
+Our PubSubHubbub endpoint is at [https://push.superfeedr.com/](https://push.superfeedr.com/).
 
 The key difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to [authenticate](/subscribers.html#addingfeedswithpubsubhubbub) your PubSubHubbub calls, making all the verification steps of each request optional.
 
@@ -409,7 +409,7 @@ By default, subscriptions are listed in order of creation. The oldest subscripti
 
 {% prism markup %}
 curl https://push.superfeedr.com/ 
-  -X GET 
+  -G 
   -u demo:demo 
   -d'hub.mode=list' 
   -d'page=2'
@@ -583,7 +583,7 @@ This call allows you to retrieve past entries from one or more feeds. Note that 
 {% prism markup %}
 curl https://push.superfeedr.com/ 
   -H 'Accept: application/json'
-  -X GET 
+  -G 
   -u demo:demo 
   -d'hub.mode=retrieve' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
@@ -686,7 +686,7 @@ Content-Length: 3550
 {% prism markup %}
 curl https://push.superfeedr.com/ 
   -H 'Accept: application/json'
-  -X GET 
+  -G 
   -u demo:demo 
   -d'hub.mode=retrieve' 
   -d'hub.callback=http://my.domain.com/webhook/1' 
@@ -697,7 +697,7 @@ curl https://push.superfeedr.com/
 {% prism markup %}
 curl https://push.superfeedr.com/ 
   -H 'Accept: application/json'
-  -X GET 
+  -G 
   -u demo:demo 
   -d'hub.mode=retrieve' 
   -d'hub.callback[endpoint][hostname]=my.domain.com' 
@@ -752,7 +752,7 @@ If you supply the `stream` value, Superfeedr will return the content that corres
 ##### Example:
 
 {% prism bash %}
-curl -X GET 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.callback=http://my.webhook.com/path&format=json' -u'demo:demo' -D-
+curl -G 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.callback=http://my.webhook.com/path&format=json' -u'demo:demo' -D-
 {% endprism %}
 
 #### Poll
@@ -766,7 +766,7 @@ If you supply the `poll` value, there are two potential responses.
 ##### Example:
 
 {% prism bash %}
-curl -X GET 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.topic=http://push-pub.appspot.com/feed&format=json' -u'demo:demo' -D-
+curl -G 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.topic=http://push-pub.appspot.com/feed&format=json' -u'demo:demo' -D-
 {% endprism %}
 
 #### Server Sent Events
@@ -915,7 +915,7 @@ The token used to perform this call **must have** the `retrieve` right set to `t
 
 {% prism markup %}
 curl https://push.superfeedr.com/ 
-  -X GET 
+  -G 
   -u demo:demo 
   -d'hub.mode=replay' 
   -d'hub.topic=http://push-pub.appspot.com/feed' 
