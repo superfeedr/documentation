@@ -229,12 +229,12 @@ If you want your tokens to be private along with the rest of your account detail
       <tr>
         <td>hub.topic</td>
         <td>required</td>
-        <td>The URL of the HTTP resource to which you want to subscribe.</td>
+        <td>The URL of the HTTP resource to which you want to subscribe. It cannot be more than 2048 characters long.</td>
       </tr>
       <tr>
         <td>hub.callback</td>
         <td>required</td>
-        <td>The webhook: it's the URL to which notifications will be sent. Make sure you it's web-accessible, ie not behind a firewall.</td>
+        <td>The webhook: it's the URL to which notifications will be sent. Make sure you it's web-accessible, ie not behind a firewall. Its size is currently limited to 250 characters.</td>
       </tr>
       <tr>
         <td>hub.secret</td>
