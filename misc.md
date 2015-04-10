@@ -2,11 +2,10 @@
 title: Misc
 layout: page
 toc: {
-  "Track": {},
   "IP list": {}
 }
 ---
-
+<!-- 
 ## Track
 
 You may want to *subscribe transversally* to any entry that matches a certain condition, rather than subscribing to single feeds. For example, you might want to receive every entry that contains a particular keyword.
@@ -72,7 +71,7 @@ All track feeds start with the same prefix URL: `http://superfeedr.com/track`. Y
 
 * `http://superfeedr.com/track?include=france,paris` : Any entry that matches both france and paris.
 
-* `http://superfeedr.com/track?include=apple&exclude=iphone` : Any mention of Apple, without iPhone.
+* `http://superfeedr.com/track?include=apple&exclude=iphone` : Any mention of Apple, without iPhone. -->
 
 ## IP list
 
