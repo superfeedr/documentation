@@ -9,6 +9,8 @@ toc: {
 }
 ---
 
+## Introduction
+
 All the [PubSubHubbubb](http://pubsubhubbub.superfeedr.com/) hubs hosted here at Superfeedr are compliant with the core specifications for versions [0.3](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.3.html) and [0.4](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html).
 
 To enable your publisher hub and get subscribers coming to your real-time feeds, you need to set up [discovery](#discovery) and [ping](#ping).
@@ -76,6 +78,8 @@ Send a POST request to `http://<your-hub-name>.superfeedr.com/`, with the follow
 
 * `hub.mode="publish"`
 * `hub.url=<the URL of the resource that was updated>`
+
+You can submit multiple URLs per ping, either by using an array syntax like `hub.url[]=<url1>` and `hub.url[]=<url2>`, or by sending a coma separated list or url-encoded URLs like this `hub.url=<url1>;<url2>`.
 
 *Note*: If you’ve already implemented any type of ping, please get in touch, as we can probably receive it – we want to make it as easy as possible for you to implement the PubSubHubbub protocol.
 

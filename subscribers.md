@@ -6,9 +6,8 @@ toc: {
   "What can you subscribe to": {
     "XML based feeds": {},
     "JSON feeds": {},
-    "HTML fragments": {},
+    "HTML pages and fragments": {},
     "JSON fragments": {},
-    "Keywords And Expressions": {},
     "Other": {},
     "Redirects": {}
   },
@@ -78,7 +77,7 @@ If that signature changes between two fetches, Superfeedr propagates the change 
  
 You will also receive a notification if a resource goes into an HTTP error state. These notifications will only include the status part of the [schema](/schema.html).
 
-### HTML fragments
+### HTML pages and fragments
 
 Superfeedr also allows you to subscribe to HTML fragments within an HTML page.
 

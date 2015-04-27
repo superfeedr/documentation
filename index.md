@@ -9,7 +9,8 @@ toc: {
   "Contribution": {},
   "Definitions": {
     "Publisher": {},
-    "Subscriber": {}
+    "Subscriber": {},
+    "Tracker": {}
   }
 }
 ---
@@ -32,6 +33,7 @@ You can find links to the pages below in the top menu bar as well.
 * [Introduction](/): this page
 * [Subscribers](/subscribers.html): your app consumes RSS feeds
 * [Publishers](/publishers.html): your app publishes RSS feeds
+* [Trackers](/trackrs.html): your app subscribes to keywords
 * [Schema](/schema.html): learn about the data sent by Superfeedr
 * [Misc](/misc.html): extra features and information.
 
@@ -65,3 +67,6 @@ Superfeedr publishers are *applications* that produce and serve content for subs
 
 A Superfeedr subscriber is an *application* that consumes content published to third party feeds. Subscribers register their interest in receiving notifications whenever new content is published. 
 
+### Tracker
+
+A Superfeedr tracker is an *application* that consumes content based on queries including keywords, meta-data and other fields. They register their queries (subscription) and receive notifications as soon as the data has been published.
