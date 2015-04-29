@@ -33,7 +33,7 @@ You can find links to the pages below in the top menu bar as well.
 * [Introduction](/): this page
 * [Subscribers](/subscribers.html): your app consumes RSS feeds
 * [Publishers](/publishers.html): your app publishes RSS feeds
-* [Trackers](/trackrs.html): your app subscribes to keywords
+* [Trackers](/trackers.html): your app subscribes to keywords
 * [Schema](/schema.html): learn about the data sent by Superfeedr
 * [Misc](/misc.html): extra features and information.
 
