@@ -96,13 +96,13 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 </tr>
 
 <tr>
-  <td>porn_rank</td>
+  <td id="porn_rank">porn_rank</td>
   <td>only upon notification, if available</td>
   <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
 </tr>
 
 <tr>
-  <td>bozo_rank</td>
+  <td id="bozo_rank">bozo_rank</td>
   <td>only upon notification, if available</td>
   <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
 </tr>

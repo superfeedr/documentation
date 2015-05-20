@@ -223,6 +223,8 @@ Please note that in some cases, we are unable to extract the language (not enoug
 
 By default, Superfeedr tries to identify porn content and will filter it out of matching requests. Please note that this algorithm "learns" from any given feed before it can start to classify an entry as porn, which means that if the exclusion of porn content is an absolute requirement, you should *also* implement filtering on your side.
 
+We consider any feed as porn with a [porn rank](/schema.html#porn_rank) higher than 0.2.
+
 That said, for some cases, (building porn filters for example!), it makes sense to **disable** our porn filter. You can achieve this by adding `porn:ok` to your query.
 
 <div class="box">
@@ -246,6 +248,8 @@ That said, for some cases, (building porn filters for example!), it makes sense 
 ### Bozo Filtering
 
 Similar to porn filtering, Superfeedr is able to filter out matching entries from feeds we consider broken or spammy. For example, some feeds will generate infinite amounts of data using a random `id` for each new entry.
+
+We consider any feed as bozo with a [bozo rank](/schema.html#bozo_rank) higher than 0.3.
 
 You can disable this filtering by using `bozo:ok`.
 

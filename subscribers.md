@@ -906,6 +906,11 @@ The token used to perform this call **must have** the `retrieve` right set to `t
         <td>optional</td>
         <td>Optional number of items you want to retrieve. Current max is 50 and default is 1.</td>  
       </tr>
+      <tr>
+        <td>async</td>
+        <td>optional</td>
+        <td>If set to true, Superfeedr will respond to this very request and issue the notification right <em>after</em>.</td>  
+      </tr>
     </tbody>
   </table>
 </div>
