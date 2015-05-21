@@ -23,10 +23,17 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <th>Value</th>
 </tr>
 
+
 <tr>
   <td>status[@feed]</td>
   <td>&nbsp;</td>
   <td>contains the URL of the resource</td>
+</tr>
+
+<tr>
+  <td>title</td>
+  <td></td>
+  <td>The feed title</td>
 </tr>
 
 <tr>
@@ -73,7 +80,7 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 
 <tr>
   <td>entries_count_since_last_maintenance</td>
-  <td><br />only upon notification</td>
+  <td></td>
   <td>The number of updates in the resource since we last ran the maintenance script. This is a very good indicator of the verboseness of a resource. You may want to remove resources that are too verbose</td>
 </tr>
 
@@ -83,21 +90,16 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
 </tr>
 
-<tr>
-  <td>title</td>
-  <td>only upon notification</td>
-  <td>The feed title</td>
-</tr>
 
 <tr>
   <td id="porn_rank">porn_rank</td>
-  <td>only upon notification, if available</td>
+  <td>if available</td>
   <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
 </tr>
 
 <tr>
   <td id="bozo_rank">bozo_rank</td>
-  <td>only upon notification, if available</td>
+  <td>if available</td>
   <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
 </tr>
 
@@ -115,7 +117,8 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <last_maintenance_at>2013-05-10T09:45:08-07:00</last_maintenance_at>
   <entries_count_since_last_maintenance>5</entries_count_since_last_maintenance>
   <velocity>12</velocity>
-  <tilte>Lorem Ipsum</tilte>
+  <velocity>12</velocity>
+  <bozo_rank>0.1</bozo_rank>
 </status>
 {% endprism %}
 
