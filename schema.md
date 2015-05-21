@@ -90,12 +90,6 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 </tr>
 
 <tr>
-  <td>publisher</td>
-  <td>only upon retrieve</td>
-  <td>Set to true if Superfeedr hosts a hub for this feed.</td>
-</tr>
-
-<tr>
   <td id="porn_rank">porn_rank</td>
   <td>only upon notification, if available</td>
   <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
