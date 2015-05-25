@@ -11,63 +11,78 @@
   <link rel="shortcut icon" href="/favicon.png">
 </head>
 <body>
-  <header role="navigation" class="header">
+
+
+
+  <header class="header">
     <div class="container">
-      <h1 class="header-logo">
-        <a href="https://superfeedr.com/">
-          <img src="/img/logo.png" alt=""> <span>Superfeedr</span>
+
+      <div class="header-logo">
+        <a title="Superfeedr Documentation Home" href="/">
+          <img alt="Logo" src="/img/logo.svg"> 
+          <span>Superfeedr Documentation</span>
         </a>
-      </h1>
+      </div>
+
       <nav class="nav-header">
         <ul class="nav-items">
           <li class="nav-item">
-            <a href="https://superfeedr.com/about" class="nav-link">About</a>
+            <a class="nav-link" href="https://superfeedr.com/publisher">Publishers</a>
           </li>
           <li class="nav-item">
-            <a href="https://superfeedr.com/publisher" class="nav-link">Publishers</a>
+            <a class="nav-link" href="https://superfeedr.com/subscriber">Subscribers</a>
           </li>
           <li class="nav-item">
-            <a href="https://superfeedr.com/subscriber" class="nav-link">Subscribers</a>
+            <a class="nav-link" href="https://superfeedr.com/tracker">Trackers</a>
           </li>
           <li class="nav-item">
-            <a href="https://superfeedr.com/subscriber/pricing" class="nav-link">Pricing</a>
+            <a class="nav-link" href="https://superfeedr.com/pricing">Pricing</a>
           </li>
           <li class="nav-item">
-            <a href="https://superfeedr.com/login" class="nav-link nav-link-bubble">Login</a>
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/login">Login</a>
           </li>
-        </ul>
-      </nav>
-    </div>
+          <li class="nav-item">
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/users/new">Sign Up</a>
+          </li></ul>
+        </nav>
+      </div>
   </header>
+
   <main class="container body">
     {{ content }}
+  
+    &nbsp;
+    &nbsp;
   </main>
+
+
   <div class="footer container">
+
     <footer class="site-footer">
-      <ul class="site-footer__list">
-        <li class="site-footer__item">
-          <a href="/" class="site-footer__link">Documentation</a>
-        </li>
-        <li class="site-footer__item">
-          <a href="https://superfeedr.com/subscriber/pricing" class="site-footer__link">Pricing</a>
-        </li>
-        <li class="site-footer__item">
-          <a href="https://superfeedr.com/about" class="site-footer__link">Contact</a>
-        </li>
-        <li class="site-footer__item">
-          <a href="https://github.com/superfeedr/documentation/issues" class="site-footer__link">Support & Community</a>
-        </li>
-        <li class="site-footer__item">
-          <a href="http://blog.superfeedr.com/" class="site-footer__link">Blog</a>
-        </li>
-        <li class="site-footer__item">
-          <a href="https://superfeedr.com/terms" class="site-footer__link">Terms</a>
-        </li>
+      <div class="site-footer__block">
+        <a href="/" class="site-footer__logo"><img alt="Logo invert" src="/img/logo-invert.svg"></a>
+        <p class="site-footer__copyright"><span>Superfeedr</span><br>© 2009–2015</p>
+      </div>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Superfeedr</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">About</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/pricing">Pricing</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/terms">Terms</a></li>
       </ul>
-      <ul class="site-footer__meta">
-        <p class="site-footer__copyright">© 2009–2015 Superfeedr</p>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>For developers</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="http://documentation.superfeedr.com/">Documentation</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/">Code Libraries</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/documentation/issues">Support</a> <a href="" class="site-footer__link"></a></li>
+      </ul>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Connect with us</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">Contact Us</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="mailto:info@superfeedr.com">Email</a> </li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://twitter.com/superfeedr">Twitter</a> </li>
       </ul>
     </footer>
+
   </div>
 </body>
 <script src="/js/jquery.min.js">
