@@ -85,7 +85,7 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
 </tr>
 
 <tr>
-  <td>velocity</td>
+  <td id="velocity">velocity</td>
   <td></td>
   <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
 </tr>
@@ -116,7 +116,6 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <last_parse>2013-05-10T11:17:19-07:00</last_parse>
   <last_maintenance_at>2013-05-10T09:45:08-07:00</last_maintenance_at>
   <entries_count_since_last_maintenance>5</entries_count_since_last_maintenance>
-  <velocity>12</velocity>
   <velocity>12</velocity>
   <bozo_rank>0.1</bozo_rank>
 </status>

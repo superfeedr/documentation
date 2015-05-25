@@ -473,11 +473,25 @@ Search queries are nested string parameters. We use the following keys:
         <td><em>search[feed][hostname]=blog.superfeedr.com</em> or <em>search[feed.hostname]=blog.superfeedr.com</em></td>
       </tr>
 
+
       <tr>
-        <td><code>feed hostname</code></td>
-        <td>an exact match of the feed's URL hostname.</td>
-        <td><em>search[feed][hostname]=blog.superfeedr.com</em> or <em>search[feed.hostname]=blog.superfeedr.com</em></td>
+        <td><code>feed velocity</code></td>
+        <td>a number or range for the <a href="/schema.html#velocity">feed's velocity</a>. Ranges start with &gt;, &gt;=, &lt;=, &lt; </td>
+        <td><em>search[feed][velocity]=&gt;10</em> or <em>search[feed][velocity]=&lt;=1</em></td>
       </tr>
+
+      <tr>
+        <td><code>feed bozo rank</code></td>
+        <td>a number or range for the <a href="/schema.html#bozo_rank">feed's bozo rank</a>. Ranges start with &gt;, &gt;=, &lt;=, &lt; </td>
+        <td><em>search[feed][bozo]=&gt;0</em></td>
+      </tr>
+
+      <tr>
+        <td><code>feed porn rank</code></td>
+        <td>a number or range for the <a href="/schema.html#porn_rank">feed's porn rank</a>. Ranges start with &gt;, &gt;=, &lt;=, &lt; </td>
+        <td><em>search[feed][porn]=&gt;0</em></td>
+      </tr>
+
 
       <tr>
         <td><code>endpoint jid</code></td>
