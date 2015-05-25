@@ -11,21 +11,15 @@ toc: {
 
 ## Introduction
 
-All the [PubSubHubbubb](http://pubsubhubbub.superfeedr.com/) hubs hosted here at Superfeedr are compliant with the core specifications for versions [0.3](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.3.html) and [0.4](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html).
-
-To enable your publisher hub and get subscribers coming to your real-time feeds, you need to set up [discovery](#discovery) and [ping](#ping).
+All the [PubSubHubbubb](http://pubsubhubbub.superfeedr.com/) hubs hosted here at Superfeedr are compliant with the core specifications for versions [0.3](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.3.html) and [0.4](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html). To enable your publisher hub and get subscribers coming to your real-time feeds, you need to set up [discovery](#discovery) and [ping](#ping).
 
 ## Discovery
 
-Discovery tells your current and future subscribers who poll your resources that they can get content from your Superfeedr hosted hub.
-
-It’s as easy as adding the following to your resources:
+Discovery tells your current and future subscribers who poll your resources that they can get content from your Superfeedr hosted hub.It’s as easy as adding the following to your resources:
 
 ### Any HTTP resources
 
-For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers. Include the following HTTP Header as defined in [RFC5988](http://tools.ietf.org/html/rfc5988) with each resource:
-
-For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers.
+For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers. Include the following HTTP Header as defined in [RFC5988](http://tools.ietf.org/html/rfc5988) with each resource. 
 
 {% prism javascript %}  
 Link: <https://your-hub-name.superfeedr.com/>; rel="hub"
@@ -33,6 +27,8 @@ Link: <http://your.resource.url>; rel="self"
 {% endprism %}  
 
 ### RSS
+
+For RSS feeds, you need to add the links in the `channel` section of your feed.
 
 {% prism markup %}  
 <?xml version="1.0"?>
@@ -53,6 +49,8 @@ Link: <http://your.resource.url>; rel="self"
 
 ### Atom
 
+For RSS feeds, you need to add the links in the `feed` section of your feed.
+
 {% prism markup %}  
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
  <title>...</title>
@@ -70,9 +68,7 @@ Link: <http://your.resource.url>; rel="self"
 
 ## Ping
 
-The next step is to ping the hub whenever you update the content of any resource.
-
-This will allow us to fetch this specific resource, identify what is new, and then push the update to your subscribers.
+The next step is to ping the hub whenever you update the content of any resource. This will allow us to fetch this specific resource, identify what is new, and then push the update to your subscribers.
 
 Send a POST request to `http://<your-hub-name>.superfeedr.com/`, with the following keys and values:
 
@@ -99,16 +95,10 @@ If the URL is not accessible, or if you don’t return a `204` code, we will ref
 
 **This feature is for Pro Hubs only**.
 
-If you have millions of feeds in our system, and are constantly pinging us with new content, we suggest you **fat ping*** us instead.
+If you have millions of feeds in our system, and are constantly pinging us with new content, we suggest you **fat ping*** us instead. The standard PubSubHubbub protocol specifies that the publisher (you) does light pings to the hub, because the origin of these pings cannot be verified. When we get a light ping, we will poll your feed to identify the new content.
 
-The standard PubSubHubbub protocol specifies that the publisher (you) does light pings to the hub, because the origin of these pings cannot be verified. When we get a light ping, we will poll your feed to identify the new content.
-
-However, this polling can become expensive and draining if you have tens of thousands of feeds – or more. In this case, performing fat pings is much more time and cost effective.
-
-You will use the same syntax as light pings, but you would add two additional parameters:
+However, this polling can become expensive and draining if you have tens of thousands of feeds – or more. In this case, performing fat pings is much more time and cost effective. You will use the same syntax as light pings, but you would add two additional parameters:
 
 * `hub.content` : the content of the feed, including only the new entry or entries. Superfeedr will parse this content directly, rather than polling your feeds.
 * `hub.signature` : this is an HMAC signature computed with the secret shown in your hub’s settings, and the `hub.content`. This lets us know the content is coming from you and hasn’t been forged by a third party.
-
-
 
