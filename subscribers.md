@@ -59,9 +59,7 @@ This behaviour is **compliant with both RSS and Atom specifications**. If we’r
 
 If an entry is updated, they are *not propagated by default*. This is because we want to avoid creating numerous false positives.
 
-There is, however, one exception.
- 
-If a new entry contains a valid, `updated` element, and the update is very recent (within three minutes), you will receive a notification. This means that we will usually propagate updates for feeds if we receive a ping from the publisher.
+There is, however, one exception: if a new entry contains a valid, `updated` element, and the update is very recent (within three minutes), you will receive a notification. This means that we will usually propagate updates for feeds if we receive a ping from the publisher.
 
 #### Errors
 
@@ -71,29 +69,19 @@ This will allow you to monitor the situation, and decide whether you want to mai
 
 ### JSON feeds
 
-It is obviously possible to subscribe to any kind of JSON document.  In order to identify new content, we compute a hash signature of the whole document.
- 
-If that signature changes between two fetches, Superfeedr propagates the change by sending the full JSON document to your endpoint.
+It is obviously possible to subscribe to any kind of JSON document.  In order to identify new content, we compute a hash signature of the whole document. If that signature changes between two fetches, Superfeedr propagates the change by sending the full JSON document to your endpoint.
  
 You will also receive a notification if a resource goes into an HTTP error state. These notifications will only include the status part of the [schema](/schema.html).
 
 ### HTML pages and fragments
 
-Superfeedr also allows you to subscribe to HTML fragments within an HTML page.
-
-A fragment is a portion of an HTML document, defined by a *CSS path*. You can subscribe to DOM elements inside a page as long as there is a CSS path that leads to them.
- 
-You will append the URL-escaped CSS path to the document URL, using the fragment part of the URL.
- 
-If there are multiple elements matching your CSS path, Superfeedr will concatenate each of them.
+Superfeedr also allows you to subscribe to HTML fragments within an HTML page. A fragment is a portion of an HTML document, defined by a *CSS path*. You can subscribe to DOM elements inside a page as long as there is a CSS path that leads to them. You will append the URL-escaped CSS path to the document URL, using the fragment part of the URL. If there are multiple elements matching your CSS path, Superfeedr will concatenate each of them.
 
 For example, if you want to subscribe to the `.h-entry` element of `http://blog.superfeedr.com`, you will need to subscribe to `http://blog.superfeedr.com#.h-entry`.
 
 ### JSON fragments
 
-Much like subscribing to HTML fragments, Superfeedr also allows you to subscribe to parts of a JSON document, using the fragments API.
- 
-To do this, Superfeedr uses the [JSONPath](http://goessner.net/articles/JsonPath/) syntax. To build the topic url, you append the URL-escaped JSONPath to the document URL, using the fragment part of the URL.
+Much like subscribing to HTML fragments, Superfeedr also allows you to subscribe to parts of a JSON document, using the fragments API. To do this, Superfeedr uses the [JSONPath](http://goessner.net/articles/JsonPath/) syntax. To build the topic url, you append the URL-escaped JSONPath to the document URL, using the fragment part of the URL.
 
 #### Example
 
@@ -138,49 +126,29 @@ If you wanted to keep an eye on the price of the bicycle, you would subscribe to
 
 ### Other Resources
 
-When you are subscribing to any other type of HTML resource, Superfeedr will compute a signature from the bytes included in the document.
- 
-If the signature has changed when we next fetch the resource, you will receive the whole document again.
- 
-Note that timestamps, changes in tracking codes and so on can create false positives here.
+When you are subscribing to any other type of HTML resource, Superfeedr will compute a signature from the bytes included in the document. If the signature has changed when we next fetch the resource, you will receive the whole document again. Note that timestamps, changes in tracking codes and so on can create false positives here.
 
 ### Redirects
 
-When fetching resources, Superfeedr will follow up to five redirects. These can be permanent or temporary, and you will be notified of the content at the end of the redirect chain.
- 
-For this reason, we strongly recommend subscribing to the **canonical** URL of each resource.
+When fetching resources, Superfeedr will follow up to five redirects. These can be permanent or temporary, and you will be notified of the content at the end of the redirect chain. For this reason, we strongly recommend subscribing to the **canonical** URL of each resource.
  
 ## What API to choose
 
-Superfeedr offers 2 different API : [XMPP PubSub](/subscribers.html#xmpppubsub) and [HTTP PubSubHubbub](/subscribers.html#webhooks).
+Superfeedr offers 2 different API : [XMPP PubSub](/subscribers.html#xmpppubsub) and [HTTP PubSubHubbub](/subscribers.html#webhooks). Which API you choose to use will depend on your goal for using Superfeedr. The main difference is that XMPP PubSub uses the [XMPP protocol](http://xmpp.org/xmpp-protocols/). This is a powerful protocol, but it is extremely different from HTTP. **If you’re not familiar with XMPP, stick with HTTP PubSubHubbub**. 
 
-Which API you choose to use will depend on your goal for using Superfeedr.
-
-The first difference is that XMPP PubSub uses the XMPP protocol. This is a powerful protocol, but it is extremely different to HTTP. If you’re not familiar with XMPP, **stick with HTTP PubSubHubbub**.
-
-The second difference is that HTTP PubSubHubbub is not accessible from behind the firewall. So, if you’re creating an app that doesn’t need to live on the Web, XMPP may be the better choice.
-
-If you’re not sure about which one is right for you, we’re more than happy to talk you through it. Just shoot us an email at [info@superfeedr.com](mailto:info@superfeedr.com)
+If you’re not sure about which one is right for you, we’re more than happy to talk you through it. Just send us an email at [info@superfeedr.com](mailto:info@superfeedr.com) so we can provide guidance.
 
 ## Webhooks
 
-Our API is based on the [PubSubHubbub](https://en.wikipedia.org/wiki/PubSubHubbub) protocol with a couple simplifications 
+Our API is based on the [PubSubHubbub protocol](https://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html) with a couple simplifications. However, you can use your *subscriber* code with *any other hub*. You can also use any other library that supports and implements PubSubHubbub.
 
-However, you can use your *subscriber* code with *any other hub*. You can also use any other library that supports and implements PubSubHubbub.
+Our PubSubHubbub endpoint is at [https://push.superfeedr.com/](https://push.superfeedr.com/). The key difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to [authenticate](/subscribers.html#addingfeedswithpubsubhubbub) your PubSubHubbub calls, making all the verification steps of each request optional.
 
-> To get the most out of Superfeedr and the PubSubHubbub protocol, we recommend reading the [PubSubHubbub spec](https://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html).
-
-Our PubSubHubbub endpoint is at [https://push.superfeedr.com/](https://push.superfeedr.com/).
-
-The key difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to [authenticate](/subscribers.html#addingfeedswithpubsubhubbub) your PubSubHubbub calls, making all the verification steps of each request optional.
-
-And in case you want to manually specify an HTTP method different to the one used in the request, we also support the use of the `X-HTTP-Method-Override` HTTP header.
+If you want to manually specify an HTTP method different to the one used in the request, we also support the use of the `X-HTTP-Method-Override` HTTP header.
 
 ### HTTP Authentication
 
-Authentication using the Webhooks API is performed through [HTTP Basic Autentication](http://tools.ietf.org/html/rfc2617). Most HTTP libraries will allow for an easy configuration with this. 
- 
-To get started with an authentication, use your Superfeedr login, then pick from one of these options for your password:
+Authentication using the Webhooks API is performed through [HTTP Basic Autentication](http://tools.ietf.org/html/rfc2617). Most HTTP libraries will allow for an easy configuration with this. To get started with an authentication, use your Superfeedr login, then pick from one of these options for your password:
 
 * A password token that [you can generate](https://superfeedr.com/tokens/new).
 * Your main Superfeedr password (though we recommend using a token for security purposes).
@@ -278,19 +246,15 @@ Subscriptions at Superfeedr are a unique combination of a resource URL and a cal
   -d'hub.callback=http://mycallback.tld/ok'
 {% endprism %}
 
-#### Response
+#### Response by HTTP status code
 
-Superfeedr will return `204` if the subscription was performed and `202` if the subscription has yet to be verified (only if you supplied a `hub.verify=async` parameter).
-
-If you used the `retrieve` parameter, Superfeedr will return 200 and the content of the feed in the body.
-
-If you receive a `422` HTTP response, please check the body, as it will include the reason for the subscription failure.
-
-Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+* `204`: the subscription was performed and you should expect notifications 
+* `202`: the subscription has yet to be verified (only if you supplied a `hub.verify=async` parameter).
+* `200`: you used the `retrieve` parameter. The content of the feed is in the body of the response.
+* `422`: please check the body, as it will include the reason for the subscription failure.
+* Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 
 ### Removing Feeds with PubSubHubbub
-
-This call uses the same syntax used in the section above on [adding feeds](/subscribers.html#addingfeedswithpubsubhubbub). The only difference is the `hub.mode` value.
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
@@ -343,19 +307,15 @@ curl https://push.superfeedr.com/
   -d'hub.callback=http://mycallback.tld/ok'
 {% endprism %}
 
-#### Response
 
+#### Response by HTTP status code
 
-Superfeedr will return `204` if the unsubscribe was successful, and `202` if the unsubscribe has yet to be verified (only if you supplied a `hub.verify=async` parameter).
-
-If you receive a `422` HTTP response, please check the body, as it will include the reason for the unsubscribe failure.
-
-Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+* `204`: the unsubscribe was successful
+* `202`: the unsubscribe has yet to be verified (only if you supplied a `hub.verify=async` parameter).
+* `422`: Check the body, as it will include the reason for the unsubscribe failure.
+* Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 
 ### Listing Subscriptions with PubSubHubbub
-
-This call will allow you to retrieve subscriptions on your account. 
-This call allows you to retrieve subscriptions on your account. You can also use the `search` parameter to find subscriptions to specific feeds.
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
@@ -404,6 +364,12 @@ This call allows you to retrieve subscriptions on your account. You can also use
 
 By default, subscriptions are listed in order of creation. The oldest subscriptions are listed first, while the most recent is listed last. 
 
+#### Response by HTTP status code
+
+* `200`: the list of matching subscriptions is in the body in a JSON format (or jsonp if applicable).
+* Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+
+
 #### Example
 
 {% prism markup %}
@@ -413,13 +379,6 @@ curl https://push.superfeedr.com/
   -d'hub.mode=list' 
   -d'page=2'
 {% endprism %}
-
-#### Response
-
-Superfeedr will return 200 with the list of matching subscriptions in a JSON format. If you supplied a callback parameter (JSONP), the JSON will be wrapped in it.
-
-Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
-
 {% prism javascript %}
 [{
   "subscription": {
@@ -529,8 +488,6 @@ Search queries are nested string parameters. We use the following keys:
 
 ### Retrieving Entries with PubSubHubbub
 
-This call allows you to retrieve past entries from one or more feeds. Note that you need to be subscribed to the feed(s) in order to do this.
-
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
@@ -555,7 +512,7 @@ This call allows you to retrieve past entries from one or more feeds. Note that 
       <tr>
         <td>hub.topic</td>
         <td>optional</td>
-        <td>The URL of the HTTP resource for which you want the past entries.</td>
+        <td>The URL of the HTTP resource for which you want the past entries. Make sure you have previously subscribed to the resource.</td>
       </tr>
       <tr>
         <td>hub.callback</td>
@@ -716,21 +673,17 @@ curl https://push.superfeedr.com/
   -d'hub.callback[endpoint][hostname]=my.domain.com' 
 {% endprism %}
 
-#### Response
 
-Superfeedr will return `200` with the content if it could retrieve the past entries.
+#### Response by HTTP status code
 
-If you are not subscribed to the corresponding feed(s), or if the feed has not yet been added to Superfeedr, you will receive a `404`.
-
-If you receive a `422` HTTP, please check the body as it will include the reason for the failure.
-
-Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+* `200`: the body includes the feed's status and past items.
+* `404`: you are not subscribed to the feed.
+* `422`: please check the body as it will include the reason for the failure.
+* Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 
 ### Streaming RSS
 
-When retrieving past RSS content, it is possible to keep the HTTP connection to Superfeedr alive. This ensures new entries are sent directly to your client.
-
-To do this, you need to use the `stream.superfeedr.com` endpoint:
+When retrieving past RSS content, it is possible to keep the HTTP connection to Superfeedr alive. This ensures new entries are sent directly to your client. To do this, you need to use the `stream.superfeedr.com` endpoint:
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://stream.superfeedr.com</code>
@@ -751,42 +704,29 @@ You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithp
     <tbody>
       <tr>
         <td>wait</td>
-        <td>required</td>
-        <td><code>stream</code> or <code>poll</code></td>
+        <td>required. <code>stream</code> or <code>poll</code>. </td>
+        <td>With <code>stream</code>, the past entries will be returned and the HTTP connections will be kept open to show any future entries as well. When using <code>poll</code>, there are two potential responses:
+          <ul>
+            <li>If Superfeedr has the content that corresponds to the retrieve API call (for past entries), the response will include that content. The connection will be closed after that.</li>
+            <li>If Superfeedr does not have the corresponding content, then the connection will be kept alive until new entries are added to the feed. These new entries will then be served and the connection will be closed. >e strongly recommend using the <code>after</code> query parameter along with <code>poll</code>. </li>
+          </ul>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
 
-#### Stream
-
-If you supply the `stream` value, Superfeedr will return the content that corresponds to the retrieve API call. It will also keep the connection and serve any future entries to this connection.
-
-##### Example:
+#### Example
 
 {% prism bash %}
-curl -G 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.callback=http://my.webhook.com/path&format=json' -u'demo:demo' -D-
-{% endprism %}
-
-#### Poll
-
-If you supply the `poll` value, there are two potential responses.
-
-* If Superfeedr has the content that corresponds to the retrieve API call (for past entries), the response will include that content. The connection will be closed after that.
-
-* If Superfeedr does not have the corresponding content, then the connection will be kept alive until new entries are added to the feed. These new entries will then be served and the connection will be closed. If you use the `poll` value, we strongly recommend using the `after` query parameter as well. This will let you keep the connection open until new content has been added.
-
-##### Example:
-
-{% prism bash %}
-curl -G 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.topic=http://push-pub.appspot.com/feed&format=json' -u'demo:demo' -D-
+# Stream
+curl -G 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.callback=http://my.webhook.com/path&format=json' \
+  -u'demo:demo'
 {% endprism %}
 
 #### Server Sent Events
 
-Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/) (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events.
-
-##### Example:
+Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/) (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events. 
 
 {% prism javascript %}
 var url = "https://stream.superfeedr.com/";
@@ -802,13 +742,9 @@ source.addEventListener("notification", function(e) {
 
 ### PubSubHubbub Notifications
 
-Notifications are POST requests that are sent to the callback you specified for the subscription. ​
+Notifications are POST requests that are sent to the callback you specified for the subscription. ​ The body of the response includes the notification, in the format you specified upon [subscription](/subscribers.html#addingfeedswithpubsubhubbub). Please check the [schema](/schema.html) if you need more detail on this.  
 
-The body of the response includes the notification, in the format you specified upon [subscription](/subscribers.html#addingfeedswithpubsubhubbub). Please check the [schema](/schema.html) if you need more detail on this.  
-
-We consider notifications successful if we can reach your callback and it returns a `200` code. If the notification fails, we will **retry three times** after five, ten and 15 seconds (these times may vary slightly).
-
-If we are not able to notify you after these additional attempts, we will drop the notification and you can use the [our retrieve feature](/subscribers.html#retrievingentrieswithpubsubhubbub), discussed above, to get the missing data.
+We consider notifications successful if we can reach your callback and it returns a `200` code. If the notification fails, we will **retry three times** after five, ten and 15 seconds (these times may vary slightly). If we are not able to notify you after these additional attempts, we will drop the notification and you can use the [our retrieve feature](/subscribers.html#retrievingentrieswithpubsubhubbub), discussed above, to get the missing data.
 
 Additionally, notifications will include the following headers for you to inspect:
 
@@ -858,31 +794,19 @@ Additionally, notifications will include the following headers for you to inspec
 
 #### Best Practice: use HTTPS
 
-You should **always** use the `https` endpoints when sending requests to Superfeedr.
- 
-We also recommend using `https` for your own endpoints. This guarantees privacy and the integrity of the complete notification (including the headers).
+You should **always** use the `https` endpoints when sending requests to Superfeedr. We also recommend using `https` for your own endpoints. This guarantees privacy and the integrity of the complete notification (including the headers).
 
 #### Best Practice: use hub.secret
 
-When subscribing to a feed, you should use `hub.secret`, unless you are using https for your callback URLs.
- 
-This secret will be used to compute a signature for each notification. You should always make sure these signatures match. You can [read more about that here](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html#authednotify) .
+When subscribing to a feed, you should use `hub.secret`, unless you are using https for your callback URLs. This secret will be used to compute a signature for each notification. You should always make sure these signatures match. You can [read more about that here](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html#authednotify) .
 
 #### Best Practice: use different callback urls
 
-Your callback urls should be *hard to guess*.
-
-More importantly, you should **use different callbacks for each of your subscriptions**. 
-
-This way, you can quickly identify which feed is involved in each notification, without having to parse the content.
- 
-It also makes it easier to identify problems using the access logs of your HTTP servers.
+Your callback urls should be *hard to guess*. More importantly, you should **use different callbacks for each of your subscriptions**. This way, you can quickly identify which feed is involved in each notification, without having to parse the content. It also makes it easier to identify problems using the access logs of your HTTP servers.
 
 ### Replaying Notifications
 
-This call is mostly used as a debugging tool. It allows you to replay past notifications.
-
-The token used to perform this call **must have** the `retrieve` right set to `true`.
+This call is mostly used as a debugging tool. It allows you to replay past notifications. The token used to perform this call **must have** the `retrieve` right set to `true`.
 
 <div class="panel">
   <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
@@ -940,15 +864,13 @@ curl https://push.superfeedr.com/
   -d'hub.callback=http://mycallback.tld/ok'
 {% endprism %}
 
-#### Response
 
-Superfeedr will return `204` if the notification was performed successfully.
- 
-If you are not subscribed to the feed, or if the feed has not yet been added to Superfeedr, you will receive a `404` response.
+#### Response by HTTP status code
 
-If you receive a `422` HTTP response, please check the body, as it will include the reason for the subscription failure.
-
-Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+* `204`: the notification was performed successfully.
+* `404`: you are not subscribed to the feed.
+* `422`: please check the body as it will include the reason for the failure.
+* Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
 
 ### PubSubHubbub API Wrappers
 
@@ -958,24 +880,14 @@ You can also check [our Github](https://github.com/superfeedr/) repository for s
 
 ## XMPP PubSub
 
-The XMPP API is based on the [XEP-0060 syntax](http://xmpp.org/extensions/xep-0060.html#subscriber-subscribe). Additional data has been included within a Superfeedr-specific namespace.
-
-You can use the XMPP console of any XMPP desktop client to inspect that traffic.
+The XMPP API is based on the [XEP-0060 syntax](http://xmpp.org/extensions/xep-0060.html#subscriber-subscribe). Additional data has been included within a Superfeedr-specific namespace. You can use the XMPP console of any XMPP desktop client to inspect that traffic.
 
 
 ### Authentication
 
-You can connect your Jabber client to Superfeedr by using JID: `username@superfeedr.com` and your main Superfeedr password.
-
-You should, however,[create a specific token](https://superfeedr.com/tokens/new) as long as this token enables the XMPP right.
-
-You can also specify another JID in your user settings if you want to connect from our own XMPP server. This is the most flexible option, but it does require you to host your own XMPP server.
-
-Finally, make sure your client sends you a `<presence>` stanza when they are fully connected.
+You can connect your Jabber client to Superfeedr by using JID: `username@superfeedr.com` and your main Superfeedr password. You should, however,[create a specific token](https://superfeedr.com/tokens/new) as long as this token enables the XMPP right. You can also specify another JID in your user settings if you want to connect from our own XMPP server. This is the most flexible option, but it does require you to host your own XMPP server. Finally, make sure your client sends you a `<presence>` stanza when they are fully connected.
 
 ### Adding Feeds with XMPP
-
-Subscribing to a new feed will allow you to receive notifications for any new entries from that feed.
 
 <div class="box">
   <table class="feed-table table">
@@ -1033,9 +945,7 @@ Subscribing to a new feed will allow you to receive notifications for any new en
 </iq>
 {% endprism %}
 
-You can add up to 20 resources in you subscription query, as long as they all have the same `subscribe[@jid]`.
-
-If you need to subscribe with multiple JIDs, we suggest that you send multiple subscription queries.
+You can add up to 20 resources in you subscription query, as long as they all have the same `subscribe[@jid]`. If you need to subscribe with multiple JIDs, we suggest that you send multiple subscription queries.
 
 #### Response
 
@@ -1069,8 +979,6 @@ The server will acknowledge the subscription(s) and send the status information 
 In other cases, you will receive an iq with `type="error"`. Please check that your subscription query abides by the constraints described above.
 
 ### Removing Feeds with XMPP
-
-When you remove a feed, you will stop receiving notifications from it.
 
 <div class="box">
   <table class="feed-table table">
@@ -1134,8 +1042,6 @@ The server acknowledges the unsubscribe:
 {% endprism %}
 
 ### Listing Feeds with XMPP
-
-You can list your existing subscriptions. This list is paginated with 20 items per page.
 
 <div class="box">
   <table class="feed-table table">
@@ -1211,8 +1117,6 @@ The server sends the list of resources to which you are subscribed for the page 
 {% endprism %}
 
 ### Retrieving Entries with XMPP
-
-It is possible to query Superfeedr for previous entries in feeds to which you are subscribed.
 
 <div class="box">
   <table class="feed-table table">
@@ -1314,9 +1218,7 @@ If you have not subscribed to the feed, you will receive the following response:
 
 ### XMPP Notifications
 
-Once you’re subscribed to a resource, your XMPP client **must be connected at all times**. You will miss messages if your client is offline for too long.
-
-Please see the [schema](/schema.html) for details on the status, as well as the feed and entry information.
+Once you’re subscribed to a resource, your XMPP client **must be connected at all times**. You will miss messages if your client is offline for too long. Please see the [schema](/schema.html) for details on the status, as well as the feed and entry information.
 
 {% prism markup %}
 <message from="firehoser.superfeedr.com" to="login@superfeedr.com">
@@ -1352,10 +1254,6 @@ Please see the [schema](/schema.html) for details on the status, as well as the 
 
 ### XMPP API Wrappers
 
-XMPP *can be scary*. If you don’t want to mess with it, we have various wrappers for the XMPP API. These include [Ruby](https://github.com/superfeedr/superfeedr-rb), [Perl](https://github.com/superfeedr/superfeedr-perl), [Python](https://github.com/superfeedr/superfeedr-python), [Node.js](https://github.com/superfeedr/superfeedr-node), [Java](https://github.com/superfeedr/superfeedr-java) and [PHP](https://github.com/superfeedr/superfeedr-php). They are all available on our GitHub page.
-
-If you need a wrapper in another language, get in touch! We’re available on [info@superfeedr.com](mailto:info@superfeedr.com).
-
-And don’t forget – the community creates these wrappers. If you can make improvements, feel free to do so.
+XMPP *can be scary*. If you don’t want to mess with it, we have various wrappers for the XMPP API. These include [Ruby](https://github.com/superfeedr/superfeedr-rb), [Perl](https://github.com/superfeedr/superfeedr-perl), [Python](https://github.com/superfeedr/superfeedr-python), [Node.js](https://github.com/superfeedr/superfeedr-node), [Java](https://github.com/superfeedr/superfeedr-java) and [PHP](https://github.com/superfeedr/superfeedr-php). They are all available on our GitHub page. If you need a wrapper in another language, get in touch! We’re available on [info@superfeedr.com](mailto:info@superfeedr.com). And don’t forget – the community creates these wrappers. If you can make improvements, feel free to do so.
 
 
