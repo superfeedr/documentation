@@ -90,6 +90,12 @@ Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only)
   <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
 </tr>
 
+<tr>
+  <td id="popularity">popularity</td>
+  <td></td>
+  <td>Float. Starts at 0 (not popular).The greater the number, the more popular the feed. Popularity is assessed for each feed based on several different signals from the social web, number of clicks, number of subscribers. It also depends on the popularity of the web pages which link to the feed.</td>
+</tr>
+
 
 <tr>
   <td id="porn_rank">porn_rank</td>
