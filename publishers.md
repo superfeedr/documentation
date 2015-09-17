@@ -131,6 +131,8 @@ Feed URLs are not "guessable". Every website uses a different pattern which is w
 
 Make sure to use a **meaningful title** (not RSS or feed!), and replace `application/rss+xml` with `application/atom+xml` if your feed is in the ATOM format. It's also considered good practice to use absolute URLs for the `href`.
 
+It's important that you have **bi-directional links** between your HTML resources and your XML feeds which point to each others. 
+
 You can find more details on this [RSS board page](http://www.rssboard.org/rss-autodiscovery).
 
 
