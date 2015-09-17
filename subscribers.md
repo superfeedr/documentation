@@ -517,7 +517,7 @@ Search queries are nested string parameters. We use the following keys:
       <tr>
         <td>hub.callback</td>
         <td>optional</td>
-        <td>The value can either be a callback with which you are subscribed to one or more feeds or a search query that should match one or more callback urls used to subscribed to several feeds. Please, use the query syntax used to <a href="#search-queries">search for subscriptions</a>. In both cases, make sure there are less than 200 matching feeds.</td>
+        <td>The value can either be a callback with which you are subscribed to one or more feeds or a search query that should match one or more callback urls used to subscribed to several feeds. Please, use the query syntax used to <a href="#search-queries">search for subscriptions</a> (see example below) . In both cases, make sure there are less than 200 matching feeds. </td>
       </tr>
       <tr>
         <td>count</td>

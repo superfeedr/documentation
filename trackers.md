@@ -8,6 +8,7 @@ toc: {
     "Site": {},
     "Link": {},
     "Language": {},
+    "Popularity": {},
     "Porn filtering": {},
     "Bozo Filtering": {}
   },
@@ -213,6 +214,32 @@ Please note that in some cases, we are unable to extract the language (not enoug
       <tr>
         <td><code>-language:it</code></td>
         <td>will exclude entries which use the italian language. If the language can't be determined, the entries will not match.</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+
+### Popularity
+
+Each feed going through Superfeedr has a popularity ranking. This popularity is a compbination of multiple signals and factors: some of them internal and others external (social networks, pagerank... etc). Any feed's popularity evolves slowly.
+You can build filters which take the popularity of the source into account and exclude content coming from unpopular sources.
+
+The value should be a range (> or <) to match popularity greater or small than a specific value. Check [this blog post](http://blog.superfeedr.com/subscribe-to-popular-rss-feeds/) to learn about the distribution of these ranges.
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>popularity:>3</code></td>
+        <td>will match only entries published in feeds with a popularity greater than 3.</td>
       </tr>
       
     </tbody>
