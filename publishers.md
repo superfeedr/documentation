@@ -5,7 +5,8 @@ toc: {
   "Discovery": {},
   "Ping": {},
   "Subscription Callback": {},
-  "Fat Pings": {}
+  "Fat Pings": {},
+  "Good Practices": {}
 }
 ---
 
@@ -101,4 +102,48 @@ However, this polling can become expensive and draining if you have tens of thou
 
 * `hub.content` : the content of the feed, including only the new entry or entries. Superfeedr will parse this content directly, rather than polling your feeds.
 * `hub.signature` : this is an HMAC signature computed with the secret shown in your hub’s settings, and the `hub.content`. This lets us know the content is coming from you and hasn’t been forged by a third party.
+
+
+## Good Practices
+
+If you publish XML feeds (RSS or Atom), there are **good practices** that you should make sure to respect. This will *increase adoption and engagement* with your content. 
+
+### One feed per resource
+
+A resource can be the home page of your site, a section, an author's page... etc. In an ideal world, you should have *distinct feeds for each of these resources*. However, you should always make sure to have **only one feed per resource**. Don’t use both RSS and ATOM: pick one! Any decent reader can consume both, so make your job easy by only maintaining a single format.
+
+### Feed Auto-Discovery
+
+Feed URLs are not "guessable". Every website uses a different pattern which is why you need to make your **XML feeds are discoverable**. This mechanism is used by feed readers and search engine to find your feeds when the user enters a domain name of a page's URL. For this, HTML offers a great mechanism: the `<head>` section. Here's an example:
+
+{% prism markup %}  
+<html>
+  <head>
+    <!-- Auto-discovery: -->
+    <link rel="alternate" type="application/rss+xml" title="title-of-the-page" href="url-of-the-feed">
+    <!--  -->
+  </head>
+  <body>
+    <!-- the web page's contents -->
+  </body>
+</html> 
+{% endprism %}  
+
+Make sure to use a **meaningful title** (not RSS or feed!), and replace `application/rss+xml` with `application/atom+xml` if your feed is in the ATOM format. It's also considered good practice to use absolute URLs for the `href`.
+
+You can find more details on this [RSS board page](http://www.rssboard.org/rss-autodiscovery).
+
+
+### Keep your feeds valid
+
+As opposed to HTML, feeds have a pretty **strong semantic aspect**. This means that it's important to respect to respect the format and schema you picked. There exists multiple tools to make sure your feeds are valid: [W3C's validator](https://validator.w3.org/feed/), [Flipboard's Validator](https://feedvalidator.flipboard.com/), [FeedValidator](http://feedvalidator.org/), [RSS Board's validator](http://www.rssboard.org/rss-validator/)... etc.
+
+Here's also a list of DOs and DONTs:
+
+* Use unique (immutable) identifiers for entries : `<guid>` in RSS and `<id>` in ATOM
+* Use a valide date format: [ISO8601](https://en.wikipedia.org/wiki/ISO_8601).
+* Use the *Roman Calendar*.
+* It’s ok to have only `<summary>` instead of the full `<content>` but don’t show it as full content if it’s just a summary.
+
+
 
