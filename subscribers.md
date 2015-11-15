@@ -42,7 +42,7 @@ Superfeedr allows you to subscribe to content on the web, and receive push notif
 ## What can you subscribe to
 
 You can use the Superfeedr feed API to subscribe to anything that has a URL. The key caveat to this is that the content needs to be publicly accessible by our servers – the content can’t be in a private network or behind a firewall.
- 
+
 While URLs can include an authentication element, but Superfeedr will not treat these URLs with any specific security concern. For this reason, we strongly discourage including URLs with authentication mechanisms.
 
 ### XML based feeds
@@ -52,7 +52,7 @@ Our *historical* use case is to allow you to subscribe to RSS or Atom feeds and 
 > An update is detected when **one or more item is added** to the feed you are subscribed to. The real-time push notification includes the new item(s) and some key attributes from the feed, like the title.
 
 Each entry in a feed is mapped with a **unique identifier** - the `id` element in our schema. We will send you a notification for every **new** unique identifier we detect, whatever the rest of the entry is.We don’t rely on the title, links or even the signature of the entry’s content to detect updates.
- 
+
 This behaviour is **compliant with both RSS and Atom specifications**. If we’re not able to find a unique ID, Superfeedr generates one, using complex feed-specific rules.
 
 #### Updates
@@ -64,13 +64,13 @@ There is, however, one exception: if a new entry contains a valid, `updated` ele
 #### Errors
 
 If a *feed goes into an error state* (say, if it’s putting up HTTP error codes, or we’ve been unable to parse content successfully), you’ll also receive a notification.
- 
+
 This will allow you to monitor the situation, and decide whether you want to maintain the subscription to that feed. These notifications will only include the status part of the [schema](/schema.html).
 
 ### JSON feeds
 
 It is obviously possible to subscribe to any kind of JSON document.  In order to identify new content, we compute a hash signature of the whole document. If that signature changes between two fetches, Superfeedr propagates the change by sending the full JSON document to your endpoint.
- 
+
 You will also receive a notification if a resource goes into an HTTP error state. These notifications will only include the status part of the [schema](/schema.html).
 
 ### HTML pages and fragments
@@ -88,9 +88,9 @@ Much like subscribing to HTML fragments, Superfeedr also allows you to subscribe
 We have the following document at <code>http://for.sale/inventory.json</code>:
 
 {% prism javascript %}
-{ 
+{
   "store": {
-    "book": [ 
+    "book": [
       { "category": "reference",
         "author": "Nigel Rees",
         "title": "Sayings of the Century",
@@ -131,10 +131,10 @@ When you are subscribing to any other type of HTML resource, Superfeedr will com
 ### Redirects
 
 When fetching resources, Superfeedr will follow up to five redirects. These can be permanent or temporary, and you will be notified of the content at the end of the redirect chain. For this reason, we strongly recommend subscribing to the **canonical** URL of each resource.
- 
+
 ## What API to choose
 
-Superfeedr offers 2 different API : [XMPP PubSub](/subscribers.html#xmpppubsub) and [HTTP PubSubHubbub](/subscribers.html#webhooks). Which API you choose to use will depend on your goal for using Superfeedr. The main difference is that XMPP PubSub uses the [XMPP protocol](http://xmpp.org/xmpp-protocols/). This is a powerful protocol, but it is extremely different from HTTP. **If you’re not familiar with XMPP, stick with HTTP PubSubHubbub**. 
+Superfeedr offers 2 different API : [XMPP PubSub](/subscribers.html#xmpppubsub) and [HTTP PubSubHubbub](/subscribers.html#webhooks). Which API you choose to use will depend on your goal for using Superfeedr. The main difference is that XMPP PubSub uses the [XMPP protocol](http://xmpp.org/xmpp-protocols/). This is a powerful protocol, but it is extremely different from HTTP. **If you’re not familiar with XMPP, stick with HTTP PubSubHubbub**.
 
 If you’re not sure about which one is right for you, we’re more than happy to talk you through it. Just send us an email at [info@superfeedr.com](mailto:info@superfeedr.com) so we can provide guidance.
 
@@ -155,7 +155,7 @@ Authentication using the Webhooks API is performed through [HTTP Basic Autentica
 
 If your HTTP library does not support HTTP headers, you should submit a base64 encoded string of `login:token` as a query string parameter named `authorization`.
 
-#### Tokens 
+#### Tokens
 
 You can create an unlimited number of tokens, with different combinations of rights associated with them:
 
@@ -165,7 +165,7 @@ You can create an unlimited number of tokens, with different combinations of rig
 * [Retrieve](/subscribers.html#retrievingentrieswithpubsubhubbub) (used for [Streaming](/subscribers.html#streamingrss) as well)
 * [XMPP](/subscribers.html#xmppauthentication) (see below)
 
-The tokens **cannot** be used to log into the main Superfeedr site. 
+The tokens **cannot** be used to log into the main Superfeedr site.
 
 Tokens can be made public – just keep in mind that any call made using them will be associated with your account. This means that if someone else makes a call with your token, it will be your account that is billed.
 
@@ -206,7 +206,7 @@ If you want your tokens to be private along with the rest of your account detail
       <tr>
         <td>hub.secret</td>
         <td>optional, recommended</td>
-        <td>A unique secret string which will be used by us to compute a signature. You should check this signature when getting notifications.</td>  
+        <td>A unique secret string which will be used by us to compute a signature. You should check this signature when getting notifications.</td>
       </tr>
       <tr>
         <td>hub.verify</td>
@@ -238,21 +238,26 @@ Subscriptions at Superfeedr are a unique combination of a resource URL and a cal
 #### Example
 
 {% prism markup %}
-  curl https://push.superfeedr.com/ 
-  -X POST 
-  -u demo:demo 
-  -d'hub.mode=subscribe' 
-  -d'hub.topic=http://push-pub.appspot.com/feed' 
+  curl https://push.superfeedr.com/
+  -X POST
+  -u demo:demo
+  -d'hub.mode=subscribe'
+  -d'hub.topic=http://push-pub.appspot.com/feed'
   -d'hub.callback=http://mycallback.tld/ok'
 {% endprism %}
 
 #### Response by HTTP status code
 
-* `204`: the subscription was performed and you should expect notifications 
+* `204`: the subscription was performed and you should expect notifications
 * `202`: the subscription has yet to be verified (only if you supplied a `hub.verify=async` parameter).
 * `200`: you used the `retrieve` parameter. The content of the feed is in the body of the response.
 * `422`: please check the body, as it will include the reason for the subscription failure.
 * Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes).
+
+#### Superfeedr's Null Device
+
+When subscribing, the callbac url can also be <code>https://push.superfeedr.com/dev/null</code> which is <a href="https://en.wikipedia.org/wiki/Null_device">our null device</a>. This is particularly useful if you're not interested in realtime updates to feeds but want to retrieve their statuses from our servers. This way, you're able to subscribe to tell Superfeedr to not notify you but still let you poll the content of these feeds.
+
 
 ### Removing Feeds with PubSubHubbub
 
@@ -299,11 +304,11 @@ Subscriptions at Superfeedr are a unique combination of a resource URL and a cal
 #### Example
 
 {% prism markup %}
-curl https://push.superfeedr.com/ 
-  -X POST 
-  -u demo:demo 
-  -d'hub.mode=unsubscribe' 
-  -d'hub.topic=http://push-pub.appspot.com/feed' 
+curl https://push.superfeedr.com/
+  -X POST
+  -u demo:demo
+  -d'hub.mode=unsubscribe'
+  -d'hub.topic=http://push-pub.appspot.com/feed'
   -d'hub.callback=http://mycallback.tld/ok'
 {% endprism %}
 
@@ -362,7 +367,7 @@ curl https://push.superfeedr.com/
   </table>
 </div>
 
-By default, subscriptions are listed in order of creation. The oldest subscriptions are listed first, while the most recent is listed last. 
+By default, subscriptions are listed in order of creation. The oldest subscriptions are listed first, while the most recent is listed last.
 
 #### Response by HTTP status code
 
@@ -373,10 +378,10 @@ By default, subscriptions are listed in order of creation. The oldest subscripti
 #### Example
 
 {% prism markup %}
-curl https://push.superfeedr.com/ 
-  -G 
-  -u demo:demo 
-  -d'hub.mode=list' 
+curl https://push.superfeedr.com/
+  -G
+  -u demo:demo
+  -d'hub.mode=list'
   -d'page=2'
 {% endprism %}
 {% prism javascript %}
@@ -522,17 +527,17 @@ Search queries are nested string parameters. We use the following keys:
       <tr>
         <td>count</td>
         <td>optional</td>
-        <td>Optional number of items you want to retrieve. Current max is 50 and default is 10.</td>  
+        <td>Optional number of items you want to retrieve. Current max is 50 and default is 10.</td>
       </tr>
       <tr>
         <td>before</td>
         <td>optional</td>
-        <td>The <code>id</code> of an entry in the feed. The response will only include entries published before this one.</td>  
+        <td>The <code>id</code> of an entry in the feed. The response will only include entries published before this one.</td>
       </tr>
       <tr>
         <td>after</td>
         <td>optional</td>
-        <td>The <code>id</code> of an entry in the feed. The response will only include entries published after this one.</td>  
+        <td>The <code>id</code> of an entry in the feed. The response will only include entries published after this one.</td>
       </tr>
       <tr>
         <td>format</td>
@@ -551,12 +556,12 @@ Search queries are nested string parameters. We use the following keys:
 #### Example (retrieving by topic)
 
 {% prism markup %}
-curl https://push.superfeedr.com/ 
+curl https://push.superfeedr.com/
   -H 'Accept: application/json'
-  -G 
-  -u demo:demo 
-  -d'hub.mode=retrieve' 
-  -d'hub.topic=http://push-pub.appspot.com/feed' 
+  -G
+  -u demo:demo
+  -d'hub.mode=retrieve'
+  -d'hub.topic=http://push-pub.appspot.com/feed'
 {% endprism %}
 
 **Response:**
@@ -654,23 +659,23 @@ Content-Length: 3550
 #### Example (retrieving by matching callback)
 
 {% prism markup %}
-curl https://push.superfeedr.com/ 
+curl https://push.superfeedr.com/
   -H 'Accept: application/json'
-  -G 
-  -u demo:demo 
-  -d'hub.mode=retrieve' 
-  -d'hub.callback=http://my.domain.com/webhook/1' 
+  -G
+  -u demo:demo
+  -d'hub.mode=retrieve'
+  -d'hub.callback=http://my.domain.com/webhook/1'
 {% endprism %}
 
 #### Example (retrieving by searching callback)
 
 {% prism markup %}
-curl https://push.superfeedr.com/ 
+curl https://push.superfeedr.com/
   -H 'Accept: application/json'
-  -G 
-  -u demo:demo 
-  -d'hub.mode=retrieve' 
-  -d'hub.callback[endpoint][hostname]=my.domain.com' 
+  -G
+  -u demo:demo
+  -d'hub.mode=retrieve'
+  -d'hub.callback[endpoint][hostname]=my.domain.com'
 {% endprism %}
 
 
@@ -726,7 +731,7 @@ curl -G 'https://stream.superfeedr.com?wait=stream&hub.mode=retrieve&hub.callbac
 
 #### Server Sent Events
 
-Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/) (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events. 
+Superfeedr also supports [Server Sent Events](http://www.w3.org/TR/eventsource/) (or EventSource). This W3C specification defines a browser-side Javascript API to receive content from a server in the form of events.
 
 {% prism javascript %}
 var url = "https://stream.superfeedr.com/";
@@ -742,7 +747,7 @@ source.addEventListener("notification", function(e) {
 
 ### PubSubHubbub Notifications
 
-Notifications are POST requests that are sent to the callback you specified for the subscription. ​ The body of the response includes the notification, in the format you specified upon [subscription](/subscribers.html#addingfeedswithpubsubhubbub). Please check the [schema](/schema.html) if you need more detail on this.  
+Notifications are POST requests that are sent to the callback you specified for the subscription. ​ The body of the response includes the notification, in the format you specified upon [subscription](/subscribers.html#addingfeedswithpubsubhubbub). Please check the [schema](/schema.html) if you need more detail on this.
 
 We consider notifications successful if we can reach your callback and it returns a `200` code. If the notification fails, we will **retry three times** after five, ten and 15 seconds (these times may vary slightly). If we are not able to notify you after these additional attempts, we will drop the notification and you can use the [our retrieve feature](/subscribers.html#retrievingentrieswithpubsubhubbub), discussed above, to get the missing data.
 
@@ -842,12 +847,12 @@ This call is mostly used as a debugging tool. It allows you to replay past notif
       <tr>
         <td>count</td>
         <td>optional</td>
-        <td>Optional number of items you want to retrieve. Current max is 50 and default is 1.</td>  
+        <td>Optional number of items you want to retrieve. Current max is 50 and default is 1.</td>
       </tr>
       <tr>
         <td>async</td>
         <td>optional</td>
-        <td>If set to true, Superfeedr will respond to this very request and issue the notification right <em>after</em>.</td>  
+        <td>If set to true, Superfeedr will respond to this very request and issue the notification right <em>after</em>.</td>
       </tr>
     </tbody>
   </table>
@@ -856,11 +861,11 @@ This call is mostly used as a debugging tool. It allows you to replay past notif
 #### Example
 
 {% prism markup %}
-curl https://push.superfeedr.com/ 
-  -G 
-  -u demo:demo 
-  -d'hub.mode=replay' 
-  -d'hub.topic=http://push-pub.appspot.com/feed' 
+curl https://push.superfeedr.com/
+  -G
+  -u demo:demo
+  -d'hub.mode=replay'
+  -d'hub.topic=http://push-pub.appspot.com/feed'
   -d'hub.callback=http://mycallback.tld/ok'
 {% endprism %}
 
@@ -1091,7 +1096,7 @@ The server acknowledges the unsubscribe:
 </iq>
 {% endprism %}
 
-#### Response 
+#### Response
 
 The server sends the list of resources to which you are subscribed for the page requested. It will also send the status information for each item.
 
