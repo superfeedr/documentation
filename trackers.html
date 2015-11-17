@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Trackers - Superfeedr Documentation </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/front.css">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/documentation.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic|Source+Code+Pro:400,600" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+<body>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9285763-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<div style="display: none">
+<!-- Google Code for Remarketing Tag -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 984056007;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/984056007/?value=0&amp;guid=ON&amp;script=0"/>
+  </div>
+</noscript>
+</div>
+
+
+  <header class="header">
+    <div class="container">
+
+      <div class="header-logo">
+        <a title="Superfeedr Documentation Home" href="/">
+          <img alt="Logo" src="/img/logo.svg"> 
+          <span>Superfeedr Documentation</span>
+        </a>
+      </div>
+
+      <nav class="nav-header">
+        <ul class="nav-items">
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/publisher">Publishers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/subscriber">Subscribers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/tracker">Trackers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/pricing">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/users/new">Sign Up</a>
+          </li></ul>
+        </nav>
+      </div>
+  </header>
+
+  <main class="container body">
+    <header class="body-header">
+	<h2>
+		<span>Documentation › </span> <strong>Trackers</strong>
+	</h2>
+
+	<nav class="docs-nav">
+		<a href="/" class="docs-nav-link">Introduction</a>
+		<a href="/subscribers.html" class="docs-nav-link">Subscribers</a>
+		<a href="/publishers.html" class="docs-nav-link">Publishers</a>
+		<a href="/trackers.html" class="docs-nav-link docs-nav-link-current">Trackers</a>
+		<a href="/schema.html" class="docs-nav-link">Schema</a>
+		<a href="/misc.html" class="docs-nav-link">Miscellaneous</a>
+	</nav>
+</header>
+<div class="body-content">
+	<div class="sticky-wrapper">
+		<div class="column column--quarter docs-inline-nav-wrap">
+			<header class="docs-inline-nav-header">
+				<h3>Contents</h3>
+			</header>
+
+			<ul id="docsnav" class="docs-inline-nav nav nav-list"><li>
+        <a href="#introduction">Introduction</a>
+        </li>
+        <li>
+         <a href="#building-track-feeds">Building Track Feeds</a>
+         <ul class="docs-inline-nav">
+         <li>
+        <a href="#queries">Queries</a>
+        </li>
+        <li>
+        <a href="#site">Site</a>
+        </li>
+        <li>
+        <a href="#link">Link</a>
+        </li>
+        <li>
+        <a href="#language">Language</a>
+        </li>
+        <li>
+        <a href="#popularity">Popularity</a>
+        </li>
+        <li>
+        <a href="#porn-filtering">Porn filtering</a>
+        </li>
+        <li>
+        <a href="#bozo-filtering">Bozo Filtering</a>
+        </li>
+        
+         </ul>
+         </li><li>
+        <a href="#testing">Testing</a>
+        </li>
+        <li>
+        <a href="#scope">Scope</a>
+        </li>
+        </ul>
+
+
+		</div>
+	</div>
+	<section class="column column--three-quarters docs-content-text">
+		<h2 id="introduction">Introduction</h2>
+
+<p>You may want to subscribe transversally to any entry that matches a certain query, rather than subscribing to single feeds. The most common use case is to subscribe to any entry which matches a given keyword.</p>
+
+<p>Only the “Tracker” users can use track feeds. However, the API calls for <strong>subscribing</strong>, <strong>unsubscribing</strong>, <strong>listing</strong> or <strong>retrieving</strong> past entries are the same that “<a href="/subscribers.html">Subscriber</a>” users can use for <em>regular</em> feeds, using either the <a href="subscribers.html#webhooks">PubSubHubbub API</a> or the <a href="/subscribers.html#xmpp-pubsub">XMPP API</a>.</p>
+
+<h2 id="building-track-feeds">Building Track Feeds</h2>
+
+<p>Track feeds are <em>virtual</em> feeds in a sense that they’re generated <em>on the fly</em> as long as their URL matches the following criteria:</p>
+
+<ul>
+  <li>Can be <code>http</code> or <code>https</code></li>
+  <li>Uses the <code>track.superfeedr.com</code> hostname</li>
+  <li>Has a <code>query</code> query string param whose value is the query itself.</li>
+</ul>
+
+<p>Here’s an example of track feed: <code>http://track.superfeedr.com/?query=superfeedr</code>. You can also use a <code>format</code> query string with <code>atom</code> or <code>json</code> as values. You should refer to our <a href="/schema.html">schema</a> section for details on both ATOM and JSON.</p>
+
+<h3 id="queries">Queries</h3>
+
+<p>Queries are the equivalent of search queries. They contain several members separated by spaces. Each member is either a keyword or a flag with an associated value. Spaces are interpreted as <code>AND</code>.</p>
+
+<p>Some special characters are also supported:</p>
+
+<ul>
+  <li>+ signifies AND operation</li>
+  <li>- negates the following member</li>
+  <li>| signifies OR operation</li>
+  <li>" (quote) wraps a number of tokens to signify a phrase for searching</li>
+  <li>( and ) indicate precedence</li>
+</ul>
+
+<p>Here are valid examples of queries:</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>superfeedr</code></td>
+        <td>will match any mention of <code>superfeedr</code></td>
+      </tr>
+      <tr>
+        <td><code>laurel hardy</code></td>
+        <td>will match any menion of <code>laurel</code> AND <code>hardy</code> in the same document. Both words can be appart.</td>
+      </tr>
+      <tr>
+        <td><code>romeo -juliette</code></td>
+        <td>will match any mention of <code>romeo</code> that does not have a mention of <code>juliette</code></td>
+      </tr>
+      
+
+      <tr>
+        <td><code>paris (texas | france)</code></td>
+        <td>will match any mention of <code>paris</code> along with <code>texas</code> or <code>france</code>.</td>
+      </tr>
+
+      <tr>
+        <td><code>"new york"</code></td>
+        <td>will match any mention of <code>new york</code> (with <code>new</code> and <code>york</code> being consecutive.)</td>
+      </tr>
+      <tr>
+        <td><code>"AAPL"</code></td>
+        <td>will match any mention of <code>AAPL</code> but not <code>aapl</code>.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<h3 id="site">Site</h3>
+
+<p>The <code>site:</code> flag allows you to define from which site the content must have been published. The value needs to be any domain or subdomain and will match the host from which the content has been published.</p>
+
+<p>The value is a hostname (full domain or subdomain) of the publishing site. You can add at most one <code>site:</code> per query.</p>
+
+<p>Examples:</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>pubsubhubbub site:blog.superfeedr.com</code></td>
+        <td>will match any mention of <code>pubsubhubbub</code> published on <a href="http://blog.superfeedr.com/">our blog</a>.</td>
+      </tr>
+
+      <tr>
+        <td><code>superfeedr site:techmeme.com</code></td>
+        <td>will match any mention of <code>superfeedr</code> published on Techmeme</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+<p>You can use the <em>negation</em> of this flag by using <code>-site:</code> as a flag. In this case, however, you can use several <code>-site:</code> flags.</p>
+
+<p>This is useful when refining tracking feeds for which a lot of content is coming from the same sources.</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>apple -site:techmeme.com -site:techcrunch.com</code></td>
+        <td>will match any mention of <code>apple</code> unless they're from either Techmeme or Techcrunch.</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+
+<h3 id="link">Link</h3>
+
+<p>The <code>link:</code> flag allows you to select only the documents which include a link to a a specific page, or a domain.</p>
+
+<p>You can add at most one <code>link:</code> per query.</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>link:https://superfeedr.com/</code></td>
+        <td>Only entries with a link to <a href="https://superfeedr.com/">our home page</a>.</td>
+      </tr>
+
+      <tr>
+        <td><code>link:runscope.com</code></td>
+        <td>Only entries with a link to any page with the <code>runscope.com</code> domains.</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+
+<p>Similarly to <code>site</code>, You can use the <em>negation</em> of this flag by using <code>-link:</code> as a flag. You can have multiple <code>-link:</code> values.</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>pubsubhubbub -link:superfeedr.com -link:google.com</code></td>
+        <td>will match any mention of <code>pubsubhubbub</code> unless it points to either superfeedr.com or google.com.</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
+
+<h3 id="language">Language</h3>
+
+<p>Superfeedr is able to extract the language of every entry individually. This means you can filter entries matching a specific language or excluse those from specific languages using  <code>-language</code>. A given entry cannot have more than one language, which mean you can’t use more than one <code>language</code> operand. However, you can exclude multiple languages using multiple <code>-language</code> operands. The value should be the 2 letter value of the language using <a href="https://en.wikipedia.org/wiki/ISO_639-1">ISO_639-1</a>.</p>
+
+<p>Please note that in some cases, we are unable to extract the language (not enough test, contradicting text with combination of 2 languages… etc).</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>language:en</code></td>
+        <td>will match only entries explicitly using the english language. If we are unable to extract the language, this won't match.</td>
+      </tr>
+
+      <tr>
+        <td><code>-language:it</code></td>
+        <td>will exclude entries which use the italian language. If the language can't be determined, the entries will not match.</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+<h3 id="popularity">Popularity</h3>
+
+<p>Each feed going through Superfeedr has a popularity ranking. This popularity is a combination of multiple signals and factors: some of them internal and others external (social networks, pagerank… etc). Any feed’s popularity evolves slowly.
+You can build filters which take the popularity of the source into account and exclude content coming from unpopular sources.</p>
+
+<p>The value should be a range (&gt; or &lt;) to match popularity greater or small than a specific value. Check <a href="http://blog.superfeedr.com/subscribe-to-popular-rss-feeds/">this blog post</a> to learn about the distribution of these ranges.</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>popularity:&gt;3</code></td>
+        <td>will match only entries published in feeds with a popularity greater than 3.</td>
+      </tr>
+      
+    </tbody>
+  </table>
+</div>
+
+<h3 id="porn-filtering">Porn Filtering</h3>
+
+<p>By default, Superfeedr tries to identify porn content and will filter it out of matching requests. Please note that this algorithm “learns” from any given feed before it can start to classify an entry as porn, which means that if the exclusion of porn content is an absolute requirement, you should <em>also</em> implement filtering on your side.</p>
+
+<p>We consider any feed as porn with a <a href="/schema.html#porn_rank">porn rank</a> higher than 0.2.</p>
+
+<p>That said, for some cases, (building porn filters for example!), it makes sense to <strong>disable</strong> our porn filter. You can achieve this by adding <code>porn:ok</code> to your query.</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>porn:ok plug</code></td>
+        <td>Will send any mention of <code>plug</code>, whether they are from porn feeds or not.</td>
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+
+<h3 id="bozo-filtering">Bozo Filtering</h3>
+
+<p>Similar to porn filtering, Superfeedr is able to filter out matching entries from feeds we consider broken or spammy. For example, some feeds will generate infinite amounts of data using a random <code>id</code> for each new entry.</p>
+
+<p>We consider any feed as bozo with a <a href="/schema.html#bozo_rank">bozo rank</a> higher than 0.3.</p>
+
+<p>You can disable this filtering by using <code>bozo:ok</code>.</p>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Query</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>bozo:ok ham</code></td>
+        <td>Will send any mention of <code>ham</code>, whether they are from spam feeds or not.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h2 id="testing">Testing</h2>
+
+<p>Tracking feeds are prospective, which means that you should use them to receive <em>upcoming</em> entries that match them. Because of that, it’s not always simple to refine search queries because you have to wait for matches to improve them.</p>
+
+<p>Superfeedr offers a <em>search</em> API which lets you match your tracking feeds queries against historical data. You can then quickly identify how to refine your queries for tracking feeds.</p>
+
+<div class="panel">
+  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
+  </div>
+</div>
+
+<div class="box">
+  <table class="feed-table table">
+    <thead class="box__header">
+      <tr>
+        <th>Parameter Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>hub.mode</td>
+        <td>required</td>
+        <td><code>search</code></td>
+      </tr>
+      <tr>
+        <td>query</td>
+        <td>required</td>
+        <td>The query you want to match. Please see previous sections on how to build search queries.</td>
+      </tr>
+      <tr>
+        <td>format</td>
+        <td>optional</td>
+        <td>
+          <code>json</code> or <code>atom</code> (default).
+        </td>
+      </tr>
+  </tbody>
+  </table>
+</div>
+
+<h4 id="example">Example</h4>
+
+<pre data-line=""><code class="language-markup">curl https://push.superfeedr.com/ 
+  -X POST 
+  -u demo:demo 
+  -d&#39;hub.mode=search&#39; 
+  -d&#39;query=superfeedr&#39;</code></pre>
+
+<h4 id="response">Response</h4>
+
+<p>Superfeedr will return <code>200</code> with the corresponding representation of the search results matching your query. Please, refer to our <a href="/schema.html">schema section</a> for details.</p>
+
+<p>If you receive a <code>422</code> HTTP response, please check the body, as it will include the reason for the subscription failure.</p>
+
+<p>Other HTTP response codes are outlined in the <a href="https://en.wikipedia.org/wiki/List_of_HTTP_status_codes">HTTP spec</a>.</p>
+
+<h2 id="scope">Scope</h2>
+
+<p>The scope for tracking feeds is the <em>total</em> number of feeds processed by Superfeedr. This includes feeds subscribed by <a href="https://superfeedr.com/subscriber">subscribers</a> and feeds published by <a href="https://superfeedr.com/publisher">publishers</a> subscribed by at least one subscriber on their hubs.</p>
+
+<p>We are working on extending this coverage to include any subscribed feed on the web.</p>
+
+	</section>
+</div>
+
+  
+    &nbsp;
+    &nbsp;
+  </main>
+
+
+  <div class="footer container">
+
+    <footer class="site-footer">
+      <div class="site-footer__block">
+        <a href="/" class="site-footer__logo"><img alt="Logo invert" src="/img/logo-invert.svg"></a>
+        <p class="site-footer__copyright"><span>Superfeedr</span><br>© 2009–2015</p>
+      </div>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Superfeedr</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">About</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/pricing">Pricing</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/terms">Terms</a></li>
+      </ul>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>For developers</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="http://documentation.superfeedr.com/">Documentation</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/">Code Libraries</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/documentation/issues">Support</a> <a href="" class="site-footer__link"></a></li>
+      </ul>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Connect with us</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">Contact Us</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="mailto:info@superfeedr.com">Email</a> </li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://twitter.com/superfeedr">Twitter</a> </li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+<script src="/js/jquery.min.js">
+</script>
+<script src="/js/prism.js">
+</script>
+<script src="/js/documentation.js">
+</script>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Schema & Data Formats - Superfeedr Documentation </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/front.css">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/documentation.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic|Source+Code+Pro:400,600" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+<body>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9285763-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<div style="display: none">
+<!-- Google Code for Remarketing Tag -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 984056007;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/984056007/?value=0&amp;guid=ON&amp;script=0"/>
+  </div>
+</noscript>
+</div>
+
+
+  <header class="header">
+    <div class="container">
+
+      <div class="header-logo">
+        <a title="Superfeedr Documentation Home" href="/">
+          <img alt="Logo" src="/img/logo.svg"> 
+          <span>Superfeedr Documentation</span>
+        </a>
+      </div>
+
+      <nav class="nav-header">
+        <ul class="nav-items">
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/publisher">Publishers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/subscriber">Subscribers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/tracker">Trackers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/pricing">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/users/new">Sign Up</a>
+          </li></ul>
+        </nav>
+      </div>
+  </header>
+
+  <main class="container body">
+    <header class="body-header">
+	<h2>
+		<span>Documentation › </span> <strong>Schema & Data Formats</strong>
+	</h2>
+
+	<nav class="docs-nav">
+		<a href="/" class="docs-nav-link">Introduction</a>
+		<a href="/subscribers.html" class="docs-nav-link">Subscribers</a>
+		<a href="/publishers.html" class="docs-nav-link">Publishers</a>
+		<a href="/trackers.html" class="docs-nav-link">Trackers</a>
+		<a href="/schema.html" class="docs-nav-link docs-nav-link-current">Schema</a>
+		<a href="/misc.html" class="docs-nav-link">Miscellaneous</a>
+	</nav>
+</header>
+<div class="body-content">
+	<div class="sticky-wrapper">
+		<div class="column column--quarter docs-inline-nav-wrap">
+			<header class="docs-inline-nav-header">
+				<h3>Contents</h3>
+			</header>
+
+			<ul id="docsnav" class="docs-inline-nav nav nav-list"><li>
+        <a href="#status">Status</a>
+        </li>
+        <li>
+        <a href="#entry">Entry</a>
+        </li>
+        <li>
+        <a href="#json">JSON</a>
+        </li>
+        </ul>
+
+
+		</div>
+	</div>
+	<section class="column column--three-quarters docs-content-text">
+		<blockquote>
+  <p>This section mostly applies to <strong>feed</strong> subscriptions. If you’re subscribing to arbitrary content resources, we will send you the exact content of the resource to which you’ve subscribed. Some of the status information is available to non-feeds resources as well.</p>
+</blockquote>
+
+<p>Whatever the original format (RSS, Atom, or any other namespace) is, the notification that we will send to subscribers will use <strong>standard ATOM</strong>, as well as a few other namespaces detailed below. We will match as much as we can into this format. The overall goal here is to make it easy for the subscriber to consume a consistent schema.</p>
+
+<h2 id="status">Status</h2>
+
+<p>Upon notifications, when subscribing (<a href="/subscribers.html#xmpppubsub">XMPP</a> only), or when retrieving a resource’s content from Superfeedr, you’ll see that it <em>may</em> include the following information. This data is useful for you to know the current state of a resource. Please note that some items my be missing at some point, either because we haven’t processed the feed yet, or because they wouldn’t be accurate.</p>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+
+
+<tr>
+  <td>status[@feed]</td>
+  <td>&nbsp;</td>
+  <td>contains the URL of the resource</td>
+</tr>
+
+<tr>
+  <td>title</td>
+  <td></td>
+  <td>The feed title</td>
+</tr>
+
+<tr>
+  <td>http[@code]</td>
+  <td>&nbsp;</td>
+  <td>last HTTP status code, please see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status Code Definitions</a></td>
+</tr>
+
+<tr>
+  <td>http</td>
+  <td>&nbsp;</td>
+  <td>the content of that tag is a more explicit log message for your information</td>
+</tr>
+
+<tr>
+  <td>next_fetch</td>
+  <td>&nbsp;</td>
+  <td>the resource will be fetched at most before this time</td>
+</tr>
+
+<tr>
+  <td>period</td>
+  <td>&nbsp;</td>
+  <td>the polling frequency in seconds for this resource (at least 60 seconds for feeds and at least 300 seconds for arbitrary content)</td>
+</tr>
+
+<tr>
+  <td>last_fetch</td>
+  <td>&nbsp;</td>
+  <td>the last time at which we fetched the resource</td>
+</tr>
+
+<tr>
+  <td>last_parse</td>
+  <td>&nbsp;</td>
+  <td>the last time at which we parsed the resource. It happens that we fetch a resource and do not parse it as its content hasn't been modified</td>
+</tr>
+
+<tr>
+  <td>last_maintenance_at</td>
+  <td>&nbsp;</td>
+  <td>Each resource inside Superfeedr has a maintenance cycle that we use to detect stale resource, or related resource. We normally run maintenance at most every 24hour for each resource, but this is a low priority task, so it may go beyond this</td>
+</tr>
+
+<tr>
+  <td>entries_count_since_last_maintenance</td>
+  <td></td>
+  <td>The number of updates in the resource since we last ran the maintenance script. This is a very good indicator of the verboseness of a resource. You may want to remove resources that are too verbose</td>
+</tr>
+
+<tr>
+  <td id="velocity">velocity</td>
+  <td></td>
+  <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
+</tr>
+
+<tr>
+  <td id="popularity">popularity</td>
+  <td></td>
+  <td>Float. Starts at 0 (not popular).The greater the number, the more popular the feed. Popularity is assessed for each feed based on several different signals from the social web, number of clicks, number of subscribers. It also depends on the popularity of the web pages which link to the feed.</td>
+</tr>
+
+
+<tr>
+  <td id="porn_rank">porn_rank</td>
+  <td>if available</td>
+  <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
+</tr>
+
+<tr>
+  <td id="bozo_rank">bozo_rank</td>
+  <td>if available</td>
+  <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
+</tr>
+
+</table>
+
+<h4 id="example">Example</h4>
+
+<pre data-line=""><code class="language-markup">&lt;status feed=&quot;http://domain.tld/feed.xml&quot; xmlns=&quot;http://superfeedr.com/xmpp-pubsub-ext&quot;&gt;
+  &lt;http code=&quot;200&quot;&gt;9718 bytes fetched in 1.462708s : 2 new entries.&lt;/http&gt;
+  &lt;next_fetch&gt;2013-05-10T11:19:38-07:00&lt;/next_fetch&gt;
+  &lt;period&gt;900&lt;/period&gt;
+  &lt;last_fetch&gt;2013-05-10T11:19:38-07:00&lt;/last_fetch&gt;
+  &lt;last_parse&gt;2013-05-10T11:17:19-07:00&lt;/last_parse&gt;
+  &lt;last_maintenance_at&gt;2013-05-10T09:45:08-07:00&lt;/last_maintenance_at&gt;
+  &lt;entries_count_since_last_maintenance&gt;5&lt;/entries_count_since_last_maintenance&gt;
+  &lt;velocity&gt;12&lt;/velocity&gt;
+  &lt;bozo_rank&gt;0.1&lt;/bozo_rank&gt;
+&lt;/status&gt;</code></pre>
+
+<h2 id="entry-schema-feeds-only">Entry Schema (feeds only)</h2>
+
+<p>Notification entries will have the following form. It is standard ATOM. Please note that an entry might not have all of them.</p>
+
+<p>Here are the components used to build the entries. Please note that they may use specific namespaces.</p>
+
+<h3 id="link">Link</h3>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>link[@href]</td>
+  <td></td>
+  <td>the url related to the parent node</td>
+</tr>
+
+<tr>
+  <td>link[@rel]</td>
+  <td>optional</td>
+  <td>the type of relation to that parent node (alternate, reply... etc)</td>
+</tr>
+<tr>
+  <td>link[@type]</td>
+  <td>optional</td>
+  <td>MimeType of the link destination (text/html by default)</td>
+</tr>
+<tr>
+  <td>link[@title]</td>
+  <td>optional</td>
+  <td>the link title</td>
+</tr>
+</table>
+
+<h4 id="example-1">Example</h4>
+
+<pre data-line=""><code class="language-markup">&lt;link href=&quot;http://domain.tld/entries/12345&quot; rel=&quot;alternate&quot; type=&quot;text/html&quot; title=&quot;The sky is Blue&quot; /&gt;
+&lt;link href=&quot;http://domain.tld/entries/12345/comments.xml&quot; rel=&quot;replies&quot; type=&quot;application/atom+xml&quot; title=&quot;Comments on The sky is Blue&quot; /&gt;</code></pre>
+
+<h3 id="category">Category</h3>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>category[@term]</td>
+  <td>optional, multiple</td>
+  <td>a keyword related to the entry... (tag, category or topic)</td>
+</tr>
+</table>
+
+<h4 id="example-2">Example</h4>
+
+<pre data-line=""><code class="language-markup">&lt;category term=&quot;tag&quot; /&gt;
+&lt;category term=&quot;category&quot; /&gt;</code></pre>
+
+<h3 id="point">Point</h3>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>entry[@point]</td>
+  <td>optional, multiple</td>
+  <td>geolocation data. Contains a [georss](http://georss.org/) latitude and longitude. It's either extracted from the story or extrapolated from the content.</td>
+</tr>
+</table>
+
+<h4 id="example-3">Example</h4>
+
+<pre data-line=""><code class="language-markup">&lt;point xmlns=&quot;http://www.georss.org/georss&quot;&gt;47.597553 -122.15925&lt;/point&gt;</code></pre>
+
+<h3 id="author">Author</h3>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>author</td>
+  <td>optional, multiple</td>
+  <td>Author information</td>
+</tr>
+<tr>
+  <td>name</td>
+  <td>optional</td>
+  <td>the author's name (or nickname)</td>
+</tr>
+<tr>
+  <td>email</td>
+  <td>optional</td>
+  <td> the author's email address</td>
+</tr>
+<tr>
+  <td>uri</td>
+  <td>optional</td>
+  <td>the author's URI</td>
+</tr>
+<tr>
+  <td>object-type</td>
+  <td>optional, multiple</td>
+  <td>the object type, defined in the ActivityStreams spec</td>
+</tr>
+<tr>
+  <td>link</td>
+  <td>optional, multiple</td>
+  <td>links (see above). They can include links to the author's profile, to the user's avatar...</td>
+</tr>
+
+</table>
+
+<h4 id="example-4">Example</h4>
+
+<pre data-line=""><code class="language-markup">&lt;author&gt;
+ &lt;name&gt;John Doe&lt;/name&gt;
+ &lt;email&gt;john@superfeedr.com&lt;/email&gt;
+ &lt;uri&gt;http://twitter.com/superfeedr&lt;/uri&gt;
+ &lt;as:object-type&gt;http://activitystrea.ms/schema/1.0/person&lt;/as:object-type&gt;
+ &lt;link type=&quot;image/png&quot; title=&quot;John Doe&quot; href=&quot;http://domain.tld/john.png&quot; rel=&quot;image&quot;/&gt;
+&lt;/author&gt;</code></pre>
+
+<h3 id="object">Object</h3>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>object</td>
+  <td>optional, multiple</td>
+  <td>ActivityStreams</td>
+</tr>
+<tr>
+  <td>object-type</td>
+  <td>optional, multiple</td>
+  <td>the object type, defined in the ActivityStreams spec</td>
+</tr>
+<tr>
+  <td>id</td>
+  <td>optional</td>
+  <td>the unique identifier of the object</td>
+</tr>
+<tr>
+  <td>title</td>
+  <td>optional</td>
+  <td>the title of the object</td>
+</tr>
+<tr>
+  <td>published</td>
+  <td>optional</td>
+  <td>the publication date (iso8601) of the object</td>
+</tr>
+<tr>
+  <td>updated</td>
+  <td>optional</td>
+  <td>the updated date (iso8601) of the object</td>
+</tr>
+<tr>
+  <td>content</td>
+  <td>optional</td>
+  <td>the content of the object</td>
+</tr>
+<tr>
+  <td>author</td>
+  <td>optional, multiple</td>
+  <td>author information (see above)</td>
+</tr>
+<tr>
+  <td>category</td>
+  <td>optional, multiple</td>
+  <td>categories (see above)</td>
+</tr>
+<tr>
+  <td>link</td>
+  <td>optional, multiple</td>
+  <td>links (see above)</td>
+</tr>
+</table>
+
+<h4 id="example-5">Example</h4>
+
+<pre data-line=""><code class="language-markup">&lt;as:object-type&gt;http://gowalla.com/schema/1.0/spot&lt;/as:object-type&gt;
+&lt;as:object-type&gt;http://activitystrea.ms/schema/1.0/place&lt;/as:object-type&gt;
+&lt;id&gt;object-id&lt;/id&gt;
+&lt;title&gt;Title of the Object&lt;/title&gt;
+&lt;published&gt;2013-04-20T15:00:40+02:00&lt;/published&gt;
+&lt;updated&gt;2013-04-21T14:00:40+02:00&lt;/updated&gt;
+&lt;content&gt;hello world&lt;/content&gt;
+&lt;author&gt;
+  &lt;name&gt;Second&lt;/name&gt;
+  &lt;uri&gt;http://domain.tld/second&lt;/uri&gt;
+  &lt;email&gt;second@domain.tld&lt;/email&gt;
+&lt;/author&gt;
+&lt;link type=&quot;text/html&quot; title=&quot;&quot; href=&quot;http://domain.tld/object/2&quot; rel=&quot;alternate&quot;/&gt;
+&lt;link type=&quot;text/html&quot; title=&quot;&quot; href=&quot;http://domain.tld/object/2&quot; rel=&quot;alternate&quot;/&gt;</code></pre>
+
+<h3 id="verb">Verb</h3>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>verb</td>
+  <td>optional, multiple</td>
+  <td>defined in the ActivityStreams spec</td>
+</tr>
+</table>
+
+<h4 id="example-6">Example</h4>
+
+<pre data-line=""><code class="language-markup">&lt;as:verb&gt;http://activitystrea.ms/schema/1.0/post&lt;/as:verb&gt;</code></pre>
+
+<h3 id="entries">Entries</h3>
+
+<p>Entries may include all the above elements. They also contain specific nodes, listed below.</p>
+
+<table class="table table-striped table-condensed table-responsive">
+<tr>
+  <th>Name</th>
+  <th>Note</th>
+  <th>Value</th>
+</tr>
+<tr>
+  <td>entry[@xml:lang]</td>
+  <td>optional</td>
+  <td>The language of the entry. It's either extracted or computed from the content (the longer the content, the more relevant).</td>
+</tr>
+<tr>
+  <td>entry[@title]</td>
+  <td></td>
+  <td>The title of the entry.</td>
+</tr>
+<tr>
+  <td>entry[@published]</td>
+  <td>optional</td>
+  <td>The publication date (iso8601) of the entry.</td>
+</tr>
+<tr>
+  <td>entry[@updated]</td>
+  <td>optional</td>
+  <td>The last updated date (iso8601) of the entry.</td>
+</tr>
+<tr>
+  <td>entry[@content]</td>
+  <td>optional</td>
+  <td>The content of the entry. Check the type attribute to determine the mime-type.</td>
+</tr>
+<tr>
+  <td>entry[@summary]</td>
+  <td>optional</td>
+  <td>The summary of the entry. Check the type attribute to determine the mime-type.</td>
+</tr>
+<tr>
+  <td>entry[@source]</td>
+  <td>optional</td>
+  <td>The source of the entry. It includes all the available feed level elements, such as the feed title, the feed links, the feed's author(s)... etc. It's extremely useful for track feeds.</td>
+</tr>
+</table>
+
+<pre data-line=""><code class="language-markup">&lt;entry xmlns=&quot;http://www.w3.org/2005/Atom&quot; xmlns:geo=&quot;http://www.georss.org/georss&quot; xmlns:as=&quot;http://activitystrea.ms/spec/1.0/&quot; xml:lang=&quot;en&quot;&gt;
+   &lt;id&gt;domain.tld:09/05/03-1&lt;/id&gt;
+   &lt;published&gt;2013-04-21T14:00:40+02:00&lt;/published&gt;
+   &lt;updated&gt;2013-04-21T14:00:40+02:00&lt;/updated&gt;
+   &lt;title&gt;Entry published on hour ago&lt;/title&gt;
+   &lt;content type=&quot;text&quot;&gt;Entry published on hour ago when it was shinny outside, but now it&#39;s raining&lt;/content&gt;
+   &lt;summary type=&quot;text&quot;&gt;Entry published on hour ago...&lt;/summary&gt;
+   &lt;geo:point&gt;47.597553 -122.15925&lt;/geo:point&gt;
+   &lt;link type=&quot;text/html&quot; title=&quot;&quot; href=&quot;http://domain.tld/entry/1&quot; rel=&quot;alternate&quot;/&gt;
+   &lt;link type=&quot;application/atom+xml&quot; title=&quot;&quot; href=&quot;http://domain.tld/entry/1.xml&quot; rel=&quot;replies&quot;/&gt;
+   &lt;link type=&quot;image/png&quot; title=&quot;A beautiful picture that illustrates the entry&quot; href=&quot;http://domain.tld/entry/image_.png&quot; rel=&quot;picture&quot;/&gt;
+   &lt;category term=&quot;Things&quot;/&gt;
+   &lt;category term=&quot;Picture&quot;/&gt;
+   &lt;author&gt;
+      &lt;name&gt;First&lt;/name&gt;
+      &lt;uri&gt;http://domain.tld/first&lt;/uri&gt;
+      &lt;email&gt;first@domain.tld&lt;/email&gt;
+      &lt;id&gt;id-first&lt;/id&gt;
+      &lt;title&gt;First&lt;/title&gt;
+      &lt;as:object-type&gt;http://activitystrea.ms/schema/1.0/person&lt;/as:object-type&gt;
+      &lt;as:object-type&gt;http://activitystrea.ms/schema/1.0/dude&lt;/as:object-type&gt;
+      &lt;link type=&quot;image/png&quot; title=&quot;A beautiful picture that illustrates the author&quot; href=&quot;http://domain.tld/first.png&quot; rel=&quot;picture&quot;/&gt;
+      &lt;link type=&quot;text/html&quot; title=&quot;The profile page of the author&quot; href=&quot;http://domain.tld/first/profile&quot; rel=&quot;alternate&quot;/&gt;
+  &lt;/author&gt;
+  &lt;author&gt;
+      &lt;name&gt;Second&lt;/name&gt;
+      &lt;uri&gt;http://domain.tld/second&lt;/uri&gt;
+      &lt;email&gt;second@domain.tld&lt;/email&gt;
+  &lt;/author&gt;
+  &lt;as:verb&gt;http://activitystrea.ms/schema/1.0/post&lt;/as:verb&gt;
+  &lt;as:verb&gt;http://activitystrea.ms/schema/1.0/publish&lt;/as:verb&gt;
+  &lt;as:object&gt;
+      &lt;as:object-type&gt;http://gowalla.com/schema/1.0/spot&lt;/as:object-type&gt;
+      &lt;as:object-type&gt;http://activitystrea.ms/schema/1.0/place&lt;/as:object-type&gt;
+      &lt;id&gt;object-id&lt;/id&gt;
+      &lt;title&gt;Title of the Object&lt;/title&gt;
+      &lt;published&gt;2013-04-20T15:00:40+02:00&lt;/published&gt;
+      &lt;updated&gt;2013-04-21T14:00:40+02:00&lt;/updated&gt;
+      &lt;content&gt;hello world&lt;/content&gt;
+      &lt;author&gt;
+         &lt;name&gt;Second&lt;/name&gt;
+         &lt;uri&gt;http://domain.tld/second&lt;/uri&gt;
+         &lt;email&gt;second@domain.tld&lt;/email&gt;
+     &lt;/author&gt;
+     &lt;link type=&quot;text/html&quot; title=&quot;&quot; href=&quot;http://domain.tld/object/2&quot; rel=&quot;alternate&quot;/&gt;
+     &lt;link type=&quot;text/html&quot; title=&quot;&quot; href=&quot;http://domain.tld/object/2&quot; rel=&quot;alternate&quot;/&gt;
+  &lt;/as:object&gt;
+  &lt;source&gt;
+    &lt;id&gt;feed-id&lt;/id&gt;
+    &lt;title&gt;feed-title&lt;/title&gt;
+    &lt;updated&gt;2013-04-21T14:00:40+02:00&lt;/updated&gt;
+    &lt;link href=&quot;http://domain.tld/entries/12345&quot; rel=&quot;alternate&quot; type=&quot;text/html&quot; title=&quot;The sky is Blue&quot; /&gt;
+    &lt;link href=&quot;http://domain.tld/entries/12345/comments.xml&quot; rel=&quot;replies&quot; type=&quot;application/atom+xml&quot; title=&quot;Comments on The sky is Blue&quot; /&gt;
+  &lt;/source&gt;
+&lt;/entry&gt;</code></pre>
+
+<h2 id="json">JSON</h2>
+
+<p>Superfeedr offers the ability to subscribe to Atom and RSS feeds, but receive notifications (both via <a href="/subscribers.html#xmpppubsub">XMPP</a> and <a href="/subscribers.html#webhooks">PubSubHubbub</a>) in JSON. It’s a mapping of our Atom schema. This mapping was created with the goal of being compatible with the <a href="http://osync.org/">OSync</a> and <a href="http://activitystrea.ms/">ActivityStreams</a> JSON schemas.</p>
+
+<ul>
+  <li>Dates: the dates shown are Unix Timestamps (seconds since Epoch), expressed in UTC.</li>
+  <li>Keys: expressed as camel case.</li>
+</ul>
+
+<h4 id="example-7">Example</h4>
+
+<pre data-line=""><code class="language-javascript">{
+ &quot;status&quot;: {
+   &quot;entriesCountSinceLastMaintenance&quot;: 24,
+   &quot;velocity&quot;: 50,
+   &quot;lastParse&quot;: 1290793065,
+   &quot;period&quot;: &quot;600&quot;,
+   &quot;lastMaintenanceAt&quot;: 1290778665,
+   &quot;feed&quot;: &quot;http://domain.tld/feed.xml&quot;,
+   &quot;lastFetch&quot;: 1290796665,
+   &quot;code&quot;: 200,
+   &quot;title&quot;: &quot;A wonderful feed&quot;,
+   &quot;nextFetch&quot;: 1290803865,
+   &quot;http&quot;: &quot;Awesome we got the feed right&quot;
+  },
+  &quot;items&quot;: [
+   {
+    &quot;geo&quot;: {
+     &quot;type&quot;: &quot;point&quot;,
+     &quot;coordinates&quot;: [
+      47.597553,
+      -122.15925
+     ]
+    },
+    &quot;standardLinks&quot;: {
+     &quot;picture&quot;: [
+      {
+       &quot;type&quot;: &quot;image/png&quot;,
+       &quot;href&quot;: &quot;http://domain.tld/entry/image_.png&quot;,
+       &quot;title&quot;: &quot;A beautiful picture that illustrates the entry&quot;
+      }
+     ],
+     &quot;replies&quot;: [
+      {
+       &quot;type&quot;: &quot;text/html&quot;,
+       &quot;href&quot;: &quot;http://domain.tld/entry/1.xml&quot;,
+       &quot;title&quot;: &quot;&quot;
+      }
+     ]
+    },
+    &quot;permalinkUrl&quot;: &quot;http://domain.tld/entry/1&quot;,
+    &quot;verb&quot;: &quot;publish&quot;,
+    &quot;content&quot;: &quot;Entry published on hour ago when it was shinny outside, but now it&#39;s raining&quot;,
+    &quot;published&quot;: 1271851240,
+    &quot;actor&quot;: {
+     &quot;displayName&quot;: &quot;First&quot;,
+     &quot;image&quot;: &quot;http://domain.tld/first.png&quot;,
+     &quot;permalinkUrl&quot;: &quot;http://domain.tld/first/profile&quot;,
+     &quot;id&quot;: &quot;id-first&quot;,
+     &quot;objectType&quot;: &quot;dude&quot;,
+     &quot;title&quot;: &quot;First&quot;
+    },
+    &quot;categories&quot;: [
+     &quot;Things&quot;,
+     &quot;Picture&quot;
+    ],
+    &quot;id&quot;: &quot;domain.tld:09/05/03-1&quot;,
+    &quot;object&quot;: {
+     &quot;permalinkUrl&quot;: &quot;http://domain.tld/object/2&quot;,
+     &quot;content&quot;: &quot;hello world&quot;,
+     &quot;published&quot;: 1271768440,
+     &quot;actor&quot;: {
+      &quot;displayName&quot;: &quot;Second&quot;,
+      &quot;permalinkUrl&quot;: &quot;http://domain.tld/second&quot;
+     },
+     &quot;id&quot;: &quot;object-id&quot;,
+     &quot;updated&quot;: 1271851240,
+     &quot;title&quot;: &quot;Title of the Object&quot;,
+     &quot;objectType&quot;: &quot;place&quot;
+    },
+    &quot;title&quot;: &quot;Entry published on hour ago&quot;,
+    &quot;updated&quot;: 1271851240,
+    &quot;source&quot;: {
+      &quot;id&quot;: &quot;http://blog.superfeedr.com/&quot;,
+      &quot;title&quot;: &quot;Superfeedr Blog&quot;,
+      &quot;updated&quot;: 1245776753,
+      &quot;permalinkUrl&quot;: &quot;http://blog.superfeedr.com/&quot;
+    },
+    &quot;language&quot;: &quot;en&quot;
+   },
+   {
+    &quot;permalinkUrl&quot;: &quot;http://www.macrumors.com/2009/05/06/adwhirl-free-ad-supported-iphone-apps-can-very-lucrative/&quot;,
+    &quot;published&quot;: 1241616887,
+    &quot;content&quot;: &quot;Mobile advertising company AdWhirl issued a report (PDF) that details the success of some of the top ad-supported iPhone apps. AdWhirl serves 250 million ad impressions monthly to over 10% of the top 50 Apps in the App Store.br /\n   br /\n   br /\n   ...&quot;,
+    &quot;id&quot;: &quot;http://www.macrumors.com/2009/05/06/adwhirl-free-ad-supported-iphone-apps-can-very-lucrative/&quot;,
+    &quot;title&quot;: &quot;AdWhirl: Free Ad-Supported iPhone Apps Can Be Very Lucrative&quot;
+   }
+  ],
+  &quot;subtitle&quot;: &quot;This is certainly a wonderful feed that you need to read!&quot;,
+  &quot;standardLinks&quot;: {
+   &quot;canonical&quot;: [
+    {
+     &quot;type&quot;: &quot;application/atom+xml&quot;,
+     &quot;href&quot;: &quot;http://feed.domain.tld/main.xml&quot;,
+     &quot;title&quot;: null
+    }
+   ],
+   &quot;self&quot;: [
+    {
+     &quot;type&quot;: &quot;application/atom+xml&quot;,
+     &quot;href&quot;: &quot;http://domain.tld/feed.xml&quot;,
+     &quot;title&quot;: null
+    }
+   ]
+  },
+  &quot;id&quot;: &quot;http://domain.tld/feed.xml&quot;,
+  &quot;title&quot;: &quot;A wonderful feed&quot;,
+  &quot;updated&quot;: 1290800265
+ }</code></pre>
+
+<p>It is recommended that you check the schema for some of the feeds to which you subscribe to make sure that all the required field for your application are included. Feel free to get in touch if you miss any content in the feeds.</p>
+
+	</section>
+</div>
+
+  
+    &nbsp;
+    &nbsp;
+  </main>
+
+
+  <div class="footer container">
+
+    <footer class="site-footer">
+      <div class="site-footer__block">
+        <a href="/" class="site-footer__logo"><img alt="Logo invert" src="/img/logo-invert.svg"></a>
+        <p class="site-footer__copyright"><span>Superfeedr</span><br>© 2009–2015</p>
+      </div>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Superfeedr</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">About</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/pricing">Pricing</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/terms">Terms</a></li>
+      </ul>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>For developers</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="http://documentation.superfeedr.com/">Documentation</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/">Code Libraries</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/documentation/issues">Support</a> <a href="" class="site-footer__link"></a></li>
+      </ul>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Connect with us</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">Contact Us</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="mailto:info@superfeedr.com">Email</a> </li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://twitter.com/superfeedr">Twitter</a> </li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+<script src="/js/jquery.min.js">
+</script>
+<script src="/js/prism.js">
+</script>
+<script src="/js/documentation.js">
+</script>
+</html>

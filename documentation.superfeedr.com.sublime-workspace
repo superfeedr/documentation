@@ -1,0 +1,1163 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"array_un",
+				"array_unshift"
+			],
+			[
+				"set",
+				"setInterval();"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"xml",
+				"Set Syntax: XML"
+			],
+			[
+				"encode",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"ruby",
+				"Set Syntax: Ruby"
+			],
+			[
+				"json",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"tag",
+				"Snippet: Wrap Selection in Open/Close Tag"
+			],
+			[
+				"HTML",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"rei",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"eencode",
+				"StringEncode: Base64 Encode"
+			],
+			[
+				"wrap",
+				"Word Wrap: Toggle"
+			],
+			[
+				"enco",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"bash",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"Prev",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"case",
+				"Convert Case: Lower Case"
+			],
+			[
+				"prett",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"sql",
+				"Set Syntax: SQL"
+			],
+			[
+				"markd",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"REIN",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ecode",
+				"StringEncode: Base64 Decode"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"redin",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rin",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reing",
+				"Preferences: Settings - Default"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"j",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"reined",
+				"Preferences: Alignment Key Bindings – Default"
+			],
+			[
+				"enccode",
+				"StringEncode: Base64 Decode"
+			],
+			[
+				"BRow",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"BRowser",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"previ",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"set Html",
+				"Set Syntax: HTML"
+			],
+			[
+				"python",
+				"Set Syntax: Python"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"set Syntax: C",
+				"Set Syntax: camlp4"
+			],
+			[
+				"jaas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"text",
+				"Set Syntax: TeX Math"
+			],
+			[
+				"txt",
+				"Set Syntax: TeX Math"
+			],
+			[
+				"javascr",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"encod",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"lua",
+				"Set Syntax: Lua"
+			],
+			[
+				"PHP",
+				"Set Syntax: PHP"
+			],
+			[
+				"mark",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"mak",
+				"Set Syntax: Makefile"
+			],
+			[
+				"ta",
+				"Snippet: Wrap Selection in Open/Close Tag"
+			],
+			[
+				"open",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"pretty",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"shell",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"jaa",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"packaing",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"json pre",
+				"Pretty JSON: Reformat (Pretty Print) JSON"
+			],
+			[
+				"Previ",
+				"Markdown Preview: preview in Browser"
+			],
+			[
+				"CSS",
+				"Set Syntax: CSS"
+			]
+		],
+		"width": 593.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/julien/repos/documentation.superfeedr.com/subscribers.md",
+		"/Users/julien/repos/documentation.superfeedr.com/trackers.md",
+		"/Users/julien/repos/superfeedr-chef/move.sh",
+		"/Users/julien/repos/documentation.superfeedr.com/misc.md",
+		"/Users/julien/repos/supernoder/.cd",
+		"/Users/julien/repos/documentation.superfeedr.com/_plugins/prism.rb",
+		"/Users/julien/repos/documentation.superfeedr.com/publishers.md",
+		"/Users/julien/repos/documentation.superfeedr.com/schema.md",
+		"/Users/julien/repos/documentation.superfeedr.com/Rakefile",
+		"/Users/julien/repos/documentation.superfeedr.com/_layouts/default.html",
+		"/Users/julien/repos/documentation.superfeedr.com/_layouts/page.html",
+		"/Users/julien/repos/documentation.superfeedr.com/_plugins/toc.rb",
+		"/Users/julien/repos/documentation.superfeedr.com/_plugins/navlink.rb",
+		"/Users/julien/repos/documentation.superfeedr.com/_plugins/nav-link.rb",
+		"/Users/julien/repos/documentation.superfeedr.com/index.md",
+		"/Users/julien/repos/documentation.superfeedr.com/templates/index.jade",
+		"/Users/julien/repos/documentation.superfeedr.com/templates/partials/toc.jade",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/documentation.js",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/documentation.css",
+		"/Users/julien/repos/documentation.superfeedr.com/templates/partials/scripts.jade",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/misc.md",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/jquery.scrollspy.js",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/front.css",
+		"/Users/julien/repos/documentation.superfeedr.com/templates/partials/footer.jade",
+		"/Users/julien/repos/documentation.superfeedr.com/templates/partials/header.jade",
+		"/Users/julien/repos/documentation.superfeedr.com/templates/partials/head.jade",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/subscribers.md",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/publishers.md",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/schema.md",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/jquery.stickem.js",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/stickymojo.jquery.js",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/documentation.superfeedr.com.css",
+		"/Users/julien/repos/documentation.superfeedr.com/build/publishers.html",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/assets/prism.js",
+		"/Users/julien/repos/documentation.superfeedr.com/config.json",
+		"/Users/julien/repos/documentation.superfeedr.com/contents/index.md",
+		"/Users/julien/repos/documentation.superfeedr.com/templates/partials/nav.jade",
+		"/Users/julien/repos/documentation.superfeedr.com/documentation.superfeedr.com.sublime-project",
+		"/Users/julien/repos/documentation.superfeedr.com/node_modules/wintersmith-showdown/node_modules/highlight.js/lib/highlight.js",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/admin/visualisation-annonce.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/admin/lib/Graphs/grapher.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/etudiant/offre-job-etudiant.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/statistiques.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/admin/multiposting.php",
+		"/Users/julien/repos/supernoder/lib/models/feed.js",
+		"/Users/julien/repos/supernoder/lib/parser/node.js",
+		"/Users/julien/repos/supernoder/lib/parser/parser.js",
+		"/Users/julien/repos/supernoder/lib/tracker/tracker.js",
+		"/Users/julien/repos/supernoder/test/tracker/tracker.js",
+		"/Users/julien/repos/supernoder/lib/parser/sax.js",
+		"/Users/julien/repos/supernoder/test/parser.js",
+		"/Users/julien/repos/supernoder/test/cave.js",
+		"/Users/julien/repos/supernoder/test/differ.js",
+		"/Users/julien/repos/supernoder/test/supernoder.js",
+		"/Users/julien/repos/supernoder/test/pushapi/pushapi.js",
+		"/Users/julien/repos/supernoder/test/samples/arbitrary/irail.be.json",
+		"/Users/julien/tmp/getsubsnum/index.js",
+		"/Users/julien/repos/supernoder/lib/fetcher/fetcher.js",
+		"/Users/julien/repos/supernoder/lib/supernoder.js",
+		"/Users/julien/repos/supernoder/package.json",
+		"/Users/julien/repos/supernoder/lib/parser/atom/feed.js",
+		"/Users/julien/repos/supernoder/lib/firehoser/xep60.js",
+		"/Users/julien/repos/supernoder/config.js",
+		"/Users/julien/repos/supernoder/lib/firehoser/pubsubhubbub.js",
+		"/Users/julien/repos/supernoder/test/fetcher.js",
+		"/Users/julien/repos/supernoder/lib/firehoser/builder.js",
+		"/Users/julien/repos/supernoder/node_modules/request/request.sublime-project",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/fonctions.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/etudiant/jobs-etudiants-trouves.php",
+		"/Users/julien/Desktop/offres.txt",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/ingest-multiposting.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/application-forwarder.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/admin/annonces.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/prefetch.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/advanced-mailer-annonces.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/recruteur/paiement.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/modeles/2013-modele.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/ingest-talentplug.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/admin/factures.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/etudiant/inscription.php",
+		"/private/tmp/test.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/recruteur/publier-annonce-job-etudiant.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/mail-template.html",
+		"/Users/julien/Desktop/mail.html",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/forwarder.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/debug.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/jobetudiant.net.sublime-project",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/admin/phpmyadmin/libraries/Config.class.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/admin/lib/prefetch.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/recruteur/packs.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/scripts/braintree.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/contact.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/index.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/temoigner.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/mot-de-passe-oublie.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/recruteur/tarifs.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/2013/css/styles.css",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/recruteur/recruteur.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/modeles/refine-search.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/modeles/search-home.php",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/2013/illu/alert_pub.jpg",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/site/jobetudiant/2013/index.html",
+		"/Users/julien/repos/supernoder/lib/pushapi/middlewares/respond.js",
+		"/Users/julien/tmp/node_modules/xmpp-echo-bot/node_modules/node-xmpp-server/lib/s2s/router.js",
+		"/Users/julien/tmp/node_modules/xmpp-echo-bot/node_modules/node-xmpp-server/lib/s2s/session/outgoing.js",
+		"/Users/julien/repos/supernoder/lib/pushapi/modes/retrieve.js",
+		"/Users/julien/tmp/server.js",
+		"/Users/julien/repos/supernoder/lib/cave/fanout.js",
+		"/Users/julien/repos/supernoder/test/fanout.js",
+		"/Users/julien/repos/supernoder/create_fanout_token.py",
+		"/Users/julien/repos/supernoder/lib/pushapi/pushapi.js",
+		"/Users/julien/repos/supernoder/node_modules/fpp/node_modules/pubcontrol/lib/pubcontrol.js",
+		"/Users/julien/Dropbox/Conferences:Talks/Codebits/2014/presentation/index.html",
+		"/Users/julien/Dropbox/Conferences:Talks/Codebits/2014/presentation/css/reveal.css",
+		"/Users/julien/repos/supernoder/lib/pushapi/templates/default.ejs",
+		"/Users/julien/repos/supernoder/test/push-live.js",
+		"/Users/julien/tmp/break.py",
+		"/Users/julien/repos/superfeedr-jquery/examples/retrieve.html",
+		"/Users/julien/repos/superfeedr-jquery/superfeedr.jquery.js",
+		"/Users/julien/tmp/debug.html",
+		"/Users/julien/repos/supernoder/lib/firehoser/firehoser.js",
+		"/Users/julien/repos/supernoder/lib/pushapi/modes/subscribe.js",
+		"/Users/julien/repos/supernoder/lib/cave/cave.js",
+		"/Users/julien/repos/monitor_lateness/main.rb",
+		"/Users/julien/repos/monitor_lateness/pingdom.rb",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/Crawlers/etudiemploi.rb",
+		"/Users/julien/Dropbox/OBI/Jobetudiant SAS/Crawlers/am-i-using-tor.rb",
+		"/Users/julien/repos/supernoder/lib/subscriber/subscriber.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			" 	",
+			"Queries",
+			"   ",
+			"  ",
+			"\n",
+			"Adding Feeds with PubSubHubbub",
+			"Keywords and Expressions",
+			"    ",
+			"</pre>",
+			"<pre class=\"language-bash embedcurl\">",
+			"curl",
+			"Here is an example :",
+			"      ",
+			"\n",
+			"   ",
+			"   |   |",
+			"```",
+			"```markup",
+			"```",
+			"```javascript",
+			"e have the following document",
+			"ll start with the same prefix ur",
+			"```",
+			"```markup",
+			"```javascript\n",
+			"```javascript",
+			"pygment",
+			"\"",
+			")",
+			"navlink(",
+			"><",
+			">",
+			"\"",
+			"d",
+			"lookup",
+			"RQRCode",
+			"><",
+			"assets",
+			"/assets/img/",
+			"><",
+			"upernoder1 50.116.30.23",
+			"/assets/jquery.scrollspy.js",
+			"docs-inline-nav-fixed",
+			"jquery.min.js",
+			"jquery.js",
+			"docs-inline-nav-header",
+			"docs-inline-nav",
+			"docs-inline-nav-header",
+			"docs-inline-nav-wrap",
+			"\"\"",
+			"\"#\"",
+			"staging.superfeedr.com",
+			"```\n",
+			"```xml",
+			"This feature is for Pro Hubs only.",
+			"####",
+			"```xml",
+			"   30: ```xml",
+			"```xml",
+			"Content-Type: application/json; charset=utf-8",
+			"```",
+			"\"category\": \"reference\"",
+			"stick",
+			".css",
+			"bootstrap",
+			"EventSour",
+			"e that subscriptions are listed in the ord",
+			"</code></pre>",
+			"<pre class=\"language-markup\"><code>",
+			"l, we will keep both.",
+			"l, we will keep both. ",
+			"<pre class=\"language-javascript\"></code>",
+			"endure",
+			"``\n",
+			"``",
+			"<pre><code class=\"language-javascript\">",
+			"</code></pre>",
+			"```xml",
+			"<pre class=\"language-markup\"><code>",
+			"highlight.pack.js",
+			"&gt;",
+			"&lt;",
+			"highlight",
+			"prism",
+			"&lt",
+			">",
+			"<",
+			"&quot;",
+			"toc",
+			".toc",
+			"class=\"language",
+			"JSON",
+			"prism.js ",
+			"prism.css",
+			"highlight",
+			"highlightBlock",
+			"initHighlightingOnLoad",
+			"language-javascript",
+			"JSON.par",
+			".retrieveFromRiak",
+			"$reference",
+			"redirect",
+			"page_candidature",
+			"page_",
+			"redirect",
+			"offre_id",
+			"achat",
+			"nombre_achats_cumules",
+			"achats_moyens_nb_visualisation_moyen_res",
+			"achats_moyens_nb_visualisation_moyen_sql",
+			"nombre_achats",
+			"$annonce['page_candidature']",
+			"'-'",
+			", ",
+			"\n",
+			"arbi",
+			".root",
+			".root =",
+			"assignSource",
+			"source",
+			"'samples', 'feeds',",
+			"parser.sax",
+			"isJSON",
+			"started",
+			"this.started",
+			"parser.started",
+			"}\n",
+			"this.started"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"'",
+			"split(\\$0,a,\"=\")",
+			"histogram_$1_$2_to_$3_$4=$(echo \"$stats\" | grep 'histogram.$1.$2.to.$3.$4' | awk '{split($0,a,\"=\"); print a[2]}')",
+			"histogram_$1_$2_to_$3_$4",
+			"histogram$1\\.to.$2",
+			"$1"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 112.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"subs",
+				"subscribers.md"
+			],
+			[
+				"trac",
+				"trackers.md"
+			],
+			[
+				"tracker",
+				"trackers.md"
+			],
+			[
+				"mis",
+				"misc.md"
+			],
+			[
+				"publ",
+				"publishers.md"
+			],
+			[
+				"misc",
+				"contents/misc.md"
+			],
+			[
+				"schem",
+				"contents/schema.md"
+			],
+			[
+				"subscr",
+				"contents/subscribers.md"
+			],
+			[
+				"publish",
+				"contents/publishers.md"
+			],
+			[
+				"artials/footer.jade",
+				"templates/partials/footer.jade"
+			],
+			[
+				"config",
+				"config.json"
+			],
+			[
+				"inde",
+				"templates/index.jade"
+			],
+			[
+				"footer.jade",
+				"templates/partials/footer.jade"
+			],
+			[
+				"sched",
+				"contents/schema.md"
+			],
+			[
+				"feed",
+				"app/models/feed.rb"
+			],
+			[
+				"token",
+				"lib/models/token.js"
+			],
+			[
+				"lib/cave/cave.js",
+				"lib/cave/cave.js"
+			],
+			[
+				"multi",
+				"admin/multiposting.php"
+			],
+			[
+				"offre-",
+				"etudiant/offre-job-etudiant.php"
+			],
+			[
+				"parser",
+				"lib/parser/parser.js"
+			],
+			[
+				"track",
+				"test/tracker/tracker.js"
+			],
+			[
+				"test/pushapi/pushapi.js",
+				"test/pushapi/pushapi.js"
+			],
+			[
+				"test/parser.js",
+				"test/parser.js"
+			],
+			[
+				"fetcher",
+				"lib/fetcher/fetcher.js"
+			],
+			[
+				"irail.",
+				"test/samples/arbitrary/irail.be.json"
+			],
+			[
+				"supernoder",
+				"lib/supernoder.js"
+			],
+			[
+				"xep",
+				"lib/firehoser/xep60.js"
+			],
+			[
+				"fetch",
+				"lib/fetcher/fetcher.js"
+			],
+			[
+				"offre",
+				"etudiant/offre-job-etudiant.php"
+			],
+			[
+				"jovs",
+				"etudiant/jobs-etudiants-trouves.php"
+			],
+			[
+				"forwar",
+				"scripts/application-forwarder.php"
+			],
+			[
+				"appli",
+				"scripts/application-forwarder.php"
+			],
+			[
+				"fonc",
+				"scripts/fonctions.php"
+			],
+			[
+				"ingest",
+				"scripts/ingest-multiposting.php"
+			],
+			[
+				"2013",
+				"modeles/2013-modele.php"
+			],
+			[
+				"prefetch",
+				"scripts/prefetch.php"
+			],
+			[
+				"fonction",
+				"scripts/fonctions.php"
+			],
+			[
+				"multipo",
+				"scripts/ingest-multiposting.php"
+			],
+			[
+				"pref",
+				"scripts/prefetch.php"
+			],
+			[
+				"for",
+				"scripts/application-forwarder.php"
+			],
+			[
+				"inges",
+				"scripts/ingest-talentplug.php"
+			],
+			[
+				"jobs-e",
+				"etudiant/jobs-etudiants-trouves.php"
+			],
+			[
+				"mail",
+				"scripts/mail-template.html"
+			],
+			[
+				"mode",
+				"modeles/2013-modele.php"
+			],
+			[
+				"modele",
+				"modeles/2013-modele.php"
+			],
+			[
+				"debu",
+				"scripts/debug.php"
+			],
+			[
+				"debug",
+				"scripts/debug.php"
+			],
+			[
+				"sublime",
+				"jobetudiant.net.sublime-project"
+			],
+			[
+				"job-et",
+				"etudiant/jobs-etudiants-trouves.php"
+			],
+			[
+				"publi",
+				"recruteur/publier-annonce-job-etudiant.php"
+			],
+			[
+				"jobs-etudiants-trouves.php",
+				"etudiant/jobs-etudiants-trouves.php"
+			],
+			[
+				"foncti",
+				"scripts/fonctions.php"
+			],
+			[
+				"foncio",
+				"scripts/fonctions.php"
+			],
+			[
+				"fonct",
+				"scripts/fonctions.php"
+			],
+			[
+				"tari",
+				"recruteur/tarifs.php"
+			],
+			[
+				"recruteur",
+				"recruteur/recruteur.php"
+			],
+			[
+				"re",
+				"modeles/refine-search.php"
+			],
+			[
+				"styles",
+				"2013/css/styles.css"
+			],
+			[
+				"sear",
+				"modeles/search-home.php"
+			],
+			[
+				"index",
+				"index.php"
+			],
+			[
+				"respond",
+				"lib/pushapi/middlewares/respond.js"
+			],
+			[
+				"pushap",
+				"test/pushapi/pushapi.js"
+			],
+			[
+				"retrieve",
+				"lib/pushapi/modes/retrieve.js"
+			],
+			[
+				"fanout",
+				"test/fanout.js"
+			],
+			[
+				"fa",
+				"lib/cave/fanout.js"
+			],
+			[
+				"packa",
+				"package.json"
+			],
+			[
+				"confi",
+				"config.js"
+			],
+			[
+				"pusha",
+				"test/pushapi/pushapi.js"
+			],
+			[
+				"retre",
+				"lib/pushapi/modes/retrieve.js"
+			],
+			[
+				"pushapi",
+				"test/pushapi/pushapi.js"
+			],
+			[
+				"test/ca",
+				"test/cave.js"
+			],
+			[
+				"pushapi/",
+				"lib/pushapi/middlewares/respond.js"
+			],
+			[
+				"fanou",
+				"test/fanout.js"
+			],
+			[
+				"retrev",
+				"lib/pushapi/modes/retrieve.js"
+			],
+			[
+				"fire",
+				"lib/firehoser/firehoser.js"
+			],
+			[
+				"push",
+				"test/pushapi/pushapi.js"
+			],
+			[
+				".css",
+				"css/reveal.css"
+			],
+			[
+				"cofig",
+				"config.js"
+			],
+			[
+				"print",
+				"new-style-2/print.css"
+			],
+			[
+				"respond.js",
+				"lib/pushapi/middlewares/respond.js"
+			],
+			[
+				"subscribe.js",
+				"lib/pushapi/modes/subscribe.js"
+			],
+			[
+				"cave",
+				"lib/cave/cave.js"
+			],
+			[
+				"subscriber",
+				"lib/subscriber/subscriber.js"
+			],
+			[
+				"pubsubhubbub",
+				"lib/firehoser/pubsubhubbub.js"
+			],
+			[
+				"blog",
+				"css/blog.css"
+			],
+			[
+				"post",
+				"_layouts/post.html"
+			],
+			[
+				"friend",
+				"test/samples/feeds/friendfeed.xml"
+			],
+			[
+				"pubsub",
+				"lib/firehoser/pubsubhubbub.js"
+			],
+			[
+				"xep60",
+				"test/firehoser/xep60.js"
+			],
+			[
+				"xep60.js",
+				"lib/firehoser/xep60.js"
+			],
+			[
+				"offre-jo",
+				"etudiant/offre-job-etudiant.php"
+			],
+			[
+				"offre-job",
+				"etudiant/offre-job-etudiant.php"
+			],
+			[
+				"home",
+				"modeles/search-home.php"
+			],
+			[
+				"app/jobs/regular/pubsubhubbub_ping.rb",
+				"app/jobs/regular/pubsubhubbub_ping.rb"
+			],
+			[
+				"post_creator_spec.rb",
+				"spec/components/post_creator_spec.rb"
+			],
+			[
+				"pubsubh",
+				"spec/jobs/pubsubhubbub_ping_spec.rb"
+			],
+			[
+				"pub",
+				"spec/components/pubsubhubbub_hub_spec.rb"
+			],
+			[
+				"ush",
+				"lib/pushapi/pushapi.js"
+			],
+			[
+				"valida",
+				"lib/pushapi/middlewares/validate-with-publisher.js"
+			],
+			[
+				"auth",
+				"lib/pushapi/middlewares/auth.js"
+			],
+			[
+				"retrieve.js",
+				"lib/pushapi/modes/retrieve.js"
+			],
+			[
+				"models/subscription.js",
+				"lib/models/subscription.js"
+			],
+			[
+				"scheduler",
+				"lib/scheduler/scheduler.rb"
+			],
+			[
+				"jobs",
+				"spec/jobs/create_backup_spec.rb"
+			],
+			[
+				"topic_cre",
+				"lib/topic_creator.rb"
+			],
+			[
+				"post_cre",
+				"lib/post_creator.rb"
+			],
+			[
+				"template",
+				"blog/themes/default/template.php"
+			],
+			[
+				"styles.",
+				"2013/css/styles.css"
+			],
+			[
+				"style",
+				"style/style.css"
+			],
+			[
+				"recru",
+				"recruteur/recruteur.php"
+			],
+			[
+				"paiement",
+				"recruteur/paiement.php"
+			],
+			[
+				"recruter",
+				"recruteur/recruteur.php"
+			],
+			[
+				"contact",
+				"contact.php"
+			],
+			[
+				"paiement.php",
+				"recruteur/paiement.php"
+			],
+			[
+				"prefet",
+				"scripts/prefetch.php"
+			],
+			[
+				"scrip",
+				"admin/phpmyadmin/setup/scripts.js"
+			],
+			[
+				"modal",
+				"2013/css/modal.css"
+			],
+			[
+				"2013-",
+				"modeles/2013-modele.php"
+			],
+			[
+				"modal.js",
+				"2013/js/modal.js"
+			],
+			[
+				"prefe",
+				"scripts/prefetch.php"
+			],
+			[
+				"reruteur",
+				"admin/recruteurs.php"
+			],
+			[
+				"commercial.php",
+				"admin/commercial.php"
+			],
+			[
+				"refi",
+				"modeles/refine-search.php"
+			],
+			[
+				"styles.css",
+				"2013/css/styles.css"
+			],
+			[
+				"app/views/topics/show.rss.erb",
+				"app/views/topics/show.rss.erb"
+			],
+			[
+				"observer",
+				"models/feed_observer_spec.rb"
+			],
+			[
+				"disco",
+				"components/discourse_hub_spec.rb"
+			],
+			[
+				"discourse_hu",
+				"components/discourse_hub_spec.rb"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 276.0,
+	"status_bar_visible": true
+}

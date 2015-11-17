@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Publishers - Superfeedr Documentation </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/front.css">
+  <link rel="stylesheet" href="/css/prism.css">
+  <link rel="stylesheet" href="/css/documentation.css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic|Source+Code+Pro:400,600" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="/favicon.png">
+</head>
+<body>
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-9285763-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+<div style="display: none">
+<!-- Google Code for Remarketing Tag -->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 984056007;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+  <div style="display:inline;">
+    <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/984056007/?value=0&amp;guid=ON&amp;script=0"/>
+  </div>
+</noscript>
+</div>
+
+
+  <header class="header">
+    <div class="container">
+
+      <div class="header-logo">
+        <a title="Superfeedr Documentation Home" href="/">
+          <img alt="Logo" src="/img/logo.svg"> 
+          <span>Superfeedr Documentation</span>
+        </a>
+      </div>
+
+      <nav class="nav-header">
+        <ul class="nav-items">
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/publisher">Publishers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/subscriber">Subscribers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/tracker">Trackers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://superfeedr.com/pricing">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-link-bubble" href="https://superfeedr.com/users/new">Sign Up</a>
+          </li></ul>
+        </nav>
+      </div>
+  </header>
+
+  <main class="container body">
+    <header class="body-header">
+	<h2>
+		<span>Documentation › </span> <strong>Publishers</strong>
+	</h2>
+
+	<nav class="docs-nav">
+		<a href="/" class="docs-nav-link">Introduction</a>
+		<a href="/subscribers.html" class="docs-nav-link">Subscribers</a>
+		<a href="/publishers.html" class="docs-nav-link docs-nav-link-current">Publishers</a>
+		<a href="/trackers.html" class="docs-nav-link">Trackers</a>
+		<a href="/schema.html" class="docs-nav-link">Schema</a>
+		<a href="/misc.html" class="docs-nav-link">Miscellaneous</a>
+	</nav>
+</header>
+<div class="body-content">
+	<div class="sticky-wrapper">
+		<div class="column column--quarter docs-inline-nav-wrap">
+			<header class="docs-inline-nav-header">
+				<h3>Contents</h3>
+			</header>
+
+			<ul id="docsnav" class="docs-inline-nav nav nav-list"><li>
+        <a href="#discovery">Discovery</a>
+        </li>
+        <li>
+        <a href="#ping">Ping</a>
+        </li>
+        <li>
+        <a href="#subscription-callback">Subscription Callback</a>
+        </li>
+        <li>
+        <a href="#fat-pings">Fat Pings</a>
+        </li>
+        <li>
+        <a href="#good-practices">Good Practices</a>
+        </li>
+        </ul>
+
+
+		</div>
+	</div>
+	<section class="column column--three-quarters docs-content-text">
+		<h2 id="introduction">Introduction</h2>
+
+<p>All the <a href="http://pubsubhubbub.superfeedr.com/">PubSubHubbubb</a> hubs hosted here at Superfeedr are compliant with the core specifications for versions <a href="http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.3.html">0.3</a> and <a href="http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html">0.4</a>. To enable your publisher hub and get subscribers coming to your real-time feeds, you need to set up <a href="#discovery">discovery</a> and <a href="#ping">ping</a>.</p>
+
+<h2 id="discovery">Discovery</h2>
+
+<p>Discovery tells your current and future subscribers who poll your resources that they can get content from your Superfeedr hosted hub.It’s as easy as adding the following to your resources:</p>
+
+<h3 id="any-http-resources">Any HTTP resources</h3>
+
+<p>For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers. Include the following HTTP Header as defined in <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a> with each resource.</p>
+
+<pre data-line=""><code class="language-javascript">Link: &lt;https://your-hub-name.superfeedr.com/&gt;; rel=&quot;hub&quot;
+Link: &lt;http://your.resource.url&gt;; rel=&quot;self&quot;</code></pre>
+
+<h3 id="rss">RSS</h3>
+
+<p>For RSS feeds, you need to add the links in the <code>channel</code> section of your feed.</p>
+
+<pre data-line=""><code class="language-markup">&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;rss&gt;
+ &lt;channel&gt;
+  &lt;title&gt;...&lt;/title&gt;
+  &lt;description&gt;...&lt;/description&gt;
+  &lt;link&gt;...&lt;/link&gt;
+
+  &lt;!-- PubSubHubbub Discovery --&gt;
+  &lt;link rel=&quot;hub&quot;  href=&quot;https://your-hub-name.superfeedr.com/&quot; xmlns=&quot;http://www.w3.org/2005/Atom&quot; /&gt;
+  &lt;link rel=&quot;self&quot; href=&quot;http://your.feed.url&quot; xmlns=&quot;http://www.w3.org/2005/Atom&quot; /&gt;
+  &lt;!-- End Of PubSubHubbub Discovery --&gt;
+  ...
+ &lt;/channel&gt;
+&lt;/rss&gt;</code></pre>
+
+<h3 id="atom">Atom</h3>
+
+<p>For RSS feeds, you need to add the links in the <code>feed</code> section of your feed.</p>
+
+<pre data-line=""><code class="language-markup">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;feed xmlns=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+ &lt;title&gt;...&lt;/title&gt;
+ &lt;link href=&quot;http://your.feed.url&quot; rel=&quot;self&quot; type=&quot;application/atom+xml&quot;/&gt;
+
+ &lt;!-- PubSubHubbub Discovery --&gt;
+ &lt;link rel=&quot;hub&quot; href=&quot;https://&lt;your-hub-name&gt;.superfeedr.com/&quot; /&gt;
+ &lt;!-- End Of PubSubHubbub Discovery --&gt;
+
+ &lt;updated&gt;...&lt;/updated&gt;
+ &lt;id&gt;...&lt;/id&gt;
+ ...
+&lt;/feed&gt;</code></pre>
+
+<h2 id="ping">Ping</h2>
+
+<p>The next step is to ping the hub whenever you update the content of any resource. This will allow us to fetch this specific resource, identify what is new, and then push the update to your subscribers.</p>
+
+<p>Send a POST request to <code>http://&lt;your-hub-name&gt;.superfeedr.com/</code>, with the following keys and values:</p>
+
+<ul>
+  <li><code>hub.mode="publish"</code></li>
+  <li><code>hub.url=&lt;the URL of the resource that was updated&gt;</code></li>
+</ul>
+
+<p>You can submit multiple URLs per ping, either by using an array syntax like <code>hub.url[]=&lt;url1&gt;</code> and <code>hub.url[]=&lt;url2&gt;</code>, or by sending a coma separated list or url-encoded URLs like this <code>hub.url=&lt;url1&gt;;&lt;url2&gt;</code>.</p>
+
+<p><em>Note</em>: If you’ve already implemented any type of ping, please get in touch, as we can probably receive it – we want to make it as easy as possible for you to implement the PubSubHubbub protocol.</p>
+
+<h2 id="subscription-callback">Subscription callback</h2>
+
+<p><strong>This feature is for Pro Hubs only</strong>.</p>
+
+<p>Your Superfeedr hosted hub allows access to your feeds, and we want to make sure you have direct control over this.</p>
+
+<ul>
+  <li>If you want to <em>allow subscription</em>, just return <code>204</code>.</li>
+  <li>If you do not want to allow the subscription, please return <code>401</code>.
+    <ul>
+      <li>Please include your reason for refusal in the body of the response as text, so we can forward this to the subscriber. The message can include requirements for subscription to your hub (such as the inclusion of an API key or contact information). We will forward any additional parameter submitted by the subscriber to your callback URL.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>If the URL is not accessible, or if you don’t return a <code>204</code> code, we will refuse all subscriptions to the resource.</p>
+
+<h2 id="fat-pings">Fat Pings</h2>
+
+<p><strong>This feature is for Pro Hubs only</strong>.</p>
+
+<p>If you have millions of feeds in our system, and are constantly pinging us with new content, we suggest you <strong>fat ping</strong>* us instead. The standard PubSubHubbub protocol specifies that the publisher (you) does light pings to the hub, because the origin of these pings cannot be verified. When we get a light ping, we will poll your feed to identify the new content.</p>
+
+<p>However, this polling can become expensive and draining if you have tens of thousands of feeds – or more. In this case, performing fat pings is much more time and cost effective. You will use the same syntax as light pings, but you would add two additional parameters:</p>
+
+<ul>
+  <li><code>hub.content</code> : the content of the feed, including only the new entry or entries. Superfeedr will parse this content directly, rather than polling your feeds.</li>
+  <li><code>hub.signature</code> : this is an HMAC signature computed with the secret shown in your hub’s settings, and the <code>hub.content</code>. This lets us know the content is coming from you and hasn’t been forged by a third party.</li>
+</ul>
+
+<h2 id="good-practices">Good Practices</h2>
+
+<p>If you publish XML feeds (RSS or Atom), there are <strong>good practices</strong> that you should make sure to respect. This will <em>increase adoption and engagement</em> with your content.</p>
+
+<h3 id="one-feed-per-resource">One feed per resource</h3>
+
+<p>A resource can be the home page of your site, a section, an author’s page… etc. In an ideal world, you should have <em>distinct feeds for each of these resources</em>. However, you should always make sure to have <strong>only one feed per resource</strong>. Don’t use both RSS and ATOM: pick one! Any decent reader can consume both, so make your job easy by only maintaining a single format.</p>
+
+<h3 id="feed-auto-discovery">Feed Auto-Discovery</h3>
+
+<p>Feed URLs are not “guessable”. Every website uses a different pattern which is why you need to make your <strong>XML feeds are discoverable</strong>. This mechanism is used by feed readers and search engine to find your feeds when the user enters a domain name of a page’s URL. For this, HTML offers a great mechanism: the <code>&lt;head&gt;</code> section. Here’s an example:</p>
+
+<pre data-line=""><code class="language-markup">&lt;html&gt;
+  &lt;head&gt;
+    &lt;!-- Auto-discovery: --&gt;
+    &lt;link rel=&quot;alternate&quot; type=&quot;application/rss+xml&quot; title=&quot;title-of-the-page&quot; href=&quot;url-of-the-feed&quot;&gt;
+    &lt;!--  --&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;!-- the web page&#39;s contents --&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<p>Make sure to use a <strong>meaningful title</strong> (not RSS or feed!), and replace <code>application/rss+xml</code> with <code>application/atom+xml</code> if your feed is in the ATOM format. It’s also considered good practice to use absolute URLs for the <code>href</code>.</p>
+
+<p>It’s important that you have <strong>bi-directional links</strong> between your HTML resources and your XML feeds which point to each others.</p>
+
+<p>You can find more details on this <a href="http://www.rssboard.org/rss-autodiscovery">RSS board page</a>.</p>
+
+<h3 id="keep-your-feeds-valid">Keep your feeds valid</h3>
+
+<p>As opposed to HTML, feeds have a pretty <strong>strong semantic aspect</strong>. This means that it’s important to respect to respect the format and schema you picked. There exists multiple tools to make sure your feeds are valid: <a href="https://validator.w3.org/feed/">W3C’s validator</a>, <a href="https://feedvalidator.flipboard.com/">Flipboard’s Validator</a>, <a href="http://feedvalidator.org/">FeedValidator</a>, <a href="http://www.rssboard.org/rss-validator/">RSS Board’s validator</a>… etc.</p>
+
+<p>Here’s also a list of DOs and DONTs:</p>
+
+<ul>
+  <li>Use unique (immutable) identifiers for entries : <code>&lt;guid&gt;</code> in RSS and <code>&lt;id&gt;</code> in ATOM</li>
+  <li>Use a valide date format: <a href="https://en.wikipedia.org/wiki/ISO_8601">ISO8601</a>.</li>
+  <li>Use the <em>Roman Calendar</em>.</li>
+  <li>It’s ok to have only <code>&lt;summary&gt;</code> instead of the full <code>&lt;content&gt;</code> but don’t show it as full content if it’s just a summary.</li>
+</ul>
+
+
+	</section>
+</div>
+
+  
+    &nbsp;
+    &nbsp;
+  </main>
+
+
+  <div class="footer container">
+
+    <footer class="site-footer">
+      <div class="site-footer__block">
+        <a href="/" class="site-footer__logo"><img alt="Logo invert" src="/img/logo-invert.svg"></a>
+        <p class="site-footer__copyright"><span>Superfeedr</span><br>© 2009–2015</p>
+      </div>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Superfeedr</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">About</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/pricing">Pricing</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/terms">Terms</a></li>
+      </ul>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>For developers</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="http://documentation.superfeedr.com/">Documentation</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/">Code Libraries</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://github.com/superfeedr/documentation/issues">Support</a> <a href="" class="site-footer__link"></a></li>
+      </ul>
+      <ul class="site-footer__block site-footer__list">
+        <li class="site-footer__item"><strong>Connect with us</strong></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://superfeedr.com/about">Contact Us</a></li>
+        <li class="site-footer__item"><a class="site-footer__link" href="mailto:info@superfeedr.com">Email</a> </li>
+        <li class="site-footer__item"><a class="site-footer__link" href="https://twitter.com/superfeedr">Twitter</a> </li>
+      </ul>
+    </footer>
+
+  </div>
+</body>
+<script src="/js/jquery.min.js">
+</script>
+<script src="/js/prism.js">
+</script>
+<script src="/js/documentation.js">
+</script>
+</html>
