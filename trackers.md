@@ -31,7 +31,7 @@ Track feeds are *virtual* feeds in a sense that they're generated *on the fly* a
 * Uses the `track.superfeedr.com` hostname
 * Has a `query` query string param whose value is the query itself.
 
-Here's an example of track feed: `http://track.superfeedr.com/?query=superfeedr`. You can also use a `format` query string which `atom` or `json` as values. You should refer to our [schema](/schema.html) section for details on both ATOM and JSON.
+Here's an example of track feed: `http://track.superfeedr.com/?query=superfeedr`. You can also use a `format` query string with `atom` or `json` as values. You should refer to our [schema](/schema.html) section for details on both ATOM and JSON.
 
 ### Queries
 
@@ -223,7 +223,7 @@ Please note that in some cases, we are unable to extract the language (not enoug
 
 ### Popularity
 
-Each feed going through Superfeedr has a popularity ranking. This popularity is a compbination of multiple signals and factors: some of them internal and others external (social networks, pagerank... etc). Any feed's popularity evolves slowly.
+Each feed going through Superfeedr has a popularity ranking. This popularity is a combination of multiple signals and factors: some of them internal and others external (social networks, pagerank... etc). Any feed's popularity evolves slowly.
 You can build filters which take the popularity of the source into account and exclude content coming from unpopular sources.
 
 The value should be a range (> or <) to match popularity greater or small than a specific value. Check [this blog post](http://blog.superfeedr.com/subscribe-to-popular-rss-feeds/) to learn about the distribution of these ranges.
