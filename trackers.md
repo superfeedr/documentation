@@ -49,7 +49,7 @@ Here are valid examples of queries:
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -99,7 +99,7 @@ Examples:
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -127,7 +127,7 @@ This is useful when refining tracking feeds for which a lot of content is coming
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -151,7 +151,7 @@ You can add at most one `link:` per query.
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -175,7 +175,7 @@ Similarly to `site`, You can use the *negation* of this flag by using `-link:` a
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -199,7 +199,7 @@ Please note that in some cases, we are unable to extract the language (not enoug
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -230,7 +230,7 @@ The value should be a range (> or <) to match popularity greater or small than a
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -256,7 +256,7 @@ That said, for some cases, (building porn filters for example!), it makes sense 
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -282,7 +282,7 @@ You can disable this filtering by using `bozo:ok`.
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -310,7 +310,7 @@ Superfeedr offers a *search* API which lets you match your tracking feeds querie
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Parameter Name</th>
         <th>Note</th>

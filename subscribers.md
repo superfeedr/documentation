@@ -180,7 +180,7 @@ If you want your tokens to be private along with the rest of your account detail
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Parameter Name</th>
         <th>Note</th>
@@ -270,7 +270,7 @@ Please note that even though we won't notify you for the changes in the feed, th
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
 
         <th>Parameter Name</th>
@@ -331,7 +331,7 @@ curl https://push.superfeedr.com/
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Parameter Name</th>
@@ -406,7 +406,7 @@ Search queries are nested string parameters. We use the following keys:
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Query</th>
@@ -502,7 +502,7 @@ Search queries are nested string parameters. We use the following keys:
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Parameter Name</th>
@@ -701,7 +701,7 @@ You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithp
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Parameter Name</th>
         <th>Note</th>
@@ -757,7 +757,7 @@ Additionally, notifications will include the following headers for you to inspec
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Header Name</th>
@@ -822,7 +822,7 @@ This call is mostly used as a debugging tool. It allows you to replay past notif
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Parameter Name</th>
@@ -898,7 +898,7 @@ You can connect your Jabber client to Superfeedr by using JID: `username@superfe
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>
@@ -989,7 +989,7 @@ In other cases, you will receive an iq with `type="error"`. Please check that yo
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>
@@ -1052,7 +1052,7 @@ The server acknowledges the unsubscribe:
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>
@@ -1127,7 +1127,7 @@ The server sends the list of resources to which you are subscribed for the page 
 
 <div class="box">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>
