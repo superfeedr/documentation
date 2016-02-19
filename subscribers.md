@@ -178,7 +178,7 @@ If you want your tokens to be private along with the rest of your account detail
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
       <tr>
@@ -268,7 +268,7 @@ Please note that even though we won't notify you for the changes in the feed, th
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
       <tr>
@@ -329,7 +329,7 @@ curl https://push.superfeedr.com/
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -404,7 +404,7 @@ curl https://push.superfeedr.com/
 
 Search queries are nested string parameters. We use the following keys:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -500,7 +500,7 @@ Search queries are nested string parameters. We use the following keys:
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -699,7 +699,7 @@ When retrieving past RSS content, it is possible to keep the HTTP connection to 
 
 You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithpubsubhubbub), as outlined above, with the following extra parameter:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
       <tr>
@@ -755,7 +755,7 @@ We consider notifications successful if we can reach your callback and it return
 
 Additionally, notifications will include the following headers for you to inspect:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -820,7 +820,7 @@ This call is mostly used as a debugging tool. It allows you to replay past notif
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -896,7 +896,7 @@ You can connect your Jabber client to Superfeedr by using JID: `username@superfe
 
 ### Adding Feeds with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -987,7 +987,7 @@ In other cases, you will receive an iq with `type="error"`. Please check that yo
 
 ### Removing Feeds with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -1050,7 +1050,7 @@ The server acknowledges the unsubscribe:
 
 ### Listing Feeds with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
@@ -1125,7 +1125,7 @@ The server sends the list of resources to which you are subscribed for the page 
 
 ### Retrieving Entries with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
     <thead class="table__header">
 
