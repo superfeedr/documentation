@@ -173,8 +173,8 @@ If you want your tokens to be private along with the rest of your account detail
 
 ### Adding Feeds with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
@@ -263,8 +263,8 @@ Please note that even though we won't notify you for the changes in the feed, th
 
 ### Removing Feeds with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
@@ -324,8 +324,8 @@ curl https://push.superfeedr.com/
 
 ### Listing Subscriptions with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
@@ -495,8 +495,8 @@ Search queries are nested string parameters. We use the following keys:
 
 ### Retrieving Entries with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
@@ -692,8 +692,8 @@ curl https://push.superfeedr.com/
 
 When retrieving past RSS content, it is possible to keep the HTTP connection to Superfeedr alive. This ensures new entries are sent directly to your client. To do this, you need to use the `stream.superfeedr.com` endpoint:
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://stream.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://stream.superfeedr.com</code>
   </div>
 </div>
 
@@ -815,8 +815,8 @@ Your callback urls should be *hard to guess*. More importantly, you should **use
 
 This call is mostly used as a debugging tool. It allows you to replay past notifications. The token used to perform this call **must have** the `retrieve` right set to `true`.
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
