@@ -303,8 +303,8 @@ Tracking feeds are prospective, which means that you should use them to receive 
 
 Superfeedr offers a *search* API which lets you match your tracking feeds queries against historical data. You can then quickly identify how to refine your queries for tracking feeds.
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
