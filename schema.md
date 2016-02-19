@@ -16,106 +16,109 @@ Whatever the original format (RSS, Atom, or any other namespace) is, the notific
 
 Upon notifications, when subscribing ([XMPP](/subscribers.html#xmpppubsub) only), or when retrieving a resource's content from Superfeedr, you'll see that it *may* include the following information. This data is useful for you to know the current state of a resource. Please note that some items my be missing at some point, either because we haven't processed the feed yet, or because they wouldn't be accurate.
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>status[@feed]</td>
+        <td>&nbsp;</td>
+        <td>contains the URL of the resource</td>
+      </tr>
+
+      <tr>
+        <td>title</td>
+        <td></td>
+        <td>The feed title</td>
+      </tr>
+
+      <tr>
+        <td>http[@code]</td>
+        <td>&nbsp;</td>
+        <td>last HTTP status code, please see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status Code Definitions</a></td>
+      </tr>
+
+      <tr>
+        <td>http</td>
+        <td>&nbsp;</td>
+        <td>the content of that tag is a more explicit log message for your information</td>
+      </tr>
+
+      <tr>
+        <td>next_fetch</td>
+        <td>&nbsp;</td>
+        <td>the resource will be fetched at most before this time</td>
+      </tr>
+
+      <tr>
+        <td>period</td>
+        <td>&nbsp;</td>
+        <td>the polling frequency in seconds for this resource (at least 60 seconds for feeds and at least 300 seconds for arbitrary content)</td>
+      </tr>
+
+      <tr>
+        <td>last_fetch</td>
+        <td>&nbsp;</td>
+        <td>the last time at which we fetched the resource</td>
+      </tr>
+
+      <tr>
+        <td>last_parse</td>
+        <td>&nbsp;</td>
+        <td>the last time at which we parsed the resource. It happens that we fetch a resource and do not parse it as its content hasn't been modified</td>
+      </tr>
+
+      <tr>
+        <td>last_maintenance_at</td>
+        <td>&nbsp;</td>
+        <td>Each resource inside Superfeedr has a maintenance cycle that we use to detect stale resource, or related resource. We normally run maintenance at most every 24hour for each resource, but this is a low priority task, so it may go beyond this</td>
+      </tr>
+
+      <tr>
+        <td>entries_count_since_last_maintenance</td>
+        <td></td>
+        <td>The number of updates in the resource since we last ran the maintenance script. This is a very good indicator of the verboseness of a resource. You may want to remove resources that are too verbose</td>
+      </tr>
+
+      <tr>
+        <td id="velocity">velocity</td>
+        <td></td>
+        <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
+      </tr>
+
+      <tr>
+        <td id="popularity">popularity</td>
+        <td></td>
+        <td>Float. Starts at 0 (not popular).The greater the number, the more popular the feed. Popularity is assessed for each feed based on several different signals from the social web, number of clicks, number of subscribers. It also depends on the popularity of the web pages which link to the feed.</td>
+      </tr>
 
 
-<tr>
-  <td>status[@feed]</td>
-  <td>&nbsp;</td>
-  <td>contains the URL of the resource</td>
-</tr>
+      <tr>
+        <td id="porn_rank">porn_rank</td>
+        <td>if available</td>
+        <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
+      </tr>
 
-<tr>
-  <td>title</td>
-  <td></td>
-  <td>The feed title</td>
-</tr>
+      <tr>
+        <td id="bozo_rank">bozo_rank</td>
+        <td>if available</td>
+        <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
+      </tr>
 
-<tr>
-  <td>http[@code]</td>
-  <td>&nbsp;</td>
-  <td>last HTTP status code, please see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status Code Definitions</a></td>
-</tr>
-
-<tr>
-  <td>http</td>
-  <td>&nbsp;</td>
-  <td>the content of that tag is a more explicit log message for your information</td>
-</tr>
-
-<tr>
-  <td>next_fetch</td>
-  <td>&nbsp;</td>
-  <td>the resource will be fetched at most before this time</td>
-</tr>
-
-<tr>
-  <td>period</td>
-  <td>&nbsp;</td>
-  <td>the polling frequency in seconds for this resource (at least 60 seconds for feeds and at least 300 seconds for arbitrary content)</td>
-</tr>
-
-<tr>
-  <td>last_fetch</td>
-  <td>&nbsp;</td>
-  <td>the last time at which we fetched the resource</td>
-</tr>
-
-<tr>
-  <td>last_parse</td>
-  <td>&nbsp;</td>
-  <td>the last time at which we parsed the resource. It happens that we fetch a resource and do not parse it as its content hasn't been modified</td>
-</tr>
-
-<tr>
-  <td>last_maintenance_at</td>
-  <td>&nbsp;</td>
-  <td>Each resource inside Superfeedr has a maintenance cycle that we use to detect stale resource, or related resource. We normally run maintenance at most every 24hour for each resource, but this is a low priority task, so it may go beyond this</td>
-</tr>
-
-<tr>
-  <td>entries_count_since_last_maintenance</td>
-  <td></td>
-  <td>The number of updates in the resource since we last ran the maintenance script. This is a very good indicator of the verboseness of a resource. You may want to remove resources that are too verbose</td>
-</tr>
-
-<tr>
-  <td id="velocity">velocity</td>
-  <td></td>
-  <td>The number of updates during a maintenance cycle (between 24 and 48 hours). More than the absolute number, the magnitude matters. </td>
-</tr>
-
-<tr>
-  <td id="popularity">popularity</td>
-  <td></td>
-  <td>Float. Starts at 0 (not popular).The greater the number, the more popular the feed. Popularity is assessed for each feed based on several different signals from the social web, number of clicks, number of subscribers. It also depends on the popularity of the web pages which link to the feed.</td>
-</tr>
-
-
-<tr>
-  <td id="porn_rank">porn_rank</td>
-  <td>if available</td>
-  <td>Betwen 0 and 1. The greater the rank, the greater the chances that the feed publishes only porn content. </td>
-</tr>
-
-<tr>
-  <td id="bozo_rank">bozo_rank</td>
-  <td>if available</td>
-  <td>Betwen 0 and 1. The Bozo rank indicates that a feed is probably valid syntactically but likely invalid semantically: feeds with constantly changing unique identifier for new entries will rank high, for example.</td>
-</tr>
-
-<tr>
-  <td id="generated_ids">generated_ids</td>
-  <td>true</td>
-  <td>Indicates whether the <code>id</code> for each entry was generated by Superfeedr. If this is missing, you can safely assume that we were able to extract the unique id from the feed themselves.</td>
-</tr>
-
-</table>
+      <tr>
+        <td id="generated_ids">generated_ids</td>
+        <td>true</td>
+        <td>Indicates whether the <code>id</code> for each entry was generated by Superfeedr. If this is missing, you can safely assume that we were able to extract the unique id from the feed themselves.</td>
+      </tr>      
+    </tbody>
+  </table>
+</div>
 
 #### Example
 
@@ -141,34 +144,40 @@ Here are the components used to build the entries. Please note that they may use
 
 ### Link
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>link[@href]</td>
-  <td></td>
-  <td>the url related to the parent node</td>
-</tr>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>link[@href]</td>
+        <td></td>
+        <td>the url related to the parent node</td>
+      </tr>
 
-<tr>
-  <td>link[@rel]</td>
-  <td>optional</td>
-  <td>the type of relation to that parent node (alternate, reply... etc)</td>
-</tr>
-<tr>
-  <td>link[@type]</td>
-  <td>optional</td>
-  <td>MimeType of the link destination (text/html by default)</td>
-</tr>
-<tr>
-  <td>link[@title]</td>
-  <td>optional</td>
-  <td>the link title</td>
-</tr>
-</table>
+      <tr>
+        <td>link[@rel]</td>
+        <td>optional</td>
+        <td>the type of relation to that parent node (alternate, reply... etc)</td>
+      </tr>
+      <tr>
+        <td>link[@type]</td>
+        <td>optional</td>
+        <td>MimeType of the link destination (text/html by default)</td>
+      </tr>
+      <tr>
+        <td>link[@title]</td>
+        <td>optional</td>
+        <td>the link title</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Example
 
@@ -179,18 +188,24 @@ Here are the components used to build the entries. Please note that they may use
 
 ### Category
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>category[@term]</td>
-  <td>optional, multiple</td>
-  <td>a keyword related to the entry... (tag, category or topic)</td>
-</tr>
-</table>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>category[@term]</td>
+        <td>optional, multiple</td>
+        <td>a keyword related to the entry... (tag, category or topic)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Example
 
@@ -201,18 +216,24 @@ Here are the components used to build the entries. Please note that they may use
 
 ### Point
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>entry[@point]</td>
-  <td>optional, multiple</td>
-  <td>geolocation data. Contains a [georss](http://georss.org/) latitude and longitude. It's either extracted from the story or extrapolated from the content.</td>
-</tr>
-</table>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>entry[@point]</td>
+        <td>optional, multiple</td>
+        <td>geolocation data. Contains a [georss](http://georss.org/) latitude and longitude. It's either extracted from the story or extrapolated from the content.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Example
 
@@ -222,44 +243,49 @@ Here are the components used to build the entries. Please note that they may use
 
 ### Author
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>author</td>
-  <td>optional, multiple</td>
-  <td>Author information</td>
-</tr>
-<tr>
-  <td>name</td>
-  <td>optional</td>
-  <td>the author's name (or nickname)</td>
-</tr>
-<tr>
-  <td>email</td>
-  <td>optional</td>
-  <td> the author's email address</td>
-</tr>
-<tr>
-  <td>uri</td>
-  <td>optional</td>
-  <td>the author's URI</td>
-</tr>
-<tr>
-  <td>object-type</td>
-  <td>optional, multiple</td>
-  <td>the object type, defined in the ActivityStreams spec</td>
-</tr>
-<tr>
-  <td>link</td>
-  <td>optional, multiple</td>
-  <td>links (see above). They can include links to the author's profile, to the user's avatar...</td>
-</tr>
-
-</table>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>author</td>
+        <td>optional, multiple</td>
+        <td>Author information</td>
+      </tr>
+      <tr>
+        <td>name</td>
+        <td>optional</td>
+        <td>the author's name (or nickname)</td>
+      </tr>
+      <tr>
+        <td>email</td>
+        <td>optional</td>
+        <td> the author's email address</td>
+      </tr>
+      <tr>
+        <td>uri</td>
+        <td>optional</td>
+        <td>the author's URI</td>
+      </tr>
+      <tr>
+        <td>object-type</td>
+        <td>optional, multiple</td>
+        <td>the object type, defined in the ActivityStreams spec</td>
+      </tr>
+      <tr>
+        <td>link</td>
+        <td>optional, multiple</td>
+        <td>links (see above). They can include links to the author's profile, to the user's avatar...</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Example
 
@@ -275,63 +301,69 @@ Here are the components used to build the entries. Please note that they may use
 
 ### Object
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>object</td>
-  <td>optional, multiple</td>
-  <td>ActivityStreams</td>
-</tr>
-<tr>
-  <td>object-type</td>
-  <td>optional, multiple</td>
-  <td>the object type, defined in the ActivityStreams spec</td>
-</tr>
-<tr>
-  <td>id</td>
-  <td>optional</td>
-  <td>the unique identifier of the object</td>
-</tr>
-<tr>
-  <td>title</td>
-  <td>optional</td>
-  <td>the title of the object</td>
-</tr>
-<tr>
-  <td>published</td>
-  <td>optional</td>
-  <td>the publication date (iso8601) of the object</td>
-</tr>
-<tr>
-  <td>updated</td>
-  <td>optional</td>
-  <td>the updated date (iso8601) of the object</td>
-</tr>
-<tr>
-  <td>content</td>
-  <td>optional</td>
-  <td>the content of the object</td>
-</tr>
-<tr>
-  <td>author</td>
-  <td>optional, multiple</td>
-  <td>author information (see above)</td>
-</tr>
-<tr>
-  <td>category</td>
-  <td>optional, multiple</td>
-  <td>categories (see above)</td>
-</tr>
-<tr>
-  <td>link</td>
-  <td>optional, multiple</td>
-  <td>links (see above)</td>
-</tr>
-</table>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>object</td>
+        <td>optional, multiple</td>
+        <td>ActivityStreams</td>
+      </tr>
+      <tr>
+        <td>object-type</td>
+        <td>optional, multiple</td>
+        <td>the object type, defined in the ActivityStreams spec</td>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>optional</td>
+        <td>the unique identifier of the object</td>
+      </tr>
+      <tr>
+        <td>title</td>
+        <td>optional</td>
+        <td>the title of the object</td>
+      </tr>
+      <tr>
+        <td>published</td>
+        <td>optional</td>
+        <td>the publication date (iso8601) of the object</td>
+      </tr>
+      <tr>
+        <td>updated</td>
+        <td>optional</td>
+        <td>the updated date (iso8601) of the object</td>
+      </tr>
+      <tr>
+        <td>content</td>
+        <td>optional</td>
+        <td>the content of the object</td>
+      </tr>
+      <tr>
+        <td>author</td>
+        <td>optional, multiple</td>
+        <td>author information (see above)</td>
+      </tr>
+      <tr>
+        <td>category</td>
+        <td>optional, multiple</td>
+        <td>categories (see above)</td>
+      </tr>
+      <tr>
+        <td>link</td>
+        <td>optional, multiple</td>
+        <td>links (see above)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Example
 
@@ -354,18 +386,24 @@ Here are the components used to build the entries. Please note that they may use
 
 ### Verb
 
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>verb</td>
-  <td>optional, multiple</td>
-  <td>defined in the ActivityStreams spec</td>
-</tr>
-</table>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>verb</td>
+        <td>optional, multiple</td>
+        <td>defined in the ActivityStreams spec</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 #### Example
 
@@ -377,49 +415,54 @@ Here are the components used to build the entries. Please note that they may use
 
 Entries may include all the above elements. They also contain specific nodes, listed below.
 
-
-<table class="table table-striped table-condensed table-responsive">
-<tr>
-  <th>Name</th>
-  <th>Note</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>entry[@xml:lang]</td>
-  <td>optional</td>
-  <td>The language of the entry. It's either extracted or computed from the content (the longer the content, the more relevant).</td>
-</tr>
-<tr>
-  <td>entry[@title]</td>
-  <td></td>
-  <td>The title of the entry.</td>
-</tr>
-<tr>
-  <td>entry[@published]</td>
-  <td>optional</td>
-  <td>The publication date (iso8601) of the entry.</td>
-</tr>
-<tr>
-  <td>entry[@updated]</td>
-  <td>optional</td>
-  <td>The last updated date (iso8601) of the entry.</td>
-</tr>
-<tr>
-  <td>entry[@content]</td>
-  <td>optional</td>
-  <td>The content of the entry. Check the type attribute to determine the mime-type.</td>
-</tr>
-<tr>
-  <td>entry[@summary]</td>
-  <td>optional</td>
-  <td>The summary of the entry. Check the type attribute to determine the mime-type.</td>
-</tr>
-<tr>
-  <td>entry[@source]</td>
-  <td>optional</td>
-  <td>The source of the entry. It includes all the available feed level elements, such as the feed title, the feed links, the feed's author(s)... etc. It's extremely useful for track feeds.</td>
-</tr>
-</table>
+<div class="box box--inline">
+  <table class="table table-striped table-condensed table-responsive">
+    <thead class="table__header">
+      <tr>
+        <th>Name</th>
+        <th>Note</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>entry[@xml:lang]</td>
+        <td>optional</td>
+        <td>The language of the entry. It's either extracted or computed from the content (the longer the content, the more relevant).</td>
+      </tr>
+      <tr>
+        <td>entry[@title]</td>
+        <td></td>
+        <td>The title of the entry.</td>
+      </tr>
+      <tr>
+        <td>entry[@published]</td>
+        <td>optional</td>
+        <td>The publication date (iso8601) of the entry.</td>
+      </tr>
+      <tr>
+        <td>entry[@updated]</td>
+        <td>optional</td>
+        <td>The last updated date (iso8601) of the entry.</td>
+      </tr>
+      <tr>
+        <td>entry[@content]</td>
+        <td>optional</td>
+        <td>The content of the entry. Check the type attribute to determine the mime-type.</td>
+      </tr>
+      <tr>
+        <td>entry[@summary]</td>
+        <td>optional</td>
+        <td>The summary of the entry. Check the type attribute to determine the mime-type.</td>
+      </tr>
+      <tr>
+        <td>entry[@source]</td>
+        <td>optional</td>
+        <td>The source of the entry. It includes all the available feed level elements, such as the feed title, the feed links, the feed's author(s)... etc. It's extremely useful for track feeds.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 {% prism markup %}
 <entry xmlns="http://www.w3.org/2005/Atom" xmlns:geo="http://www.georss.org/georss" xmlns:as="http://activitystrea.ms/spec/1.0/" xml:lang="en">
