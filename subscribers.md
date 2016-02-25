@@ -148,7 +148,7 @@ If you want to manually specify an HTTP method different to the one used in the 
 
 ### HTTP Authentication
 
-Authentication using the Webhooks API is performed through [HTTP Basic Autentication](http://tools.ietf.org/html/rfc2617). Most HTTP libraries will allow for an easy configuration with this. To get started with an authentication, use your Superfeedr login, then pick from one of these options for your password:
+Authentication using the Webhooks API is performed through [HTTP Basic Authentication](http://tools.ietf.org/html/rfc2617). Most HTTP libraries will allow for an easy configuration with this. To get started with an authentication, use your Superfeedr login, then pick from one of these options for your password:
 
 * A password token that [you can generate](https://superfeedr.com/tokens/new).
 * Your main Superfeedr password (though we recommend using a token for security purposes).
