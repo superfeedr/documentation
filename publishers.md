@@ -1,5 +1,6 @@
 ---
 title: Publishers
+description: Superfeedr's PubSubHubbub hubs for publishers are compliant with versions 0.3 and 0.4 of the spec; here's how to set them up.
 layout: page
 toc: {
   "Discovery": {},

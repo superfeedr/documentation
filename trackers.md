@@ -1,5 +1,6 @@
 ---
 title: Trackers
+description: Superfeedr allows you to track entries for a certain query, as opposed to single feeds. Here's how to set it up.
 layout: page
 toc: {
   "Introduction": {},

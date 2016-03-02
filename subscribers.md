@@ -1,5 +1,6 @@
 ---
 title: Subscribers
+description: Superfeedr allows you to subscribe to content on the web, and receive push notifications in real-time when new content is published. Here's how to set it up.
 layout: page
 toc: {
   "Introduction": {},

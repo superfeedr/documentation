@@ -1,5 +1,6 @@
 ---
 title: Schema & Data Formats
+description: Superfeedr's schema is standard ATOM, with a few extra items fit into custom namespaces.
 layout: page
 toc: {
   "Status": {},

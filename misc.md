@@ -1,5 +1,6 @@
 ---
 title: Misc
+description: Miscellaneous information about Superfeedr's service.
 layout: page
 toc: {
   "IP list": {}
