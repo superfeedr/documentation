@@ -1,5 +1,6 @@
 ---
 title: Subscribers
+description: Superfeedr allows you to subscribe to content on the web, and receive push notifications in real-time when new content is published. Here's how to set it up.
 layout: page
 toc: {
   "Introduction": {},
@@ -173,14 +174,14 @@ If you want your tokens to be private along with the rest of your account detail
 
 ### Adding Feeds with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Parameter Name</th>
         <th>Note</th>
@@ -263,14 +264,14 @@ Please note that even though we won't notify you for the changes in the feed, th
 
 ### Removing Feeds with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
 
         <th>Parameter Name</th>
@@ -324,14 +325,14 @@ curl https://push.superfeedr.com/
 
 ### Listing Subscriptions with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Parameter Name</th>
@@ -404,9 +405,9 @@ curl https://push.superfeedr.com/
 
 Search queries are nested string parameters. We use the following keys:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Query</th>
@@ -495,14 +496,14 @@ Search queries are nested string parameters. We use the following keys:
 
 ### Retrieving Entries with PubSubHubbub
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Parameter Name</th>
@@ -692,16 +693,16 @@ curl https://push.superfeedr.com/
 
 When retrieving past RSS content, it is possible to keep the HTTP connection to Superfeedr alive. This ensures new entries are sent directly to your client. To do this, you need to use the `stream.superfeedr.com` endpoint:
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://stream.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://stream.superfeedr.com</code>
   </div>
 </div>
 
 You will then perform a [retrieve call](/subscribers.html#retrievingentrieswithpubsubhubbub), as outlined above, with the following extra parameter:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Parameter Name</th>
         <th>Note</th>
@@ -755,9 +756,9 @@ We consider notifications successful if we can reach your callback and it return
 
 Additionally, notifications will include the following headers for you to inspect:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Header Name</th>
@@ -815,14 +816,14 @@ Your callback urls should be *hard to guess*. More importantly, you should **use
 
 This call is mostly used as a debugging tool. It allows you to replay past notifications. The token used to perform this call **must have** the `retrieve` right set to `true`.
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">GET</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Parameter Name</th>
@@ -896,9 +897,9 @@ You can connect your Jabber client to Superfeedr by using JID: `username@superfe
 
 ### Adding Feeds with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>
@@ -987,9 +988,9 @@ In other cases, you will receive an iq with `type="error"`. Please check that yo
 
 ### Removing Feeds with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>
@@ -1050,9 +1051,9 @@ The server acknowledges the unsubscribe:
 
 ### Listing Feeds with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>
@@ -1125,9 +1126,9 @@ The server sends the list of resources to which you are subscribed for the page 
 
 ### Retrieving Entries with XMPP
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
 
       <tr>
         <th>Name</th>

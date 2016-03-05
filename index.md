@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Introduction
+description: Superfeedr's documentation outlines all its key features, and will show you how it can be seamlessly integrated into a wide range of infrastructures.
 toc: {
   "Table of Contents": {},
   "Audience": {},

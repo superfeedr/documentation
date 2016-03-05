@@ -1,5 +1,6 @@
 ---
 title: Trackers
+description: Superfeedr allows you to track entries for a certain query, as opposed to single feeds. Here's how to set it up.
 layout: page
 toc: {
   "Introduction": {},
@@ -47,9 +48,9 @@ Some special characters are also supported:
 
 Here are valid examples of queries:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -97,9 +98,9 @@ The value is a hostname (full domain or subdomain) of the publishing site. You c
 
 Examples:
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -125,9 +126,9 @@ You can use the *negation* of this flag by using `-site:` as a flag. In this cas
 
 This is useful when refining tracking feeds for which a lot of content is coming from the same sources.
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -149,9 +150,9 @@ The `link:` flag allows you to select only the documents which include a link to
 
 You can add at most one `link:` per query.
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -173,9 +174,9 @@ You can add at most one `link:` per query.
 
 Similarly to `site`, You can use the *negation* of this flag by using `-link:` as a flag. You can have multiple `-link:` values.
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -197,9 +198,9 @@ Superfeedr is able to extract the language of every entry individually. This mea
 
 Please note that in some cases, we are unable to extract the language (not enough test, contradicting text with combination of 2 languages... etc). 
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -228,9 +229,9 @@ You can build filters which take the popularity of the source into account and e
 
 The value should be a range (> or <) to match popularity greater or small than a specific value. Check [this blog post](http://blog.superfeedr.com/subscribe-to-popular-rss-feeds/) to learn about the distribution of these ranges.
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -254,9 +255,9 @@ We consider any feed as porn with a [porn rank](/schema.html#porn_rank) higher t
 
 That said, for some cases, (building porn filters for example!), it makes sense to **disable** our porn filter. You can achieve this by adding `porn:ok` to your query.
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -280,9 +281,9 @@ We consider any feed as bozo with a [bozo rank](/schema.html#bozo_rank) higher t
 
 You can disable this filtering by using `bozo:ok`.
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Query</th>
         <th>Details</th>
@@ -303,14 +304,14 @@ Tracking feeds are prospective, which means that you should use them to receive 
 
 Superfeedr offers a *search* API which lets you match your tracking feeds queries against historical data. You can then quickly identify how to refine your queries for tracking feeds.
 
-<div class="panel">
-  <div class="panel-body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
+<div class="command-demo">
+  <div class="command-demo__body"><span class="label label-default">POST</span>&nbsp;<code>https://push.superfeedr.com</code>
   </div>
 </div>
 
-<div class="box">
+<div class="box box--inline">
   <table class="feed-table table">
-    <thead class="box__header">
+    <thead class="table__header">
       <tr>
         <th>Parameter Name</th>
         <th>Note</th>

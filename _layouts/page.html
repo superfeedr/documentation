@@ -3,9 +3,9 @@ layout: default
 ---
 
 <header class="body-header">
-	<h2>
-		<span>Documentation › </span> <strong>{{ page.title }}</strong>
-	</h2>
+	<h1>
+		<span>Documentation › </span> <strong class="p-name">{{ page.title }}</strong>
+	</h1>
 
 	<nav class="docs-nav">
 		{% navlink /, Introduction %}
@@ -20,7 +20,7 @@ layout: default
 	<div class="sticky-wrapper">
 		<div class="column column--quarter docs-inline-nav-wrap">
 			<header class="docs-inline-nav-header">
-				<h3>Contents</h3>
+				<h2 class="docs-inline-nav-title">Contents</h2>
 			</header>
 
 			{% toc page.toc %}
@@ -28,7 +28,7 @@ layout: default
 
 		</div>
 	</div>
-	<section class="column column--three-quarters docs-content-text">
+	<section class="column column--three-quarters docs-content-text e-content">
 		{{content}}
 	</section>
 </div>

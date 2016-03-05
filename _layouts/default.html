@@ -4,11 +4,17 @@
   <title> {{ page.title }} - Superfeedr Documentation </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/css/front.css">
-  <link rel="stylesheet" href="/css/prism.css">
-  <link rel="stylesheet" href="/css/documentation.css">
+  <link rel="stylesheet" href="//assets.superfeedr.com/assets/css/global.css">
   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,400italic|Source+Code+Pro:400,600" rel="stylesheet" type="text/css">
   <link rel="shortcut icon" href="/favicon.png">
+
+  <meta property="og:site_name" content="Superfeedr Documentation"/>
+  <meta property="og:title" content="{{ page.title }}">
+  <meta name="description" content="{{ page.description }}">
+  <meta property="og:description" content="{{ page.description }}">
+  <meta property="og:url" content="https://documentation.superfeedr.com{{ page.url }}">
+  <meta property="og:type" content="website">
+
 </head>
 <body>
 
@@ -43,11 +49,11 @@ var google_remarketing_only = true;
 
 
   <header class="header">
-    <div class="container">
+    <div class="container--front">
 
       <div class="header-logo">
         <a title="Superfeedr Documentation Home" href="/">
-          <img alt="Logo" src="/img/logo.svg">
+          <img alt="Logo" src="//assets.superfeedr.com/assets/img/logo.svg">
           <span>Superfeedr Documentation</span>
         </a>
       </div>
@@ -76,7 +82,7 @@ var google_remarketing_only = true;
       </div>
   </header>
 
-  <main class="container body">
+  <main class="container--front body h-entry">
     {{ content }}
 
     &nbsp;
@@ -84,12 +90,12 @@ var google_remarketing_only = true;
   </main>
 
 
-  <div class="footer container">
+  <div class="footer container--front">
 
     <footer class="site-footer">
       <div class="site-footer__block">
-        <a href="/" class="site-footer__logo"><img alt="Logo invert" src="/img/logo-invert.svg"></a>
-        <p class="site-footer__copyright"><span>Superfeedr</span><br>&copy; 2009–20{{ site.time | date: '%y' }}</p>
+        <a href="/" class="site-footer__logo"><img alt="Logo invert" src="//assets.superfeedr.com/assets/img/logo-invert.svg"></a>
+        <p class="site-footer__copyright"><span>Superfeedr</span><br>&copy; 2009–{{ site.time | date: '%Y' }}</p>
       </div>
       <ul class="site-footer__block site-footer__list">
         <li class="site-footer__item"><strong>Superfeedr</strong></li>
@@ -112,11 +118,6 @@ var google_remarketing_only = true;
     </footer>
 
   </div>
+  <script src="//assets.superfeedr.com/assets/js/global.min.js"></script>
 </body>
-<script src="/js/jquery.min.js">
-</script>
-<script src="/js/prism.js">
-</script>
-<script src="/js/documentation.js">
-</script>
 </html>
