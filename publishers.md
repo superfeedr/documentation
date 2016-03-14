@@ -21,18 +21,18 @@ Discovery tells your current and future subscribers who poll your resources that
 
 ### Any HTTP resources
 
-For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers. Include the following HTTP Header as defined in [RFC5988](http://tools.ietf.org/html/rfc5988) with each resource. 
+For HTTP resources, PubSubHubbub uses discovery in the HTTP Headers. Include the following HTTP Header as defined in [RFC5988](http://tools.ietf.org/html/rfc5988) with each resource.
 
-{% prism javascript %}  
+{% prism javascript %}
 Link: <https://your-hub-name.superfeedr.com/>; rel="hub"
 Link: <http://your.resource.url>; rel="self"
-{% endprism %}  
+{% endprism %}
 
 ### RSS
 
 For RSS feeds, you need to add the links in the `channel` section of your feed.
 
-{% prism markup %}  
+{% prism markup %}
 <?xml version="1.0"?>
 <rss>
  <channel>
@@ -47,13 +47,13 @@ For RSS feeds, you need to add the links in the `channel` section of your feed.
   ...
  </channel>
 </rss>
-{% endprism %}  
+{% endprism %}
 
 ### Atom
 
 For RSS feeds, you need to add the links in the `feed` section of your feed.
 
-{% prism markup %}  
+{% prism markup %}
 <?xml version="1.0" encoding="UTF-8"?><feed xmlns="http://www.w3.org/2005/Atom">
  <title>...</title>
  <link href="http://your.feed.url" rel="self" type="application/atom+xml"/>
@@ -66,7 +66,7 @@ For RSS feeds, you need to add the links in the `feed` section of your feed.
  <id>...</id>
  ...
 </feed>
-{% endprism %}  
+{% endprism %}
 
 ## Ping
 
@@ -79,6 +79,8 @@ Send a POST request to `http://<your-hub-name>.superfeedr.com/`, with the follow
 
 You can submit multiple URLs per ping, either by using an array syntax like `hub.url[]=<url1>` and `hub.url[]=<url2>`, or by sending a coma separated list or url-encoded URLs like this `hub.url=<url1>;<url2>`.
 
+As a spam filtering measure, our server will always return `204` when you ping us. Your Superfeedr analytics lets you visualise successful pings received on your hub.
+
 *Note*: If you’ve already implemented any type of ping, please get in touch, as we can probably receive it – we want to make it as easy as possible for you to implement the PubSubHubbub protocol.
 
 ## Subscription callback
@@ -88,7 +90,7 @@ You can submit multiple URLs per ping, either by using an array syntax like `hub
 Your Superfeedr hosted hub allows access to your feeds, and we want to make sure you have direct control over this.
 
 * If you want to *allow subscription*, just return `204`.
-* If you do not want to allow the subscription, please return `401`. 
+* If you do not want to allow the subscription, please return `401`.
   * Please include your reason for refusal in the body of the response as text, so we can forward this to the subscriber. The message can include requirements for subscription to your hub (such as the inclusion of an API key or contact information). We will forward any additional parameter submitted by the subscriber to your callback URL.
 
 If the URL is not accessible, or if you don’t return a `204` code, we will refuse all subscriptions to the resource.
@@ -107,7 +109,7 @@ However, this polling can become expensive and draining if you have tens of thou
 
 ## Good Practices
 
-If you publish XML feeds (RSS or Atom), there are **good practices** that you should make sure to respect. This will *increase adoption and engagement* with your content. 
+If you publish XML feeds (RSS or Atom), there are **good practices** that you should make sure to respect. This will *increase adoption and engagement* with your content.
 
 ### One feed per resource
 
@@ -117,7 +119,7 @@ A resource can be the home page of your site, a section, an author's page... etc
 
 Feed URLs are not "guessable". Every website uses a different pattern which is why you need to make your **XML feeds are discoverable**. This mechanism is used by feed readers and search engine to find your feeds when the user enters a domain name of a page's URL. For this, HTML offers a great mechanism: the `<head>` section. Here's an example:
 
-{% prism markup %}  
+{% prism markup %}
 <html>
   <head>
     <!-- Auto-discovery: -->
@@ -127,12 +129,12 @@ Feed URLs are not "guessable". Every website uses a different pattern which is w
   <body>
     <!-- the web page's contents -->
   </body>
-</html> 
-{% endprism %}  
+</html>
+{% endprism %}
 
 Make sure to use a **meaningful title** (not RSS or feed!), and replace `application/rss+xml` with `application/atom+xml` if your feed is in the ATOM format. It's also considered good practice to use absolute URLs for the `href`.
 
-It's important that you have **bi-directional links** between your HTML resources and your XML feeds which point to each others. 
+It's important that you have **bi-directional links** between your HTML resources and your XML feeds which point to each others.
 
 You can find more details on this [RSS board page](http://www.rssboard.org/rss-autodiscovery).
 
