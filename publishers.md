@@ -77,7 +77,7 @@ Send a POST request to `http://<your-hub-name>.superfeedr.com/`, with the follow
 * `hub.mode="publish"`
 * `hub.url=<the URL of the resource that was updated>`
 
-You can submit multiple URLs per ping, either by using an array syntax like `hub.url[]=<url1>` and `hub.url[]=<url2>`, or by sending a coma separated list or url-encoded URLs like this `hub.url=<url1>;<url2>`.
+You can submit multiple URLs per ping, either by using an array syntax like `hub.url[]=<url1>` and `hub.url[]=<url2>`, or by sending a comma-separated list of url-encoded URLs like this `hub.url=<url1>,<url2>`.
 
 As a spam filtering measure, our server will always return `204` when you ping us. Your Superfeedr analytics lets you visualise successful pings received on your hub.
 
@@ -143,10 +143,10 @@ You can find more details on this [RSS board page](http://www.rssboard.org/rss-a
 
 As opposed to HTML, feeds have a pretty **strong semantic aspect**. This means that it's important to respect to respect the format and schema you picked. There exists multiple tools to make sure your feeds are valid: [W3C's validator](https://validator.w3.org/feed/), [Flipboard's Validator](https://feedvalidator.flipboard.com/), [FeedValidator](http://feedvalidator.org/), [RSS Board's validator](http://www.rssboard.org/rss-validator/)... etc.
 
-Here's also a list of DOs and DONTs:
+Here's also a list of DOs and DON’Ts:
 
 * Use unique (immutable) identifiers for entries : `<guid>` in RSS and `<id>` in ATOM
-* Use a valide date format: [ISO8601](https://en.wikipedia.org/wiki/ISO_8601).
+* Use a valid date format: [ISO8601](https://en.wikipedia.org/wiki/ISO_8601).
 * Use the *Roman Calendar*.
 * It’s ok to have only `<summary>` instead of the full `<content>` but don’t show it as full content if it’s just a summary.
 
