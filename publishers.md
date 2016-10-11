@@ -13,7 +13,7 @@ toc: {
 
 ## Introduction
 
-All the [PubSubHubbubb](http://pubsubhubbub.superfeedr.com/) hubs hosted here at Superfeedr are compliant with the core specifications for versions [0.3](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.3.html) and [0.4](http://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html). To enable your publisher hub and get subscribers coming to your real-time feeds, you need to set up [discovery](#discovery) and [ping](#ping).
+All the [PubSubHubbubb](http://pubsubhubbub.superfeedr.com/) hubs hosted here at Superfeedr are compliant with the core specifications for versions [0.3](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.3.html) and [0.4](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html). To enable your publisher hub and get subscribers coming to your real-time feeds, you need to set up [discovery](#discovery) and [ping](#ping).
 
 ## Discovery
 
