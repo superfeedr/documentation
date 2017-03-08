@@ -141,7 +141,7 @@ If you’re not sure about which one is right for you, we’re more than happy t
 
 ## Webhooks
 
-Our API is based on the [PubSubHubbub protocol](https://pubsubhubbub.googlecode.com/svn/trunk/pubsubhubbub-core-0.4.html) with a couple simplifications. However, you can use your *subscriber* code with *any other hub*. You can also use any other library that supports and implements PubSubHubbub.
+Our API is based on the [PubSubHubbub protocol](http://pubsubhubbub.github.io/PubSubHubbub/pubsubhubbub-core-0.4.html) with a couple simplifications. However, you can use your *subscriber* code with *any other hub*. You can also use any other library that supports and implements PubSubHubbub.
 
 Our PubSubHubbub endpoint is at [https://push.superfeedr.com/](https://push.superfeedr.com/). The key difference is that our endpoint uses [HTTP Basic Auth](https://httpd.apache.org/docs/1.3/howto/auth.html#basic) to [authenticate](/subscribers.html#addingfeedswithpubsubhubbub) your PubSubHubbub calls, making all the verification steps of each request optional.
 
