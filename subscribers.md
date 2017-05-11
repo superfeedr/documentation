@@ -257,9 +257,9 @@ Subscriptions at Superfeedr are a unique combination of a resource URL and a cal
 
 #### Superfeedr's Null Device
 
-When subscribing, the callbac url can also be <code>https://push.superfeedr.com/dev/null</code> which is <a href="https://en.wikipedia.org/wiki/Null_device">our null device</a>. This is particularly useful if you're not interested in realtime updates to feeds but want to retrieve their statuses from our servers. This way, you're able to subscribe to tell Superfeedr to not notify you but still let you poll the content of these feeds.
+When subscribing, the callback url can also be <code>https://push.superfeedr.com/dev/null</code> which is <a href="https://en.wikipedia.org/wiki/Null_device">our null device</a>. This is particularly useful if you're not interested in realtime updates to feeds but want to retrieve their statuses from our servers. This way, you're able to subscribe to tell Superfeedr to not notify you but still let you poll the content of these feeds.
 
-Please note that even though we won't notify you for the changes in the feed, these notifications will *still* be acounted for when it comes to billing.
+Please note that even though we won't notify you for the changes in the feed, these notifications will *still* be accounted for when it comes to billing.
 
 
 ### Removing Feeds with PubSubHubbub
