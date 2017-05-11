@@ -22,7 +22,7 @@ toc: {
 
 You may want to subscribe transversally to any entry that matches a certain query, rather than subscribing to single feeds. The most common use case is to subscribe to any entry which matches a given keyword.
 
-Only the "Tracker" users can use track feeds. However, the API calls for **subscribing**, **unsubscribing**, **listing** or **retrieving** past entries are the same that "[Subscriber](/subscribers.html)" users can use for *regular* feeds, using either the [PubSubHubbub API](subscribers.html#webhooks) or the [XMPP API](/subscribers.html#xmpp-pubsub).
+Only the "Tracker" users can use track feeds. However, the API calls for **subscribing**, **unsubscribing**, **listing** or **retrieving** past entries are the same that "[Subscriber](/subscribers.html)" users can use for *regular* feeds, using our [PubSubHubbub API](subscribers.html#webhooks).
 
 ## Building Track Feeds
 
@@ -69,7 +69,7 @@ Here are valid examples of queries:
         <td><code>romeo -juliette</code></td>
         <td>will match any mention of <code>romeo</code> that does not have a mention of <code>juliette</code></td>
       </tr>
-      
+
 
       <tr>
         <td><code>paris (texas | france)</code></td>
@@ -116,7 +116,7 @@ Examples:
         <td><code>superfeedr site:techmeme.com</code></td>
         <td>will match any mention of <code>superfeedr</code> published on Techmeme</td>
       </tr>
-      
+
     </tbody>
   </table>
 </div>
@@ -138,7 +138,7 @@ This is useful when refining tracking feeds for which a lot of content is coming
       <tr>
         <td><code>apple -site:techmeme.com -site:techcrunch.com</code></td>
         <td>will match any mention of <code>apple</code> unless they're from either Techmeme or Techcrunch.</td>
-      </tr>      
+      </tr>
     </tbody>
   </table>
 </div>
@@ -167,7 +167,7 @@ You can add at most one `link:` per query.
       <tr>
         <td><code>link:runscope.com</code></td>
         <td>Only entries with a link to any page with the <code>runscope.com</code> domains.</td>
-      </tr>      
+      </tr>
     </tbody>
   </table>
 </div>
@@ -186,7 +186,7 @@ Similarly to `site`, You can use the *negation* of this flag by using `-link:` a
       <tr>
         <td><code>pubsubhubbub -link:superfeedr.com -link:google.com</code></td>
         <td>will match any mention of <code>pubsubhubbub</code> unless it points to either superfeedr.com or google.com.</td>
-      </tr>      
+      </tr>
     </tbody>
   </table>
 </div>
@@ -196,7 +196,7 @@ Similarly to `site`, You can use the *negation* of this flag by using `-link:` a
 
 Superfeedr is able to extract the language of every entry individually. This means you can filter entries matching a specific language or excluse those from specific languages using  `-language`. A given entry cannot have more than one language, which mean you can't use more than one `language` operand. However, you can exclude multiple languages using multiple `-language` operands. The value should be the 2 letter value of the language using [ISO_639-1](https://en.wikipedia.org/wiki/ISO_639-1).
 
-Please note that in some cases, we are unable to extract the language (not enough test, contradicting text with combination of 2 languages... etc). 
+Please note that in some cases, we are unable to extract the language (not enough test, contradicting text with combination of 2 languages... etc).
 
 <div class="box box--inline">
   <table class="feed-table table">
@@ -216,7 +216,7 @@ Please note that in some cases, we are unable to extract the language (not enoug
         <td><code>-language:it</code></td>
         <td>will exclude entries which use the italian language. If the language can't be determined, the entries will not match.</td>
       </tr>
-      
+
     </tbody>
   </table>
 </div>
@@ -242,7 +242,7 @@ The value should be a range (> or <) to match popularity greater or small than a
         <td><code>popularity:>3</code></td>
         <td>will match only entries published in feeds with a popularity greater than 3.</td>
       </tr>
-      
+
     </tbody>
   </table>
 </div>
@@ -343,11 +343,11 @@ Superfeedr offers a *search* API which lets you match your tracking feeds querie
 #### Example
 
 {% prism markup %}
-  curl https://push.superfeedr.com/ 
-  -X POST 
-  -u demo:demo 
-  -d'hub.mode=search' 
-  -d'query=superfeedr' 
+  curl https://push.superfeedr.com/
+  -X POST
+  -u demo:demo
+  -d'hub.mode=search'
+  -d'query=superfeedr'
 {% endprism %}
 
 #### Response
@@ -360,6 +360,6 @@ Other HTTP response codes are outlined in the [HTTP spec](https://en.wikipedia.o
 
 ## Scope
 
-The scope for tracking feeds is the *total* number of feeds processed by Superfeedr. This includes feeds subscribed by [subscribers](https://superfeedr.com/subscriber) and feeds published by [publishers](https://superfeedr.com/publisher) subscribed by at least one subscriber on their hubs. 
+The scope for tracking feeds is the *total* number of feeds processed by Superfeedr. This includes feeds subscribed by [subscribers](https://superfeedr.com/subscriber) and feeds published by [publishers](https://superfeedr.com/publisher) subscribed by at least one subscriber on their hubs.
 
 We are working on extending this coverage to include any subscribed feed on the web.

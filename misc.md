@@ -6,7 +6,7 @@ toc: {
   "IP list": {}
 }
 ---
-<!-- 
+<!--
 ## Track
 
 You may want to *subscribe transversally* to any entry that matches a certain condition, rather than subscribing to single feeds. For example, you might want to receive every entry that contains a particular keyword.
@@ -15,7 +15,7 @@ Our track feeds make this effortless.
 
 ### Building Queries
 
-We’ve built track so that you can use **exactly the same calls** to subscribe, unsubscribe and receive notifications for any feed, using both the [XMPP](/subscribers.html#xmpppubsub) and [PubSubHubbub](/subscribers.html#webhooks) APIs.  
+We’ve built track so that you can use **exactly the same calls** to subscribe, unsubscribe and receive notifications for any feed, using our [PubSubHubbub](/subscribers.html#webhooks) API.
 
 The next step consists of building your track feed.
 
