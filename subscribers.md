@@ -777,7 +777,7 @@ You should **always** use the `https` endpoints when sending requests to Superfe
 
 #### Best Practice: use hub.secret
 
-When subscribing to a feed, you should use `hub.secret`, unless you are using https for your callback URLs. This secret will be used to compute a signature for each notification. You should always make sure these signatures match. You can [read more about that here](https://w3c.github.io/pubsub/index.html#authenticated-content-distribution) .
+When subscribing to a feed, you should use `hub.secret`, unless you are using https for your callback URLs. This secret will be used to compute a signature for each notification. You should always make sure these signatures match. You can [read more about that here](https://w3c.github.io/websub/#signing-content) .
 
 #### Best Practice: use different callback urls
 
